@@ -20,6 +20,7 @@ export type TechComponent = {
   location: string;
   amount: number;
   artNr: string;
+  orders?: string[];
   // TODO find out where and how to store the image, until then use a placeholder
   crAt: Date;
   leAt: Date;
