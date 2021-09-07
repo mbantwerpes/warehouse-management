@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getOrders, getOrder, addOrder, updateOrder } from '../models/order';
-import type { Order, TechComponentOrder } from '../types';
+import type { TechComponentOrder } from '../types';
 
 const router = Router();
 
