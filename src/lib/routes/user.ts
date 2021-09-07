@@ -1,5 +1,11 @@
 import { Router } from 'express';
-import { getUsers, getUser, addUser, deleteUser } from '../models/user';
+import {
+  getUsers,
+  getUser,
+  addUser,
+  updateUser,
+  deleteUser,
+} from '../models/user';
 import type { User } from '../types';
 
 const router = Router();
@@ -25,9 +31,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const user: User = req.body;
-    addUser(user);
-    res.json(user);
+    const userData: User = req.body;
+    addUser(userData);
+    res.json(userData);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -36,8 +42,9 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    const data = req.body;
-    res.json(data);
+    const userData = req.body;
+    updateUser(id, userData);
+    res.json(userData);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
