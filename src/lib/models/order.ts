@@ -1,4 +1,4 @@
-import type { Order } from '../types';
+import type { Order, TechComponentOrder } from '../types';
 import { ObjectId } from 'mongodb';
 import { getOrderCollection } from '../database';
 import { getCurrentDate } from '../utils/time';
@@ -20,11 +20,20 @@ export async function getOrder(id: string): Promise<Order> {
   return order;
 }
 
-export const addOrder = async (order: Order): Promise<ObjectId> => {
+export const addOrder = async (
+  techComponentOrder: TechComponentOrder[]
+): Promise<ObjectId> => {
   const orderCollection = getOrderCollection();
 
-  order.crAt = getCurrentDate();
-  order.leAt = getCurrentDate();
+  const currentDate = getCurrentDate();
+
+  const order: Order = {
+    studentId: '61373a108a32c6c7b2ac07e3',
+    status: 'reserved',
+    techComponents: techComponentOrder,
+    crAt: currentDate,
+    leAt: currentDate,
+  };
 
   const result = await orderCollection.insertOne(order);
 

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getOrders, getOrder, addOrder, updateOrder } from '../models/order';
-import type { Order } from '../types';
+import type { Order, TechComponentOrder } from '../types';
 
 const router = Router();
 
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const orderData: Order = req.body;
+    const orderData: TechComponentOrder[] = req.body;
     addOrder(orderData);
     res.json(orderData);
   } catch (err) {
