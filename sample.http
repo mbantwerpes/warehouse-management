@@ -55,12 +55,18 @@ Content-Type: application/json
 }
 
 ### Update single user by id
-PUT http://localhost:3001/api/user/5
+PUT http://localhost:3001/api/user/6137502c0aad56b502a5cbbf
 Content-Type: application/json
 
 {
-    "studentId": "string",
-    "techComponents": "TechComponentOrder"
+    "role": "student",
+    "name": "Horst Mustermann",
+    "matrNumber": "123456789",
+    "email": "max@mustermann.com",
+    "password": "123",
+    "telephone": "123456789",
+    "grpNr": 12,
+    "grpName": "Team Blau"
 }
 
 ### Delete single user by id
