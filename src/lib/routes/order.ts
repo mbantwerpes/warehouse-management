@@ -1,10 +1,13 @@
 import { Router } from 'express';
+import { getOrders, getOrder, addOrder, updateOrder } from '../models/order';
+import type { TechComponentOrder } from '../types';
 
 const router = Router();
 
 router.get('/', async (_req, res) => {
   try {
-    res.json('All orders');
+    const orders = await getOrders();
+    res.json(orders);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -13,7 +16,8 @@ router.get('/', async (_req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    res.json(id);
+    const order = await getOrder(id);
+    res.json(order);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -21,8 +25,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const data = req.body;
-    res.json(data);
+    const orderData: TechComponentOrder[] = req.body;
+    addOrder(orderData);
+    res.json(orderData);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -31,17 +36,9 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    const data = req.body;
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-router.delete('/:id', async (req, res) => {
-  try {
-    const id = req.params.id;
-    res.json(id);
+    const orderData = req.body;
+    updateOrder(id, orderData);
+    res.json(orderData);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -14,7 +14,6 @@ export type User = {
 };
 
 export type TechComponent = {
-  id: string;
   adminId: string; // Track which admin has created the TechComponent
   title: string;
   description: string;
@@ -34,7 +33,6 @@ export type TechComponentOrder = {
 };
 
 export type Order = {
-  id: string;
   comment?: string;
   returnPeriod?: string;
   status: 'reserved' | 'booked' | 'returned';
