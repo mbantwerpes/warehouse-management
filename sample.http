@@ -2,7 +2,7 @@
 GET http://localhost:3001/api/techcomponent
 
 ### Get techcomponent by id
-GET http://localhost:3001/api/techcomponent/10
+GET http://localhost:3001/api/techcomponent/6137591eb576f18bef39032d
 
 ### Add single techcomponent
 POST http://localhost:3001/api/techcomponent
@@ -18,11 +18,11 @@ Content-Type: application/json
 }
 
 ### Update single techcomponent by id
-PUT http://localhost:3001/api/techcomponent/5
+PUT http://localhost:3001/api/techcomponent/6137591eb576f18bef39032d
 Content-Type: application/json
 
 {
-    "adminId": "1",
+    "adminId": "2",
     "title": "Microcontroller A-30",
     "description": "This is a description",
     "location": "Vault 3, Room 2",
@@ -31,7 +31,7 @@ Content-Type: application/json
 }
 
 ### Delete single techcomponent by id
-DELETE http://localhost:3001/api/techcomponent/5
+DELETE http://localhost:3001/api/techcomponent/6137591eb576f18bef39032d
 
 ### Get all user
 GET http://localhost:3001/api/user
