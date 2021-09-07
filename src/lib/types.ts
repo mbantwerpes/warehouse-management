@@ -33,10 +33,10 @@ export type TechComponentOrder = {
 
 export type Order = {
   id: string;
-  comment: string;
-  returnPeriod: string;
+  comment?: string;
+  returnPeriod?: string;
   status: 'reserved' | 'booked' | 'returned';
-  adminId: string; // Track which admin has accepted the reservation
+  adminId?: string; // Track which admin has accepted the reservation
   studentId: string; // Track to which student the Order belongs
   techComponents: TechComponentOrder[];
   crAt: string;

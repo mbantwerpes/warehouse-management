@@ -32,6 +32,7 @@ Content-Type: application/json
 
 ### Delete single techcomponent by id
 DELETE http://localhost:3001/api/techcomponent/5
+
 ### Get all user
 GET http://localhost:3001/api/user
 
@@ -57,14 +58,36 @@ PUT http://localhost:3001/api/user/5
 Content-Type: application/json
 
 {
-    "role": "admin",
-    "name": "Max Mustermann",
-    "matrNumber": "123456789",
-    "email": "max@mustermann.com",
-    "telephone": "123456789",
-    "grpNr": 12,
-    "grpName": "Team Blau"
+    "studentId": "string",
+    "techComponents": "TechComponentOrder"
 }
 
 ### Delete single user by id
 DELETE http://localhost:3001/api/user/5
+
+### Get all orders
+GET http://localhost:3001/api/order
+
+### Get order by id
+GET http://localhost:3001/api/order/10
+
+### Add single order
+POST http://localhost:3001/api/order
+Content-Type: application/json
+
+{
+    "techComponents": "TechComponentOrder"
+}
+
+### Update single order by id
+PUT http://localhost:3001/api/order/5
+Content-Type: application/json
+
+{
+    "comment": "This is a comment",
+    "returnPeriod": "11.08.1993",
+    "status": "booked"
+}
+
+### Delete single order by id
+DELETE http://localhost:3001/api/order/5
