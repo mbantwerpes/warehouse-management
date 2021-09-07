@@ -8,8 +8,8 @@ export type User = {
   grpNr?: number;
   grpName?: string;
   orders?: string[]; // Store the id's of the orders
-  crAt: Date;
-  leAt: Date;
+  crAt: string;
+  leAt: string;
 };
 
 export type TechComponent = {
@@ -22,8 +22,8 @@ export type TechComponent = {
   artNr: string;
   orders?: string[];
   // TODO find out where and how to store the image, until then use a placeholder
-  crAt: Date;
-  leAt: Date;
+  crAt: string;
+  leAt: string;
 };
 
 export type TechComponentOrder = {
@@ -34,11 +34,11 @@ export type TechComponentOrder = {
 export type Order = {
   id: string;
   comment: string;
-  returnPeriod: Date;
+  returnPeriod: string;
   status: 'reserved' | 'booked' | 'returned';
   adminId: string; // Track which admin has accepted the reservation
   studentId: string; // Track to which student the Order belongs
   techComponents: TechComponentOrder[];
-  crAt: Date;
-  leAt: Date;
+  crAt: string;
+  leAt: string;
 };
