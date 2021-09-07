@@ -1,0 +1,34 @@
+### Get all techcomponent
+GET http://localhost:3001/api/techcomponent
+
+### Get techcomponent by id
+GET http://localhost:3001/api/techcomponent/10
+
+### Add single techcomponent
+POST http://localhost:3001/api/techcomponent
+Content-Type: application/json
+
+{
+    "adminId": "1",
+    "title": "Microcontroller A-30",
+    "description": "This is a description",
+    "location": "Vault 3, Room 2",
+    "amount": "100",
+    "artNr": "3747bsd12"
+}
+
+### Update single techcomponent by id
+PUT http://localhost:3001/api/techcomponent/5
+Content-Type: application/json
+
+{
+    "adminId": "1",
+    "title": "Microcontroller A-30",
+    "description": "This is a description",
+    "location": "Vault 3, Room 2",
+    "amount": "100",
+    "artNr": "3747bsd12"
+}
+
+### Delete single techcomponent by id
+DELETE http://localhost:3001/api/techcomponent/5
