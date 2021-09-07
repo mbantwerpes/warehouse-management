@@ -1,13 +1,14 @@
 export type User = {
-  id: string;
   role: 'admin' | 'student';
   name: string;
   matrNumber: string;
   email: string;
+  password: string;
   telephone?: string;
   grpNr?: number;
   grpName?: string;
   orders?: string[]; // Store the id's of the orders
+  isDeleted: boolean;
   crAt: string;
   leAt: string;
 };
