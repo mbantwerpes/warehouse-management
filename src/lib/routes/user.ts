@@ -1,10 +1,13 @@
 import { Router } from 'express';
+import { getUsers, getUser, addUser, deleteUser } from '../models/user';
+import type { User } from '../types';
 
 const router = Router();
 
 router.get('/', async (_req, res) => {
   try {
-    res.json('All user');
+    const users = await getUsers();
+    res.json(users);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -13,7 +16,8 @@ router.get('/', async (_req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    res.json(id);
+    const user = await getUser(id);
+    res.json(user);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -21,8 +25,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const data = req.body;
-    res.json(data);
+    const user: User = req.body;
+    addUser(user);
+    res.json(user);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -41,6 +46,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const id = req.params.id;
+    deleteUser(id);
     res.json(id);
   } catch (err) {
     res.status(500).json({ message: err.message });
