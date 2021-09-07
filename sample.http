@@ -32,3 +32,39 @@ Content-Type: application/json
 
 ### Delete single techcomponent by id
 DELETE http://localhost:3001/api/techcomponent/5
+### Get all user
+GET http://localhost:3001/api/user
+
+### Get user by id
+GET http://localhost:3001/api/user/10
+
+### Add single user
+POST http://localhost:3001/api/user
+Content-Type: application/json
+
+{
+    "role": "admin",
+    "name": "Max Mustermann",
+    "matrNumber": "123456789",
+    "email": "max@mustermann.com",
+    "telephone": "123456789",
+    "grpNr": 12,
+    "grpName": "Team Blau"
+}
+
+### Update single user by id
+PUT http://localhost:3001/api/user/5
+Content-Type: application/json
+
+{
+    "role": "admin",
+    "name": "Max Mustermann",
+    "matrNumber": "123456789",
+    "email": "max@mustermann.com",
+    "telephone": "123456789",
+    "grpNr": 12,
+    "grpName": "Team Blau"
+}
+
+### Delete single user by id
+DELETE http://localhost:3001/api/user/5
