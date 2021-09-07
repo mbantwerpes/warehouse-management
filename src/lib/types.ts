@@ -23,6 +23,7 @@ export type TechComponent = {
   artNr: string;
   orders?: string[];
   // TODO find out where and how to store the image, until then use a placeholder
+  isDeleted: boolean;
   crAt: string;
   leAt: string;
 };

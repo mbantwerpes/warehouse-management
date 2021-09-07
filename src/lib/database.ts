@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import type { Collection } from 'mongodb';
-import type { User } from './types';
+import type { User, TechComponent } from './types';
 
 let client: MongoClient;
 
@@ -15,4 +15,8 @@ export const getCollection = <T>(name: string): Collection<T> => {
 
 export const getUserCollection = (): Collection<User> => {
   return getCollection<User>('users');
+};
+
+export const getTechComponentCollection = (): Collection<TechComponent> => {
+  return getCollection<TechComponent>('techComponents');
 };
