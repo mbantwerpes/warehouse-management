@@ -12,22 +12,28 @@ export default {
 
 const Template: Story<InputProps> = (args) => <Input {...args} />;
 
-export const InputUser = Template.bind({});
-InputUser.args = {
+export const WithoutIcon = Template.bind({});
+WithoutIcon.args = {
+  type: 'text',
+  placeholder: 'Placeholder',
+};
+
+export const User = Template.bind({});
+User.args = {
   type: 'text',
   placeholder: 'Email',
   icon: <MdPerson />,
 };
 
-export const InputSearch = Template.bind({});
-InputSearch.args = {
+export const Search = Template.bind({});
+Search.args = {
   type: 'text',
   placeholder: 'Suchen...',
   icon: <MdSearch />,
 };
 
-export const InputPassword = Template.bind({});
-InputPassword.args = {
+export const Password = Template.bind({});
+Password.args = {
   type: 'password',
   placeholder: 'Passwort',
   icon: <MdLock />,
