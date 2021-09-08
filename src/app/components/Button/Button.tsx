@@ -6,9 +6,15 @@ export type ButtonProps = {
   children: ReactNode;
   type: 'primary' | 'error';
   size: 'm' | 'l';
+  onClick: () => void;
 };
 
-const Button = ({ children, type, size }: ButtonProps): JSX.Element => {
+const Button = ({
+  children,
+  type,
+  size,
+  onClick,
+}: ButtonProps): JSX.Element => {
   const typeMap = {
     primary: styles.primary,
     error: styles.error,
@@ -20,7 +26,10 @@ const Button = ({ children, type, size }: ButtonProps): JSX.Element => {
   };
 
   return (
-    <button className={`${styles.button} ${typeMap[type]} ${sizeMap[size]}`}>
+    <button
+      onClick={onClick}
+      className={`${styles.button} ${typeMap[type]} ${sizeMap[size]}`}
+    >
       {children}
     </button>
   );

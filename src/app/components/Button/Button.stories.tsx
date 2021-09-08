@@ -26,11 +26,14 @@ export default {
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
+const onClickMockup = () => console.log('test');
+
 export const Primary = Template.bind({});
 Primary.args = {
   children: 'Button',
   type: 'primary',
   size: 'm',
+  onClick: onClickMockup,
 };
 
 export const Error = Template.bind({});
@@ -38,6 +41,7 @@ Error.args = {
   children: 'Button',
   type: 'error',
   size: 'l',
+  onClick: onClickMockup,
 };
 
 export const Add = Template.bind({});
@@ -45,6 +49,7 @@ Add.args = {
   children: <MdAdd size={24} />,
   type: 'primary',
   size: 'm',
+  onClick: onClickMockup,
 };
 
 export const Minus = Template.bind({});
@@ -52,6 +57,7 @@ Minus.args = {
   children: <MdRemove size={24} />,
   type: 'primary',
   size: 'm',
+  onClick: onClickMockup,
 };
 
 export const Delete = Template.bind({});
@@ -59,4 +65,5 @@ Delete.args = {
   children: <MdDelete size={24} />,
   type: 'error',
   size: 'l',
+  onClick: onClickMockup,
 };
