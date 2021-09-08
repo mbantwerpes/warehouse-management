@@ -6,6 +6,11 @@ import type { NavbarProps } from './Navbar';
 export default {
   title: 'Component/Navbar',
   component: Navbar,
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+    },
+  },
   argTypes: {
     active: {
       options: ['home', 'order', 'user'],
