@@ -17,9 +17,14 @@ export default {
 
 const Template: Story<InputProps> = (args) => <Input {...args} />;
 
+const onChangeMockupFunction = () => {
+  console.log('Onchange triggered');
+};
+
 export const WithoutIcon = Template.bind({});
 WithoutIcon.args = {
   value: '',
+  onChange: onChangeMockupFunction,
   type: 'text',
   placeholder: 'Placeholder',
 };
@@ -27,6 +32,7 @@ WithoutIcon.args = {
 export const User = Template.bind({});
 User.args = {
   value: '',
+  onChange: onChangeMockupFunction,
   type: 'text',
   placeholder: 'Email',
   icon: <MdPerson />,
@@ -35,6 +41,7 @@ User.args = {
 export const Search = Template.bind({});
 Search.args = {
   value: '',
+  onChange: onChangeMockupFunction,
   type: 'text',
   placeholder: 'Suchen...',
   icon: <MdSearch />,
@@ -43,6 +50,7 @@ Search.args = {
 export const Password = Template.bind({});
 Password.args = {
   value: '',
+  onChange: onChangeMockupFunction,
   type: 'password',
   placeholder: 'Passwort',
   icon: <MdLock />,
