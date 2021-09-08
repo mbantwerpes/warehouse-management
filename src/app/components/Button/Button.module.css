@@ -1,3 +1,7 @@
 .button {
   border-style: none;
 }
+
+.primary {
+  background: var(--color-action);
+}

@@ -18,4 +18,5 @@ const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   children: 'Button',
+  type: 'primary',
 };
