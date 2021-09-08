@@ -5,16 +5,24 @@ import styles from './Button.module.css';
 export type ButtonProps = {
   children: ReactNode;
   type: 'primary' | 'error';
+  size: 'm' | 'l';
 };
 
-const Button = ({ children, type }: ButtonProps): JSX.Element => {
+const Button = ({ children, type, size }: ButtonProps): JSX.Element => {
   const typeMap = {
     primary: styles.primary,
     error: styles.error,
   };
 
+  const sizeMap = {
+    m: styles.sizeM,
+    l: styles.sizeL,
+  };
+
   return (
-    <button className={`${styles.button} ${typeMap[type]}`}>{children}</button>
+    <button className={`${styles.button} ${typeMap[type]} ${sizeMap[size]}`}>
+      {children}
+    </button>
   );
 };
 
