@@ -14,6 +14,17 @@
   /* Color */
   --color-text: #a0a1a4;
   --color-header: #d4d6d9;
+  --color-main-dark: #090808;
+  --color-main-medium: #111113;
+  --color-main-light: #292a32;
+  --color-main-bright: #fff;
+  --color-highlight: #f13d3d;
+  --color-action: linear-gradient(
+    234.7deg,
+    #9b82ff 4.2%,
+    #5ab2eb 58.87%,
+    #00f0ff 86.21%
+  );
 }
 
 *,
