@@ -1,0 +1,49 @@
+.text {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text);
+}
+
+.textXS {
+  font-size: 0.5rem;
+}
+
+.textS {
+  font-size: 0.75rem;
+}
+
+.textM {
+  font-size: 1rem;
+}
+
+.textL {
+  font-size: 1.25rem;
+}
+
+.textXL {
+  font-size: 1.5rem;
+}
+
+.header {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-header);
+}
+
+.headerXS {
+  font-size: 0.75rem;
+}
+
+.headerS {
+  font-size: 1rem;
+}
+
+.headerM {
+  font-size: 1.25rem;
+}
+
+.headerL {
+  font-size: 1.5rem;
+}
+
+.headerXL {
+  font-size: 1.75rem;
+}
