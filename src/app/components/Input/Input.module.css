@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  color: var(--color-text);
 }
 
 .input {
@@ -20,9 +21,5 @@
 }
 
 .input::placeholder {
-  color: var(--color-text);
-}
-
-.icon {
   color: var(--color-text);
 }

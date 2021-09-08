@@ -9,7 +9,6 @@ export type InputProps = {
   icon?: ReactNode;
   containerStyling?: string;
   inputStyling?: string;
-  iconStyling?: string;
 };
 
 const Input = ({
@@ -20,7 +19,6 @@ const Input = ({
   icon,
   containerStyling,
   inputStyling,
-  iconStyling,
 }: InputProps): JSX.Element => {
   return (
     <div className={`${styles.container} ${containerStyling}`}>
@@ -31,7 +29,7 @@ const Input = ({
         type={type}
         placeholder={placeholder}
       />
-      <div className={`${styles.icon} ${iconStyling}`}>{icon}</div>
+      <div className={styles.icon}>{icon}</div>
     </div>
   );
 };
