@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  grid-auto-flow: column;
+  align-content: center;
+  justify-content: space-around;
+  background-color: var(--color-main-dark);
+  color: var(--color-text);
+  height: 5.688rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.active {
+  color: var(--color-main-bright);
+}
