@@ -25,9 +25,9 @@ const Typography = ({ size, type, children }: TypographyProps): JSX.Element => {
   };
 
   if (type === 'header') {
-    return sizeTextMap[size];
-  } else {
     return sizeHeaderMap[size];
+  } else {
+    return sizeTextMap[size];
   }
 };
 
