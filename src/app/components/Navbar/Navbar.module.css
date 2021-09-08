@@ -1,0 +1,19 @@
+.container {
+  display: grid;
+  grid-auto-flow: column;
+  align-content: center;
+  justify-content: space-around;
+  background-color: var(--color-main-dark);
+  color: var(--color-text);
+  padding: 1.5rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.active {
+  color: var(--color-main-bright);
+}
+
+.container a {
+  color: var(--color-text);
+}
