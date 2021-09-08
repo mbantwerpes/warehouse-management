@@ -8,9 +8,9 @@
 }
 
 .horizontal {
-  grid-auto-flow: row;
+  grid-auto-flow: column;
 }
 
 .vertical {
-  grid-auto-flow: column;
+  grid-auto-flow: row;
 }

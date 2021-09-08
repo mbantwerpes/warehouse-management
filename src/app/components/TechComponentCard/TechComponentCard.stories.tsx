@@ -24,9 +24,18 @@ const Template: Story<TechComponentCardProps> = (args) => (
   <TechComponentCard {...args} />
 );
 
-export const Default = Template.bind({});
-Default.args = {
+export const Horizontal = Template.bind({});
+Horizontal.args = {
   layout: 'horizontal',
+  image: placeholderImage,
+  title: 'Microcontroller A-30',
+  description: 'Dieser Mikrokontroller kann dies und das...',
+  amount: 10,
+};
+
+export const Vertical = Template.bind({});
+Vertical.args = {
+  layout: 'vertical',
   image: placeholderImage,
   title: 'Microcontroller A-30',
   description: 'Dieser Mikrokontroller kann dies und das...',
