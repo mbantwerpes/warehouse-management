@@ -12,6 +12,7 @@ export type FloatingActionButtonProps = {
 const FloatingActionButton = ({
   icon,
   redirectTo,
+  onClick,
 }: FloatingActionButtonProps): JSX.Element => {
   const history = useHistory();
   const handleRedirect = useCallback(
@@ -22,7 +23,7 @@ const FloatingActionButton = ({
   return (
     <button
       className={styles.button}
-      {...(redirectTo !== null ? (onclick = handleRedirect) : onclick)}
+      onClick={redirectTo === undefined ? onClick : handleRedirect}
     >
       {icon}
     </button>
