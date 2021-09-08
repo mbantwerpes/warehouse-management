@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import styles from './TechComponentCard.module.css';
 import Typography from '../Typography/Typography';
 
 export type TechComponentCardProps = {
   layout: 'horizontal' | 'vertical';
-  image: ReactNode;
+  image: string;
   title: string;
   description: string;
   amount: number;
@@ -18,28 +18,22 @@ const TechComponentCard = ({
   amount,
 }: TechComponentCardProps): JSX.Element => {
   return (
-    <>
-      {layout ? 'test' : 'test'}
-      <div
-        className={`${styles.container} ${
-          layout === 'horizontal' ? styles.horizontal : styles.vertical
-        }`}
-      >
-        <img
-          src="https://i.stack.imgur.com/y9DpT.jpg"
-          alt="placeholder image"
-        />
-        <Typography type="header" size="xs">
-          {title}
-        </Typography>
-        <Typography type="text" size="s">
-          {description}
-        </Typography>
-        <Typography type="text" size="s">
-          Anzahl: {amount}
-        </Typography>
-      </div>
-    </>
+    <div
+      className={`${styles.container} ${
+        layout === 'horizontal' ? styles.horizontal : styles.vertical
+      }`}
+    >
+      <img src={image} alt="placeholder image" />
+      <Typography type="header" size="xs">
+        {title}
+      </Typography>
+      <Typography type="text" size="s">
+        {description}
+      </Typography>
+      <Typography type="text" size="s">
+        Anzahl: {amount}
+      </Typography>
+    </div>
   );
 };
 
