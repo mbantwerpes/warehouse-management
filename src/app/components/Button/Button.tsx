@@ -4,7 +4,7 @@ import styles from './Button.module.css';
 
 export type ButtonProps = {
   children: ReactNode;
-  type: 'primary' | 'error';
+  type: 'primary' | 'secondary' | 'error';
   size: 'm' | 'l';
   onClick: () => void;
 };
@@ -17,6 +17,7 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   const typeMap = {
     primary: styles.primary,
+    secondary: styles.secondary,
     error: styles.error,
   };
 

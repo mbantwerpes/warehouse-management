@@ -2,7 +2,7 @@ import React from 'react';
 import Button from './Button';
 import { Story } from '@storybook/react';
 import type { ButtonProps } from './Button';
-import { MdDelete, MdAdd, MdRemove } from 'react-icons/md';
+import { MdDelete, MdAdd, MdRemove, MdKeyboardArrowLeft } from 'react-icons/md';
 
 export default {
   title: 'Component/Button',
@@ -14,7 +14,7 @@ export default {
   },
   argTypes: {
     type: {
-      options: ['primary', 'error'],
+      options: ['primary', 'secondary', 'error'],
       control: { type: 'select' },
     },
     size: {
@@ -32,6 +32,14 @@ export const Primary = Template.bind({});
 Primary.args = {
   children: 'Button',
   type: 'primary',
+  size: 'm',
+  onClick: onClickMockup,
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  children: <MdKeyboardArrowLeft size={24} />,
+  type: 'secondary',
   size: 'm',
   onClick: onClickMockup,
 };

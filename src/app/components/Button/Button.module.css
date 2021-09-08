@@ -11,6 +11,10 @@
   background: var(--color-action);
 }
 
+.secondary {
+  background: var(--color-main-light);
+}
+
 .error {
   background: var(--color-highlight);
 }
