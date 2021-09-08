@@ -3,7 +3,6 @@
   color: var(--color-main-bright);
   letter-spacing: 0.1rem;
   border-radius: 5px;
-  width: 100%;
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-medium);
 }

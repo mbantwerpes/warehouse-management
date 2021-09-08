@@ -2,6 +2,7 @@ import React from 'react';
 import Button from './Button';
 import { Story } from '@storybook/react';
 import type { ButtonProps } from './Button';
+import { MdDelete, MdAdd, MdRemove } from 'react-icons/md';
 
 export default {
   title: 'Component/Button',
@@ -35,6 +36,27 @@ Primary.args = {
 export const Error = Template.bind({});
 Error.args = {
   children: 'Button',
+  type: 'error',
+  size: 'l',
+};
+
+export const Add = Template.bind({});
+Add.args = {
+  children: <MdAdd size={24} />,
+  type: 'primary',
+  size: 'm',
+};
+
+export const Minus = Template.bind({});
+Minus.args = {
+  children: <MdRemove size={24} />,
+  type: 'primary',
+  size: 'm',
+};
+
+export const Delete = Template.bind({});
+Delete.args = {
+  children: <MdDelete size={24} />,
   type: 'error',
   size: 'l',
 };
