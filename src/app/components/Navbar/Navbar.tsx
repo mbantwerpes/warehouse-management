@@ -13,7 +13,7 @@ const Navbar = ({ active }: NavbarProps): JSX.Element => {
   };
 
   return (
-    <div className={styles.container}>
+    <nav className={styles.container}>
       <Link to="/">
         <MdHome size={40} {...(active === 'home' ? activeLink : '')} />
       </Link>
@@ -26,7 +26,7 @@ const Navbar = ({ active }: NavbarProps): JSX.Element => {
       <Link to="/user">
         <MdPerson size={40} {...(active === 'user' ? activeLink : '')} />
       </Link>
-    </div>
+    </nav>
   );
 };
 
