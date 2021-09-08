@@ -20,8 +20,8 @@ export default {
 
 const Template: Story<TypographyProps> = (args) => <Typography {...args} />;
 
-export const Test = Template.bind({});
-Test.args = {
+export const TextOHeader = Template.bind({});
+TextOHeader.args = {
   size: 'xs',
   type: 'header',
   children: 'Sample Text',
