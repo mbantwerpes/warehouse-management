@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { MdHome, MdFormatListBulleted, MdPerson } from 'react-icons/md';
 
@@ -13,12 +14,18 @@ const Navbar = ({ active }: NavbarProps): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <MdHome size={40} {...(active === 'home' ? activeLink : '')} />
-      <MdFormatListBulleted
-        size={40}
-        {...(active === 'order' ? activeLink : '')}
-      />
-      <MdPerson size={40} {...(active === 'user' ? activeLink : '')} />
+      <Link to="/">
+        <MdHome size={40} {...(active === 'home' ? activeLink : '')} />
+      </Link>
+      <Link to="/order">
+        <MdFormatListBulleted
+          size={40}
+          {...(active === 'order' ? activeLink : '')}
+        />
+      </Link>
+      <Link to="/user">
+        <MdPerson size={40} {...(active === 'user' ? activeLink : '')} />
+      </Link>
     </div>
   );
 };

@@ -13,3 +13,7 @@
 .active {
   color: var(--color-main-bright);
 }
+
+.container a {
+  color: var(--color-text);
+}
