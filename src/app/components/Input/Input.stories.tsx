@@ -14,4 +14,5 @@ const Template: Story<InputProps> = (args) => <Input {...args} />;
 export const InputType = Template.bind({});
 InputType.args = {
   type: 'text',
+  placeholder: 'Placeholder',
 };
