@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+  background-color: var(--color-main-light);
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input {
+  border-style: none;
+  width: 100%;
+  background-color: var(--color-main-light);
+  color: var(--color-text);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-text);
+}
+
+.icon {
+  color: var(--color-text);
+}
