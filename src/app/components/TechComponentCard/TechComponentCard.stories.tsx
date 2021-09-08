@@ -29,8 +29,20 @@ Horizontal.args = {
   layout: 'horizontal',
   image: placeholderImage,
   title: 'Microcontroller A-30',
-  description: 'Dieser Mikrokontroller kann dies und das...',
+  description:
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
   amount: 10,
+};
+
+export const HorizontalEditable = Template.bind({});
+HorizontalEditable.args = {
+  layout: 'horizontal',
+  image: placeholderImage,
+  title: 'Microcontroller A-30',
+  description:
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+  amount: 10,
+  editable: true,
 };
 
 export const Vertical = Template.bind({});
@@ -38,6 +50,7 @@ Vertical.args = {
   layout: 'vertical',
   image: placeholderImage,
   title: 'Microcontroller A-30',
-  description: 'Dieser Mikrokontroller kann dies und das...',
+  description:
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
   amount: 10,
 };

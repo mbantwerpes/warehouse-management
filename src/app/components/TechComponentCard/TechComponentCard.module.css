@@ -1,16 +1,49 @@
 .container {
-  display: grid;
+  display: flex;
   gap: 1rem;
   background-color: var(--color-main-medium);
   border: 0.5px solid var(--color-text);
   border-radius: 10px;
   padding: 1rem;
+  width: fit-content;
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+}
+
+.contentContainer {
+  display: grid;
+  gap: 1rem;
+  align-content: space-between;
 }
 
 .horizontal {
-  grid-auto-flow: column;
+  flex-direction: row;
 }
 
 .vertical {
-  grid-auto-flow: row;
+  flex-direction: column;
+  max-width: 10rem;
+  place-items: center;
+}
+
+.titleAndDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.editableContent {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
 }

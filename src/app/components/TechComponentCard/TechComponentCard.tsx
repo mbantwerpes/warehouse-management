@@ -8,6 +8,7 @@ export type TechComponentCardProps = {
   title: string;
   description: string;
   amount: number;
+  editable?: boolean;
 };
 
 const TechComponentCard = ({
@@ -16,6 +17,7 @@ const TechComponentCard = ({
   title,
   description,
   amount,
+  editable = false,
 }: TechComponentCardProps): JSX.Element => {
   return (
     <div
@@ -23,16 +25,35 @@ const TechComponentCard = ({
         layout === 'horizontal' ? styles.horizontal : styles.vertical
       }`}
     >
-      <img src={image} alt="placeholder image" />
-      <Typography type="header" size="xs">
-        {title}
-      </Typography>
-      <Typography type="text" size="s">
-        {description}
-      </Typography>
-      <Typography type="text" size="s">
-        Anzahl: {amount}
-      </Typography>
+      {/* TODO think about creating img component */}
+      <img src={image} alt="placeholder image" className={styles.img} />
+      <div className={styles.contentContainer}>
+        <div className={styles.titleAndDescription}>
+          <Typography type="header" size="xs">
+            {title}
+          </Typography>
+          <div className={styles.description}>
+            <Typography type="text" size="s">
+              {description}
+            </Typography>
+          </div>
+        </div>
+        {editable && layout === 'horizontal' ? (
+          <div className={styles.editableContent}>
+            {/* TODO replace with amount and delete component */}
+            <Typography type="text" size="s">
+              Anzahl: {amount}
+            </Typography>
+            <Typography type="text" size="s">
+              Löschen
+            </Typography>
+          </div>
+        ) : (
+          <Typography type="text" size="s">
+            Anzahl: {amount}
+          </Typography>
+        )}
+      </div>
     </div>
   );
 };
