@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url(src/assets/fonts/Roboto/Roboto-Medium.ttf),
+    url(src/assets/fonts/Roboto/Roboto-Rgeular.ttf);
+  font-weight: 400, 500;
+}
+
+:root {
+  /* Fonts */
+  --font-family-primary: 'Roboto', sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Color */
+  --color-text: #a0a1a4;
+  --color-header: #d4d6d9;
+}
+
 *,
 *::after,
 *::before {
@@ -5,6 +23,7 @@
 }
 
 body {
+  font-family: var(--font-family-primary);
   margin: 0;
 }
 
