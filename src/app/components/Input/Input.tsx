@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styles from './Input.module.css';
 
 export type InputProps = {
-  type: string;
+  type: 'text' | 'password';
   placeholder: string;
+  icon?: ReactNode;
 };
 
-const Input = ({ type, placeholder }: InputProps): JSX.Element => {
+const Input = ({ type, placeholder, icon }: InputProps): JSX.Element => {
   return (
-    <input className={styles.input} type={type} placeholder={placeholder} />
+    <div className={styles.container}>
+      <input className={styles.input} type={type} placeholder={placeholder} />
+      <div className={styles.icon}>{icon}</div>
+    </div>
   );
 };
 
