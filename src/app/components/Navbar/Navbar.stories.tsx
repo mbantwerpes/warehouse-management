@@ -20,3 +20,13 @@ export const Home = Template.bind({});
 Home.args = {
   active: 'home',
 };
+
+export const Order = Template.bind({});
+Order.args = {
+  active: 'order',
+};
+
+export const User = Template.bind({});
+User.args = {
+  active: 'user',
+};

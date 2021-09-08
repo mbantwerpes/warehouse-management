@@ -7,11 +7,18 @@ export type NavbarProps = {
 };
 
 const Navbar = ({ active }: NavbarProps): JSX.Element => {
+  const activeLink = {
+    color: 'var(--color-main-bright)',
+  };
+
   return (
     <div className={styles.container}>
-      <MdHome size={40} />
-      <MdFormatListBulleted size={40} className={styles.active} />
-      <MdPerson size={40} />
+      <MdHome size={40} {...(active === 'home' ? activeLink : '')} />
+      <MdFormatListBulleted
+        size={40}
+        {...(active === 'order' ? activeLink : '')}
+      />
+      <MdPerson size={40} {...(active === 'user' ? activeLink : '')} />
     </div>
   );
 };
