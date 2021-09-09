@@ -1,4 +1,14 @@
 .container {
   display: grid;
   grid-auto-flow: column;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 50%;
+}
+
+.input {
+  text-align: center;
+  color: var(--color-main-bright);
+  font-weight: var(--font-weight-medium);
+  font-size: 1.5rem;
 }
