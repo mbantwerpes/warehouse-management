@@ -23,7 +23,6 @@ const onClickMockup = () => console.log('test');
 export const Add = Template.bind({});
 Add.args = {
   icon: <MdAdd size={40} />,
-  redirectTo: 'home',
   onClick: onClickMockup,
 };
 
