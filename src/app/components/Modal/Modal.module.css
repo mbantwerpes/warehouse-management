@@ -1,0 +1,41 @@
+.container {
+  /* This way it could be display flex or grid or whatever also. */
+  display: block;
+
+  /* Probably need media queries here */
+
+  /* width: 600px; */
+  min-width: 320px;
+  max-width: 100%;
+  max-height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  padding: 1rem;
+
+  /* Use this for centering if unknown width/height */
+  transform: translate(-50%, -50%);
+
+  /* If known, negative margins are probably better (less chance of blurry text). margin: -200px 0 0 -200px; */
+  background: var(--color-main-light);
+}
+
+.titleContainer {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 2rem;
+  margin-bottom: 0.75rem;
+  align-items: baseline;
+}
+
+.content {
+  margin-top: 0.75rem;
+}
+
+.closeButton {
+  color: var(--color-header);
+  border-style: none;
+  background: none;
+  padding: 0;
+}

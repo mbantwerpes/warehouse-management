@@ -13,4 +13,8 @@ export const parameters = {
   },
 };
 
+let modalRoot = document.createElement('div');
+modalRoot.setAttribute('id', 'modal-root');
+document.querySelector('body')!.appendChild(modalRoot);
+
 addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>);
