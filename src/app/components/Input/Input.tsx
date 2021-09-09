@@ -3,7 +3,7 @@ import styles from './Input.module.css';
 
 export type InputProps = {
   value: string | number;
-  onChange?: () => void;
+  onChange: (value: string) => void;
   type: 'text' | 'password' | 'number';
   placeholder: string;
   icon?: ReactNode;
@@ -23,7 +23,7 @@ const Input = ({
   return (
     <div className={`${styles.container} ${containerStyling}`}>
       <input
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
         className={`${styles.input} ${inputStyling}`}
         value={value}
         type={type}

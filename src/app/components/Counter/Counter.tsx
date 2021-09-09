@@ -8,12 +8,14 @@ export type CounterProps = {
   value: number;
   onAddClick: () => void;
   onSubtractClick: () => void;
+  onChange: () => void;
 };
 
 const Counter = ({
   value,
   onAddClick,
   onSubtractClick,
+  onChange,
 }: CounterProps): JSX.Element => {
   return (
     <div className={styles.container}>
@@ -21,6 +23,7 @@ const Counter = ({
         <MdRemove />
       </Button>
       <Input
+        onChange={onChange}
         value={value}
         placeholder="0"
         type="number"
