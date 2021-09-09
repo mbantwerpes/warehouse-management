@@ -8,6 +8,7 @@ import TechComponentCard from '../../components/TechComponentCard/TechComponentC
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import Navbar from '../../components/Navbar/Navbar';
 import { useHistory } from 'react-router-dom';
+import useTechComponents from '../../hooks/useTechComponents';
 
 const TechComponentList = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState('');
@@ -20,6 +21,8 @@ const TechComponentList = (): JSX.Element => {
   const handleCardClick = (id: string) => {
     history.push(`/techcomponent/${id}`);
   };
+
+  const { techComponents } = useTechComponents();
 
   return (
     <div className={styles.layout}>
@@ -42,60 +45,20 @@ const TechComponentList = (): JSX.Element => {
           containerStyling={styles.inputContainer}
         />
         <div className={styles.cardList}>
-          <TechComponentCard
-            id="placeholder"
-            onCardClick={handleCardClick}
-            layout="vertical"
-            title="Microcontroller A-30"
-            description="Lorem ipsum dolor sit amet."
-            amount={10}
-            image={placeholderImage}
-          />
-          <TechComponentCard
-            id="placeholder"
-            onCardClick={handleCardClick}
-            layout="vertical"
-            title="Microcontroller A-30"
-            description="Lorem ipsum dolor sit amet."
-            amount={10}
-            image={placeholderImage}
-          />
-          <TechComponentCard
-            id="placeholder"
-            onCardClick={handleCardClick}
-            layout="vertical"
-            title="Microcontroller A-30"
-            description="Lorem ipsum dolor sit amet."
-            amount={10}
-            image={placeholderImage}
-          />
-          <TechComponentCard
-            id="placeholder"
-            onCardClick={handleCardClick}
-            layout="vertical"
-            title="Microcontroller A-30"
-            description="Lorem ipsum dolor sit amet."
-            amount={10}
-            image={placeholderImage}
-          />
-          <TechComponentCard
-            id="placeholder"
-            onCardClick={handleCardClick}
-            layout="vertical"
-            title="Microcontroller A-30"
-            description="Lorem ipsum dolor sit amet."
-            amount={10}
-            image={placeholderImage}
-          />
-          <TechComponentCard
-            id="placeholder"
-            onCardClick={handleCardClick}
-            layout="vertical"
-            title="Microcontroller A-30"
-            description="Lorem ipsum dolor sit amet."
-            amount={10}
-            image={placeholderImage}
-          />
+          {techComponents?.map((techComponent) => {
+            return (
+              <TechComponentCard
+                key={techComponent._id}
+                id={techComponent._id}
+                onCardClick={handleCardClick}
+                layout="vertical"
+                title={techComponent.title}
+                description={techComponent.description}
+                amount={techComponent.amount}
+                image={placeholderImage}
+              />
+            );
+          })}
         </div>
       </div>
       <Navbar active="home" />
