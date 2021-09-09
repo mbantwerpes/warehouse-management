@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Divider from '../Divider/Divider';
 import Typography from '../Typography/Typography';
 import styles from './Modal.module.css';
 
@@ -24,7 +25,8 @@ const Modal = React.memo(({ children, closeModal, title }: ModalProps) => {
         </Typography>
         <button onClick={closeModal}>X</button>
       </div>
-      {children}
+      <Divider />
+      <div className={styles.content}>{children}</div>
     </div>,
     domEl
   );
