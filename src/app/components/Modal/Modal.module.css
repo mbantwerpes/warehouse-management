@@ -19,7 +19,6 @@
 
   /* If known, negative margins are probably better (less chance of blurry text). margin: -200px 0 0 -200px; */
   background: var(--color-main-light);
-  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
 }
 
 .titleContainer {
