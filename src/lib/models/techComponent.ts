@@ -22,6 +22,16 @@ export async function getTechComponent(id: string): Promise<TechComponent> {
   return techComponent;
 }
 
+export async function searchTechComponents(
+  query: string
+): Promise<TechComponent[]> {
+  const techComponentCollection = getTechComponentCollection();
+  const techComponents = await techComponentCollection
+    .find({ description: { $regex: query, $options: 'i' } })
+    .toArray();
+  return techComponents;
+}
+
 export const addTechComponent = async (
   techComponent: TechComponent
 ): Promise<ObjectId> => {

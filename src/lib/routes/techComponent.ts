@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   getTechComponents,
   getTechComponent,
+  searchTechComponents,
   addTechComponent,
   updateTechComponent,
   deleteTechComponent,
@@ -9,6 +10,19 @@ import {
 import type { TechComponent } from '../types';
 
 const router = Router();
+
+router.get('/search', async (req, res) => {
+  const { query } = req.query;
+  if (!query) {
+    res.status(400).json({ message: 'Query is required' });
+    return;
+  } else if (typeof query !== 'string') {
+    res.status(400).json({ message: 'Query must be a string' });
+    return;
+  }
+  const techComponents = await searchTechComponents(query);
+  res.json(techComponents);
+});
 
 router.get('/', async (_req, res) => {
   try {
