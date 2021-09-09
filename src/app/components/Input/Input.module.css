@@ -23,3 +23,7 @@
 .input::placeholder {
   color: var(--color-text);
 }
+
+.icon {
+  align-self: end;
+}
