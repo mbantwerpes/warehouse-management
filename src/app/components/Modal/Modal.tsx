@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Typography from '../Typography/Typography';
 import styles from './Modal.module.css';
 
-type ModalProps = {
+export type ModalProps = {
   children: React.ReactChild;
   closeModal: () => void;
   title: string;
@@ -18,7 +19,9 @@ const Modal = React.memo(({ children, closeModal, title }: ModalProps) => {
   return ReactDOM.createPortal(
     <div className={styles.container}>
       <div className={styles.titleContainer}>
-        <h3>{title}</h3>
+        <Typography type="header" size="l">
+          {title}
+        </Typography>
         <button onClick={closeModal}>X</button>
       </div>
       {children}
