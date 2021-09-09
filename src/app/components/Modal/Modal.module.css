@@ -26,8 +26,16 @@
   grid-auto-flow: column;
   grid-template-columns: 1fr 2rem;
   margin-bottom: 0.75rem;
+  align-items: baseline;
 }
 
 .content {
   margin-top: 0.75rem;
+}
+
+.closeButton {
+  color: var(--color-header);
+  border-style: none;
+  background: none;
+  padding: 0;
 }

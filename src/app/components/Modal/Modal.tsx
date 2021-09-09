@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Divider from '../Divider/Divider';
 import Typography from '../Typography/Typography';
 import styles from './Modal.module.css';
+import { MdCancel } from 'react-icons/md';
 
 export type ModalProps = {
   children: React.ReactChild;
@@ -23,7 +24,9 @@ const Modal = React.memo(({ children, closeModal, title }: ModalProps) => {
         <Typography type="header" size="l">
           {title}
         </Typography>
-        <button onClick={closeModal}>X</button>
+        <button onClick={closeModal} className={styles.closeButton}>
+          <MdCancel size={16} />
+        </button>
       </div>
       <Divider />
       <div className={styles.content}>{children}</div>
