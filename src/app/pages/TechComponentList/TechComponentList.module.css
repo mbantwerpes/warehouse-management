@@ -1,9 +1,13 @@
+.layout {
+  display: grid;
+  grid-template-rows: 90vh 10vh;
+  background-color: var(--color-main-medium);
+}
+
 .container {
   display: grid;
-  background-color: var(--color-main-medium);
   grid-template-columns: 90%;
   justify-content: center;
-  height: 100vh;
 }
 
 .inputContainer {
