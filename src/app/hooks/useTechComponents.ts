@@ -1,7 +1,7 @@
 import type { TechComponent } from '../../lib/types';
 import useFetch from './useFetch';
 
-export default function useTechComponents(): {
+export default function useTechComponents(query?: string): {
   techComponents: TechComponent[] | null;
   techComponentsIsLoading: boolean;
   techComponentsErrorMessage: string | null;
@@ -10,7 +10,7 @@ export default function useTechComponents(): {
     data: techComponents,
     isLoading: techComponentsIsLoading,
     errorMessage: techComponentsErrorMessage,
-  } = useFetch<TechComponent[]>(`/api/techcomponent/`);
+  } = useFetch<TechComponent[]>(`/api/techcomponent?query=${query}`);
 
   return {
     techComponents,

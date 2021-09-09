@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 import useTechComponents from '../../hooks/useTechComponents';
 
 const TechComponentList = (): JSX.Element => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const history = useHistory();
   const handleCartButtonClick = () => {
@@ -22,7 +22,7 @@ const TechComponentList = (): JSX.Element => {
     history.push(`/techcomponent/${id}`);
   };
 
-  const { techComponents } = useTechComponents();
+  const { techComponents } = useTechComponents(searchValue);
 
   return (
     <div className={styles.layout}>
