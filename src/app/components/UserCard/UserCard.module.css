@@ -1,3 +1,13 @@
 .container {
   display: grid;
+  gap: 0.5rem;
+  background-color: var(--color-main-medium);
+  border: 0.5px solid var(--color-text);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.flex {
+  display: flex;
+  gap: 0.5rem;
 }

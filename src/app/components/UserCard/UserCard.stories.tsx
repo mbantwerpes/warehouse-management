@@ -16,4 +16,8 @@ export default {
 const Template: Story<UserCardProps> = (args) => <UserCard {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  name: 'Max Mustermann',
+  matrNr: '2134567i89',
+  email: 'max@mustermann.de',
+};
