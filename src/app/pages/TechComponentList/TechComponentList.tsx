@@ -17,7 +17,9 @@ const TechComponentList = (): JSX.Element => {
     history.push('/cart');
   };
 
-  const test = () => console.log('t3st');
+  const handleCardClick = (id: string) => {
+    history.push(`/techcomponent/${id}`);
+  };
 
   return (
     <div className={styles.layout}>
@@ -42,7 +44,7 @@ const TechComponentList = (): JSX.Element => {
         <div className={styles.cardList}>
           <TechComponentCard
             id="placeholder"
-            onCardClick={test}
+            onCardClick={handleCardClick}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -51,7 +53,7 @@ const TechComponentList = (): JSX.Element => {
           />
           <TechComponentCard
             id="placeholder"
-            onCardClick={test}
+            onCardClick={handleCardClick}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -60,7 +62,7 @@ const TechComponentList = (): JSX.Element => {
           />
           <TechComponentCard
             id="placeholder"
-            onCardClick={test}
+            onCardClick={handleCardClick}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -69,7 +71,7 @@ const TechComponentList = (): JSX.Element => {
           />
           <TechComponentCard
             id="placeholder"
-            onCardClick={test}
+            onCardClick={handleCardClick}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -78,7 +80,7 @@ const TechComponentList = (): JSX.Element => {
           />
           <TechComponentCard
             id="placeholder"
-            onCardClick={test}
+            onCardClick={handleCardClick}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -87,7 +89,7 @@ const TechComponentList = (): JSX.Element => {
           />
           <TechComponentCard
             id="placeholder"
-            onCardClick={test}
+            onCardClick={handleCardClick}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
