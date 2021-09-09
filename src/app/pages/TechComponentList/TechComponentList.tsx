@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FloatingActionButton from '../../components/FloatinActionButton/FloatingActionButton';
 import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentList.module.css';
@@ -9,6 +9,8 @@ import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import Navbar from '../../components/Navbar/Navbar';
 
 const TechComponentList = (): JSX.Element => {
+  const [searchValue, setSearchValue] = useState('');
+
   return (
     <div className={styles.layout}>
       <div className={styles.container}>
@@ -20,8 +22,8 @@ const TechComponentList = (): JSX.Element => {
         </div>
         <Input
           type="text"
-          value=""
-          onChange={() => console.log('test')}
+          value={searchValue}
+          onChange={setSearchValue}
           placeholder="Bauteil suchen..."
           icon={<MdSearch />}
           containerStyling={styles.inputContainer}
