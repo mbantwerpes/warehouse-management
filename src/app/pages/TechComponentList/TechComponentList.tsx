@@ -33,7 +33,7 @@ const TechComponentList = (): JSX.Element => {
           </Typography>
           <FloatingActionButton
             onClick={handleCartButtonClick}
-            icon={<MdShoppingCart size={16} />}
+            icon={<MdShoppingCart size={24} />}
           />
         </div>
         <Input
