@@ -1,9 +1,26 @@
 .container {
   display: grid;
   background-color: var(--color-main-medium);
+  grid-template-columns: 90%;
+  justify-content: center;
+}
+
+.inputContainer {
+  margin-top: 1rem;
 }
 
 .header {
+  margin-top: 2rem;
   display: grid;
+  justify-content: space-between;
+  align-items: center;
   grid-auto-flow: column;
+}
+
+.cardList {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  justify-items: center;
+  gap: 1rem;
 }
