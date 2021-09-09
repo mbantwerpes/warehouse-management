@@ -2,8 +2,8 @@ import React, { ReactNode } from 'react';
 import styles from './Input.module.css';
 
 export type InputProps = {
-  value: string;
-  onChange: () => void;
+  value: string | number;
+  onChange?: () => void;
   type: 'text' | 'password' | 'number';
   placeholder: string;
   icon?: ReactNode;

@@ -4,21 +4,29 @@ import Input from '../Input/Input';
 import styles from './Counter.module.css';
 import { MdAdd, MdRemove } from 'react-icons/md';
 
-const Counter = (): JSX.Element => {
-  const mockOnClick = () => console.log('juhu');
+export type CounterProps = {
+  value: number;
+  onAddClick: () => void;
+  onSubtractClick: () => void;
+};
+
+const Counter = ({
+  value,
+  onAddClick,
+  onSubtractClick,
+}: CounterProps): JSX.Element => {
   return (
     <div className={styles.container}>
-      <Button type="primary" size="l" onClick={mockOnClick}>
+      <Button type="primary" size="l" onClick={onSubtractClick}>
         <MdRemove />
       </Button>
       <Input
-        value="10"
-        onChange={mockOnClick}
+        value={value}
         placeholder="0"
         type="number"
         inputStyling={styles.input}
       />
-      <Button type="primary" size="l" onClick={mockOnClick}>
+      <Button type="primary" size="l" onClick={onAddClick}>
         <MdAdd />
       </Button>
     </div>
