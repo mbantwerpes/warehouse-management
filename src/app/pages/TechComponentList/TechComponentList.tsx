@@ -16,7 +16,7 @@ const TechComponentList = (): JSX.Element => {
           <Typography type="header" size="xl">
             Bauteile.
           </Typography>
-          <FloatingActionButton icon={<MdShoppingCart size={24} />} />
+          <FloatingActionButton icon={<MdShoppingCart size={16} />} />
         </div>
         <Input
           type="text"
