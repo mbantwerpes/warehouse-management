@@ -33,7 +33,7 @@ export const addTechComponent = async (
 
   const result = await techComponentCollection.insertOne(techComponent);
 
-  return result.insertedId;
+  return new ObjectId(result.insertedId);
 };
 
 export async function updateTechComponent(
