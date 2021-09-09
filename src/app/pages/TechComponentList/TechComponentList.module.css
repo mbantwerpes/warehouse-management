@@ -3,6 +3,7 @@
   background-color: var(--color-main-medium);
   grid-template-columns: 90%;
   justify-content: center;
+  height: 100vh;
 }
 
 .inputContainer {
@@ -23,4 +24,9 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   justify-items: center;
   gap: 1rem;
+  overflow: scroll;
+}
+
+.cardList::-webkit-scrollbar {
+  display: none;
 }
