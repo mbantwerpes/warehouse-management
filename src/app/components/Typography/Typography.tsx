@@ -7,7 +7,11 @@ export type TypographyProps = {
   children: ReactNode;
 };
 
-const Typography = ({ size, type, children }: TypographyProps): JSX.Element => {
+const Typography = ({
+  size = 'm',
+  type = 'text',
+  children,
+}: TypographyProps): JSX.Element => {
   const sizeTextMap = {
     xs: <p className={`${styles.text} ${styles.textXS}`}>{children}</p>,
     s: <p className={`${styles.text} ${styles.textS}`}>{children}</p>,
