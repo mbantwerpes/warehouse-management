@@ -9,6 +9,7 @@ const App = (): JSX.Element => {
           <main>Home</main>
         </Route>
       </Switch>
+      <div id="modal-root" />
     </BrowserRouter>
   );
 };
