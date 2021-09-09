@@ -11,23 +11,17 @@ import type { TechComponent } from '../types';
 
 const router = Router();
 
-router.get('/search', async (req, res) => {
-  const { query } = req.query;
-  if (!query) {
-    res.status(400).json({ message: 'Query is required' });
-    return;
-  } else if (typeof query !== 'string') {
-    res.status(400).json({ message: 'Query must be a string' });
-    return;
-  }
-  const techComponents = await searchTechComponents(query);
-  res.json(techComponents);
-});
-
-router.get('/', async (_req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const techComponents = await getTechComponents();
-    res.json(techComponents);
+    const { query } = req.query;
+    // If query exists use search function else get all
+    if (query && typeof query === 'string') {
+      const techComponents = await searchTechComponents(query);
+      res.json(techComponents);
+    } else {
+      const techComponents = await getTechComponents();
+      res.json(techComponents);
+    }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

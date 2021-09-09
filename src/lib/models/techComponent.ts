@@ -27,7 +27,7 @@ export async function searchTechComponents(
 ): Promise<TechComponent[]> {
   const techComponentCollection = getTechComponentCollection();
   const techComponents = await techComponentCollection
-    .find({ description: { $regex: query, $options: 'i' } })
+    .find({ title: { $regex: query, $options: 'i' } })
     .toArray();
   return techComponents;
 }
