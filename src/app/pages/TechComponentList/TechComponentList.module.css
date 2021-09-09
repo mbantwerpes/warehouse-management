@@ -1,3 +1,9 @@
 .container {
   display: grid;
+  background-color: var(--color-main-medium);
+}
+
+.header {
+  display: grid;
+  grid-auto-flow: column;
 }
