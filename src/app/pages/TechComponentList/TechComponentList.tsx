@@ -7,9 +7,15 @@ import Input from '../../components/Input/Input';
 import TechComponentCard from '../../components/TechComponentCard/TechComponentCard';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import Navbar from '../../components/Navbar/Navbar';
+import { useHistory } from 'react-router-dom';
 
 const TechComponentList = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState('');
+
+  const history = useHistory();
+  const handleCartButtonClick = () => {
+    history.push('/cart');
+  };
 
   return (
     <div className={styles.layout}>
@@ -18,7 +24,10 @@ const TechComponentList = (): JSX.Element => {
           <Typography type="header" size="xl">
             Bauteile.
           </Typography>
-          <FloatingActionButton icon={<MdShoppingCart size={16} />} />
+          <FloatingActionButton
+            onClick={handleCartButtonClick}
+            icon={<MdShoppingCart size={16} />}
+          />
         </div>
         <Input
           type="text"
