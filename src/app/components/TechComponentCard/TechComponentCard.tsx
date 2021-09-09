@@ -3,6 +3,8 @@ import styles from './TechComponentCard.module.css';
 import Typography from '../Typography/Typography';
 
 export type TechComponentCardProps = {
+  id: string;
+  onCardClick: (id: string) => void;
   layout: 'horizontal' | 'vertical';
   image: string;
   title: string;
@@ -12,15 +14,18 @@ export type TechComponentCardProps = {
 };
 
 const TechComponentCard = ({
+  id,
   layout,
   image,
   title,
   description,
   amount,
   editable = false,
+  onCardClick,
 }: TechComponentCardProps): JSX.Element => {
   return (
     <div
+      onClick={() => onCardClick(id)}
       className={`${styles.container} ${
         layout === 'horizontal' ? styles.horizontal : styles.vertical
       }`}

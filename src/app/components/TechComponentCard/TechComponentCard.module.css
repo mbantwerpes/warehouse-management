@@ -6,6 +6,8 @@
   border-radius: 10px;
   padding: 1rem;
   width: fit-content;
+  cursor: pointer;
+  height: fit-content;
 }
 
 .img {

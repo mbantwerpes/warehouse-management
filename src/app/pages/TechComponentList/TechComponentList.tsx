@@ -17,6 +17,8 @@ const TechComponentList = (): JSX.Element => {
     history.push('/cart');
   };
 
+  const test = () => console.log('t3st');
+
   return (
     <div className={styles.layout}>
       <div className={styles.container}>
@@ -39,6 +41,8 @@ const TechComponentList = (): JSX.Element => {
         />
         <div className={styles.cardList}>
           <TechComponentCard
+            id="placeholder"
+            onCardClick={test}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -46,6 +50,8 @@ const TechComponentList = (): JSX.Element => {
             image={placeholderImage}
           />
           <TechComponentCard
+            id="placeholder"
+            onCardClick={test}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -53,6 +59,8 @@ const TechComponentList = (): JSX.Element => {
             image={placeholderImage}
           />
           <TechComponentCard
+            id="placeholder"
+            onCardClick={test}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -60,6 +68,8 @@ const TechComponentList = (): JSX.Element => {
             image={placeholderImage}
           />
           <TechComponentCard
+            id="placeholder"
+            onCardClick={test}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -67,6 +77,8 @@ const TechComponentList = (): JSX.Element => {
             image={placeholderImage}
           />
           <TechComponentCard
+            id="placeholder"
+            onCardClick={test}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
@@ -74,13 +86,8 @@ const TechComponentList = (): JSX.Element => {
             image={placeholderImage}
           />
           <TechComponentCard
-            layout="vertical"
-            title="Microcontroller A-30"
-            description="Lorem ipsum dolor sit amet."
-            amount={10}
-            image={placeholderImage}
-          />
-          <TechComponentCard
+            id="placeholder"
+            onCardClick={test}
             layout="vertical"
             title="Microcontroller A-30"
             description="Lorem ipsum dolor sit amet."
