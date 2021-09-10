@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 
-export default function useFetch<T>(url: string): {
+export default function useFetch<T>(
+  url: string,
+  options?: RequestInit
+): {
   data: T | null;
   errorMessage: string | null;
   isLoading: boolean;
@@ -11,7 +14,7 @@ export default function useFetch<T>(url: string): {
   const isLoading = data === null;
 
   function refetch() {
-    fetch(url)
+    fetch(url, options)
       .then((response) => response.json())
       .then((response) => setData(response))
       .catch((error) => setErrorMessage(error.toString()));
