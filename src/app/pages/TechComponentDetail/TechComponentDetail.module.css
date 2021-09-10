@@ -6,5 +6,32 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   height: 100vh;
-  grid-template-rows: 10% 6% 84%;
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.backButton {
+  justify-self: start;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+}
+
+.buttonGroup {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 9fr;
+  gap: 0.5rem;
+}
+
+.img {
+  margin-top: 1rem;
 }
