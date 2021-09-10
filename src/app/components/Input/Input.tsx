@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react';
+import React, { ChangeEvent, ReactNode } from 'react';
 import styles from './Input.module.css';
 
 export type InputProps = {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   type: 'text' | 'password';
   placeholder: string;
   icon?: ReactNode;
@@ -23,7 +23,7 @@ const Input = ({
   return (
     <div className={`${styles.container} ${containerStyling}`}>
       <input
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange}
         className={`${styles.input} ${inputStyling}`}
         value={value}
         type={type}

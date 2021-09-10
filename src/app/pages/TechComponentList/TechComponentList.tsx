@@ -39,7 +39,7 @@ const TechComponentList = (): JSX.Element => {
         <Input
           type="text"
           value={searchValue}
-          onChange={setSearchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Bauteil suchen..."
           icon={<MdSearch />}
           containerStyling={styles.inputContainer}
