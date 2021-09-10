@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Divider from '../Divider/Divider';
-import Typography from '../Typography/Typography';
 import styles from './Modal.module.css';
-import { MdCancel } from 'react-icons/md';
 
-export type ModalProps = {
+type Props = {
   children: React.ReactChild;
   closeModal: () => void;
   title: string;
 };
 
-const Modal = React.memo(({ children, closeModal, title }: ModalProps) => {
+const Modal = React.memo(({ children, closeModal, title }: Props) => {
   const domEl = document.querySelector('#modal-root');
 
   if (!domEl) return null;
@@ -21,15 +18,10 @@ const Modal = React.memo(({ children, closeModal, title }: ModalProps) => {
   return ReactDOM.createPortal(
     <div className={styles.container}>
       <div className={styles.titleContainer}>
-        <Typography type="header" size="l">
-          {title}
-        </Typography>
-        <button onClick={closeModal} className={styles.closeButton}>
-          <MdCancel size={16} />
-        </button>
+        <h3>{title}</h3>
+        <button onClick={closeModal}>X</button>
       </div>
-      <Divider />
-      <div className={styles.content}>{children}</div>
+      {children}
     </div>,
     domEl
   );

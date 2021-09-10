@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 
 import Modal from '../components/Modal/Modal';
 
@@ -8,11 +8,9 @@ import Modal from '../components/Modal/Modal';
 // NOTE: Each modal you want to render should use a separate hook!!! (Not a new useModal hook-file just a separate useModal hook in the component)
 // Otherwise your modals will share their visibility state which might lead
 // to overlapping and unclosable elements.
-export const useModal = (): {
-  show: () => void;
-  hide: () => void;
-  RenderModal: ReactNode;
-} => {
+
+// TODO add return types
+export const useModal = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const show = () => setIsVisible(true);
