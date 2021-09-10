@@ -3,10 +3,10 @@ import { MdKeyboardArrowLeft, MdRemove } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Typography from '../../components/Typography/Typography';
-import styles from './TechComponentDetails.module.css';
+import styles from './TechComponentDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 
-const TechComponentDetails = (): JSX.Element => {
+const TechComponentDetail = (): JSX.Element => {
   const history = useHistory();
 
   const handleBackButtonClick = () => {
@@ -72,4 +72,4 @@ const TechComponentDetails = (): JSX.Element => {
   );
 };
 
-export default TechComponentDetails;
+export default TechComponentDetail;
