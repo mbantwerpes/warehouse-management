@@ -6,11 +6,13 @@ import Input from '../../components/Input/Input';
 import Navbar from '../../components/Navbar/Navbar';
 import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
+import Textarea from '../../components/Textarea/Textarea';
 
 const TechComponentAdd = (): JSX.Element => {
   const [nameValue, setNameValue] = useState('');
   const [artNrValue, setArtNrValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
+  const [descriptionValue, setDescriptionValue] = useState('');
 
   const history = useHistory();
 
@@ -65,7 +67,11 @@ const TechComponentAdd = (): JSX.Element => {
             <Typography type="header" size="s">
               Beschreibung
             </Typography>
-            <textarea />
+            <Textarea
+              value={descriptionValue}
+              placeholder="Beschreibung..."
+              onChange={(e) => setDescriptionValue(e.target.value)}
+            />
           </label>
           <Button
             type="primary"
