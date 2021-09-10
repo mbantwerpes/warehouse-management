@@ -27,46 +27,54 @@ const TechComponentAdd = (): JSX.Element => {
         <Typography type="header" size="xl">
           Bauteil anlegen.
         </Typography>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Name
-          </Typography>
-          <Input
-            value={nameValue}
-            placeholder="Name"
-            type="text"
-            onChange={(e) => setNameValue(e.target.value)}
-          />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Artikelnummer
-          </Typography>
-          <Input
-            value={artNrValue}
-            placeholder="Artikelnummer"
-            type="text"
-            onChange={(e) => setArtNrValue(e.target.value)}
-          />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Ortsangabe
-          </Typography>
-          <Input
-            value={locationValue}
-            placeholder="Ortsangabe"
-            type="text"
-            onChange={(e) => setLocationValue(e.target.value)}
-          />
-        </label>
-        <Button
-          type="primary"
-          size="l"
-          onClick={() => console.log('placeholder')}
-        >
-          Bauteil anlegen
-        </Button>
+        <form>
+          <label className={styles.labelGroup}>
+            <Typography type="header" size="s">
+              Name
+            </Typography>
+            <Input
+              value={nameValue}
+              placeholder="Name"
+              type="text"
+              onChange={(e) => setNameValue(e.target.value)}
+            />
+          </label>
+          <label className={styles.labelGroup}>
+            <Typography type="header" size="s">
+              Artikelnummer
+            </Typography>
+            <Input
+              value={artNrValue}
+              placeholder="Artikelnummer"
+              type="text"
+              onChange={(e) => setArtNrValue(e.target.value)}
+            />
+          </label>
+          <label className={styles.labelGroup}>
+            <Typography type="header" size="s">
+              Ortsangabe
+            </Typography>
+            <Input
+              value={locationValue}
+              placeholder="Ortsangabe"
+              type="text"
+              onChange={(e) => setLocationValue(e.target.value)}
+            />
+          </label>
+          <label className={styles.labelGroup}>
+            <Typography type="header" size="s">
+              Beschreibung
+            </Typography>
+            <textarea />
+          </label>
+          <Button
+            type="primary"
+            size="l"
+            onClick={() => console.log('placeholder')}
+          >
+            Bauteil anlegen
+          </Button>
+        </form>
       </div>
       <Navbar active="home" />
     </div>
