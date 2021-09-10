@@ -60,6 +60,13 @@ const TechComponentAdd = (): JSX.Element => {
             onChange={(e) => setLocationValue(e.target.value)}
           />
         </label>
+        <Button
+          type="primary"
+          size="l"
+          onClick={() => console.log('placeholder')}
+        >
+          Bauteil anlegen
+        </Button>
       </div>
       <Navbar active="home" />
     </div>
