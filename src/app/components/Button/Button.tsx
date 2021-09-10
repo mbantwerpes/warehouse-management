@@ -7,6 +7,7 @@ export type ButtonProps = {
   type: 'primary' | 'secondary' | 'error';
   size: 'm' | 'l';
   onClick: () => void;
+  className?: string;
 };
 
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
   type,
   size,
   onClick,
+  className,
 }: ButtonProps): JSX.Element => {
   const typeMap = {
     primary: styles.primary,
@@ -29,7 +31,7 @@ const Button = ({
   return (
     <button
       onClick={onClick}
-      className={`${styles.button} ${typeMap[type]} ${sizeMap[size]}`}
+      className={`${styles.button} ${typeMap[type]} ${sizeMap[size]} ${className}`}
     >
       {children}
     </button>

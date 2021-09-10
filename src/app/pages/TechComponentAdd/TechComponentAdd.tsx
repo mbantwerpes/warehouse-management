@@ -3,7 +3,6 @@ import { useHistory } from 'react-router';
 import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentAdd.module.css';
 import Input from '../../components/Input/Input';
-import Navbar from '../../components/Navbar/Navbar';
 import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import Textarea from '../../components/Textarea/Textarea';
@@ -22,15 +21,20 @@ const TechComponentAdd = (): JSX.Element => {
   };
 
   return (
-    <div className={styles.layout}>
-      <div className={styles.container}>
-        <Button type="secondary" size="l" onClick={handleBackButtonClick}>
-          <MdKeyboardArrowLeft size={32} />
-        </Button>
-        <Typography type="header" size="xl">
-          Bauteil anlegen.
-        </Typography>
-        <form className={styles.form}>
+    <div className={styles.container}>
+      <Button
+        type="secondary"
+        size="l"
+        onClick={handleBackButtonClick}
+        className={styles.backButton}
+      >
+        <MdKeyboardArrowLeft size={32} />
+      </Button>
+      <Typography type="header" size="xl">
+        Bauteil anlegen.
+      </Typography>
+      <form className={styles.form}>
+        <div className={styles.formContent}>
           <label className={styles.labelGroup}>
             <Typography type="header" size="s">
               Name
@@ -86,16 +90,16 @@ const TechComponentAdd = (): JSX.Element => {
               onChange={(e) => setAmountValue(e.target.value)}
             />
           </label>
-          <Button
-            type="primary"
-            size="l"
-            onClick={() => console.log('placeholder')}
-          >
-            Bauteil anlegen
-          </Button>
-        </form>
-      </div>
-      <Navbar active="home" />
+        </div>
+        <Button
+          type="primary"
+          size="l"
+          onClick={() => console.log('placeholder')}
+          className={styles.submitButton}
+        >
+          Bauteil anlegen
+        </Button>
+      </form>
     </div>
   );
 };

@@ -1,13 +1,17 @@
-.layout {
-  display: grid;
-  grid-template-rows: 90vh 10vh;
-  background-color: var(--color-main-medium);
-}
-
 .container {
   display: grid;
+  background-color: var(--color-main-medium);
   grid-template-columns: 90%;
   justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  height: 100vh;
+  grid-template-rows: 10% 6% 84%;
+}
+
+.backButton {
+  justify-self: start;
+  align-self: center;
 }
 
 .labelGroup {
@@ -17,7 +21,14 @@
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formContent {
   display: grid;
+  gap: 1rem;
 }
 
 .textarea {
