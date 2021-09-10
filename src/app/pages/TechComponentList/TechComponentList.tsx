@@ -27,7 +27,7 @@ const TechComponentList = (): JSX.Element => {
   return (
     <div className={styles.layout}>
       <div className={styles.container}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <Typography type="header" size="xl">
             Bauteile.
           </Typography>
@@ -35,7 +35,7 @@ const TechComponentList = (): JSX.Element => {
             onClick={handleCartButtonClick}
             icon={<MdShoppingCart size={24} />}
           />
-        </div>
+        </header>
         <Input
           type="text"
           value={searchValue}
@@ -44,7 +44,7 @@ const TechComponentList = (): JSX.Element => {
           icon={<MdSearch />}
           containerStyling={styles.inputContainer}
         />
-        <div className={styles.cardList}>
+        <section className={styles.cardList}>
           {techComponents?.map((techComponent) => {
             return (
               <TechComponentCard
@@ -59,7 +59,7 @@ const TechComponentList = (): JSX.Element => {
               />
             );
           })}
-        </div>
+        </section>
       </div>
       <Navbar active="home" />
     </div>
