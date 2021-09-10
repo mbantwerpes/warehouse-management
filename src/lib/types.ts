@@ -28,6 +28,8 @@ export type TechComponent = {
   leAt: string;
 };
 
+export type TechComponentWithoutId = Omit<TechComponent, '_id'>;
+
 export type TechComponentOrder = {
   techComponentId: string;
   amount: number;
