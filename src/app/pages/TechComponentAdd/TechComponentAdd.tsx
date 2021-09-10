@@ -9,10 +9,11 @@ import { MdKeyboardArrowLeft } from 'react-icons/md';
 import Textarea from '../../components/Textarea/Textarea';
 
 const TechComponentAdd = (): JSX.Element => {
-  const [nameValue, setNameValue] = useState('');
-  const [artNrValue, setArtNrValue] = useState('');
-  const [locationValue, setLocationValue] = useState('');
-  const [descriptionValue, setDescriptionValue] = useState('');
+  const [nameValue, setNameValue] = useState<string>('');
+  const [artNrValue, setArtNrValue] = useState<string>('');
+  const [locationValue, setLocationValue] = useState<string>('');
+  const [descriptionValue, setDescriptionValue] = useState<string>('');
+  const [amountValue, setAmountValue] = useState<string>('0');
 
   const history = useHistory();
 
@@ -71,6 +72,17 @@ const TechComponentAdd = (): JSX.Element => {
               value={descriptionValue}
               placeholder="Beschreibung..."
               onChange={(e) => setDescriptionValue(e.target.value)}
+            />
+          </label>
+          <label className={styles.labelGroup}>
+            <Typography type="header" size="s">
+              Anzahl
+            </Typography>
+            <Input
+              value={amountValue}
+              placeholder="0"
+              type="number"
+              onChange={(e) => setAmountValue(e.target.value)}
             />
           </label>
           <Button
