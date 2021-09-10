@@ -5,6 +5,7 @@
   width: 100%;
   color: var(--color-text);
   background-color: var(--color-main-light);
+  font-family: var(--font-family-primary);
   resize: none;
 }
 
