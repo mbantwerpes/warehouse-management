@@ -1,0 +1,9 @@
+.layout {
+  display: grid;
+  grid-template-rows: 90vh 10vh;
+  background-color: var(--color-main-medium);
+}
+
+.container {
+  display: grid;
+}
