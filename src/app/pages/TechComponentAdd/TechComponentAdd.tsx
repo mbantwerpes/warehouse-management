@@ -30,7 +30,7 @@ const TechComponentAdd = (): JSX.Element => {
         <Typography type="header" size="xl">
           Bauteil anlegen.
         </Typography>
-        <form>
+        <form className={styles.form}>
           <label className={styles.labelGroup}>
             <Typography type="header" size="s">
               Name
@@ -72,6 +72,7 @@ const TechComponentAdd = (): JSX.Element => {
               value={descriptionValue}
               placeholder="Beschreibung..."
               onChange={(e) => setDescriptionValue(e.target.value)}
+              className={styles.textarea}
             />
           </label>
           <label className={styles.labelGroup}>

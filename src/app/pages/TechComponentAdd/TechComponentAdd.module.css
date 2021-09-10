@@ -15,3 +15,11 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.form {
+  display: grid;
+}
+
+.textarea {
+  height: 6rem;
+}
