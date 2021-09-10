@@ -6,9 +6,10 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import Textarea from '../../components/Textarea/Textarea';
+import { TechComponentForFrontend } from '../../../lib/types';
 
 const TechComponentAdd = (): JSX.Element => {
-  const [nameValue, setNameValue] = useState<string>('');
+  const [titleValue, setTitleValue] = useState<string>('');
   const [artNrValue, setArtNrValue] = useState<string>('');
   const [locationValue, setLocationValue] = useState<string>('');
   const [descriptionValue, setDescriptionValue] = useState<string>('');
@@ -17,6 +18,30 @@ const TechComponentAdd = (): JSX.Element => {
   const history = useHistory();
 
   const handleBackButtonClick = () => {
+    history.push('/');
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const postData: TechComponentForFrontend = {
+      title: titleValue,
+      description: descriptionValue,
+      location: locationValue,
+      amount: Number(amountValue),
+      artNr: artNrValue,
+    };
+
+    const response = await fetch('/api/techcomponent/', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    });
+
+    console.log(await response.json());
+
     history.push('/');
   };
 
@@ -33,17 +58,17 @@ const TechComponentAdd = (): JSX.Element => {
       <Typography type="header" size="xl">
         Bauteil anlegen.
       </Typography>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formContent}>
           <label className={styles.labelGroup}>
             <Typography type="header" size="s">
               Name
             </Typography>
             <Input
-              value={nameValue}
+              value={titleValue}
               placeholder="Name"
               type="text"
-              onChange={(e) => setNameValue(e.target.value)}
+              onChange={(e) => setTitleValue(e.target.value)}
             />
           </label>
           <label className={styles.labelGroup}>
@@ -91,12 +116,7 @@ const TechComponentAdd = (): JSX.Element => {
             />
           </label>
         </div>
-        <Button
-          type="primary"
-          size="l"
-          onClick={() => console.log('placeholder')}
-          className={styles.submitButton}
-        >
+        <Button type="primary" size="l" className={styles.submitButton}>
           Bauteil anlegen
         </Button>
       </form>

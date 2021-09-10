@@ -6,7 +6,7 @@ export type ButtonProps = {
   children: ReactNode;
   type: 'primary' | 'secondary' | 'error';
   size: 'm' | 'l' | 'none';
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
 };
 
