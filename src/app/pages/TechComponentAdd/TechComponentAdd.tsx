@@ -24,7 +24,7 @@ const TechComponentAdd = (): JSX.Element => {
     <div className={styles.layout}>
       <div className={styles.container}>
         <Button type="secondary" size="l" onClick={handleBackButtonClick}>
-          <MdKeyboardArrowLeft />
+          <MdKeyboardArrowLeft size={32} />
         </Button>
         <Typography type="header" size="xl">
           Bauteil anlegen.
