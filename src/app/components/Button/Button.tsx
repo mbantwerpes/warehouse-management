@@ -5,7 +5,7 @@ import styles from './Button.module.css';
 export type ButtonProps = {
   children: ReactNode;
   type: 'primary' | 'secondary' | 'error';
-  size: 'm' | 'l';
+  size: 'm' | 'l' | 'none';
   onClick: () => void;
   className?: string;
 };
@@ -26,6 +26,7 @@ const Button = ({
   const sizeMap = {
     m: styles.sizeM,
     l: styles.sizeL,
+    none: '',
   };
 
   return (

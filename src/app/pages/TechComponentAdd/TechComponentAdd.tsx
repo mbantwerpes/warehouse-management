@@ -24,7 +24,7 @@ const TechComponentAdd = (): JSX.Element => {
     <div className={styles.container}>
       <Button
         type="secondary"
-        size="l"
+        size="none"
         onClick={handleBackButtonClick}
         className={styles.backButton}
       >

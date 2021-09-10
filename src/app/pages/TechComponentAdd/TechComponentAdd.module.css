@@ -11,7 +11,9 @@
 
 .backButton {
   justify-self: start;
-  align-self: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
 }
 
 .labelGroup {
