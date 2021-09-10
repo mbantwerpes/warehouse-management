@@ -12,7 +12,7 @@ const TechComponentAdd = (): JSX.Element => {
   const [artNrValue, setArtNrValue] = useState<string>('');
   const [locationValue, setLocationValue] = useState<string>('');
   const [descriptionValue, setDescriptionValue] = useState<string>('');
-  const [amountValue, setAmountValue] = useState<string>('0');
+  const [amountValue, setAmountValue] = useState<string>('');
 
   const history = useHistory();
 
