@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react';
+import React, { ChangeEvent, ReactNode } from 'react';
 import styles from './Input.module.css';
 
 export type InputProps = {
   value: string;
-  onChange: () => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   type: 'text' | 'password';
   placeholder: string;
   icon?: ReactNode;

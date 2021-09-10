@@ -14,6 +14,7 @@ export type User = {
 };
 
 export type TechComponent = {
+  _id: string;
   adminId: string; // Track which admin has created the TechComponent
   title: string;
   description: string;

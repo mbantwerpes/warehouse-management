@@ -22,6 +22,16 @@ export async function getTechComponent(id: string): Promise<TechComponent> {
   return techComponent;
 }
 
+export async function searchTechComponents(
+  query: string
+): Promise<TechComponent[]> {
+  const techComponentCollection = getTechComponentCollection();
+  const techComponents = await techComponentCollection
+    .find({ title: { $regex: query, $options: 'i' } })
+    .toArray();
+  return techComponents;
+}
+
 export const addTechComponent = async (
   techComponent: TechComponent
 ): Promise<ObjectId> => {
@@ -33,7 +43,7 @@ export const addTechComponent = async (
 
   const result = await techComponentCollection.insertOne(techComponent);
 
-  return result.insertedId;
+  return new ObjectId(result.insertedId);
 };
 
 export async function updateTechComponent(
