@@ -27,8 +27,8 @@ const TechComponentAdd = (): JSX.Element => {
         <Typography type="header" size="xl">
           Bauteil anlegen.
         </Typography>
-        <label>
-          <Typography type="text" size="s">
+        <label className={styles.labelGroup}>
+          <Typography type="header" size="s">
             Name
           </Typography>
           <Input
@@ -38,9 +38,9 @@ const TechComponentAdd = (): JSX.Element => {
             onChange={(e) => setNameValue(e.target.value)}
           />
         </label>
-        <label>
-          <Typography type="text" size="s">
-            Name
+        <label className={styles.labelGroup}>
+          <Typography type="header" size="s">
+            Artikelnummer
           </Typography>
           <Input
             value={artNrValue}
@@ -49,9 +49,9 @@ const TechComponentAdd = (): JSX.Element => {
             onChange={(e) => setArtNrValue(e.target.value)}
           />
         </label>
-        <label>
-          <Typography type="text" size="s">
-            Name
+        <label className={styles.labelGroup}>
+          <Typography type="header" size="s">
+            Ortsangabe
           </Typography>
           <Input
             value={locationValue}

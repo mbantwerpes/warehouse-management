@@ -9,3 +9,9 @@
   grid-template-columns: 90%;
   justify-content: center;
 }
+
+.labelGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
