@@ -1,12 +1,17 @@
 import React from 'react';
 import { MdKeyboardArrowLeft, MdDelete } from 'react-icons/md';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
+import useTechComponent from '../../hooks/useTechComponent';
 
 const TechComponentDetail = (): JSX.Element => {
+  const { id }: { id: string } = useParams();
+
+  const { techComponent } = useTechComponent(id);
+
   const history = useHistory();
 
   const handleBackButtonClick = () => {
@@ -19,19 +24,19 @@ const TechComponentDetail = (): JSX.Element => {
         <MdKeyboardArrowLeft size={32} />
       </Button>
       <Typography type="header" size="xl">
-        Microcontroller A-30
+        {techComponent?.title}
       </Typography>
       <div className={styles.content}>
         <img src={placeholderImage} alt="placeholder" className={styles.img} />
         <Typography type="header" size="m">
-          Verfügbar: 10
+          Verfügbar: {techComponent?.amount}
         </Typography>
         <div>
           <Typography type="header" size="m">
             Artikelnummer
           </Typography>
           <Typography type="text" size="m">
-            3284zhfdsakjfz348
+            {techComponent?.artNr}
           </Typography>
         </div>
         <div>
@@ -39,10 +44,7 @@ const TechComponentDetail = (): JSX.Element => {
             Beschreibung
           </Typography>
           <Typography type="text" size="m">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quia
-            incidunt dolorum animi? Atque officia, laudantium porro molestiae
-            eaque nulla, sequi exercitationem perferendis id voluptates dolor
-            corrupti labore consequatur quasi!
+            {techComponent?.description}
           </Typography>
         </div>
         <div>
@@ -50,7 +52,7 @@ const TechComponentDetail = (): JSX.Element => {
             Ortsangabe
           </Typography>
           <Typography type="text" size="m">
-            3. Schrank rechts
+            {techComponent?.location}
           </Typography>
         </div>
       </div>

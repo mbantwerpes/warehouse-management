@@ -7,7 +7,7 @@ const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/techcomponent/detail">
+        <Route path="/techcomponent/:id">
           <TechComponentDetail />
         </Route>
         <Route path="/">
