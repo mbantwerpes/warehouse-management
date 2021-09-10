@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import TechComponentList from './pages/TechComponentList/TechComponentList';
 import TechComponentAdd from './pages/TechComponentAdd/TechComponentAdd';
+import TechComponentDetail from './pages/TechComponentDetail/TechComponentDetail';
 
 const App = (): JSX.Element => {
   return (
@@ -9,6 +10,9 @@ const App = (): JSX.Element => {
       <Switch>
         <Route path="/techcomponent/add">
           <TechComponentAdd />
+        </Route>
+        <Route path="/techcomponent/:id">
+          <TechComponentDetail />
         </Route>
         <Route path="/">
           <TechComponentList />
