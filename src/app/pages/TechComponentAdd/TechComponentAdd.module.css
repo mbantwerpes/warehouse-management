@@ -6,4 +6,6 @@
 
 .container {
   display: grid;
+  grid-template-columns: 90%;
+  justify-content: center;
 }
