@@ -9,7 +9,13 @@ import useTechComponent from '../../hooks/useTechComponent';
 import { useModal } from '../../hooks/useModal';
 import TechComponentDeleteModal from '../../components/TechComponentDeleteModal/TechComponentDeleteModal';
 
-const TechComponentDetail = (): JSX.Element => {
+export type TechComponentDetailProps = {
+  isAdmin?: boolean;
+};
+
+const TechComponentDetail = ({
+  isAdmin = false,
+}: TechComponentDetailProps): JSX.Element => {
   const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
   const { id }: { id: string } = useParams();
