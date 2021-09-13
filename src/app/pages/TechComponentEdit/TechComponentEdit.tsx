@@ -72,6 +72,7 @@ const TechComponentEdit = (): JSX.Element => {
         Bauteil bearbeiten.
       </Typography>
       <TechComponentForm
+        isEdit={true}
         titleValue={titleValue}
         artNrValue={artNrValue}
         locationValue={locationValue}
