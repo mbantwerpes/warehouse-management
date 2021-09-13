@@ -6,6 +6,7 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   height: 100vh;
+  grid-template-rows: 1fr 8fr 1fr;
 }
 
 .backButton {
@@ -25,19 +26,4 @@
 
 ::-webkit-scrollbar {
   display: none;
-}
-
-.buttonGroup {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 9fr;
-  gap: 0.5rem;
-}
-
-.img {
-  margin-top: 1rem;
-}
-
-.counter {
-  margin-bottom: 1rem;
 }

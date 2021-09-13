@@ -13,17 +13,19 @@ const Cart = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Button
-        type="secondary"
-        size="m"
-        onClick={handleBackButtonClick}
-        className={styles.backButton}
-      >
-        <MdKeyboardArrowLeft size={32} />
-      </Button>
-      <Typography type="header" size="xl">
-        Warenkorb
-      </Typography>
+      <header>
+        <Button
+          type="secondary"
+          size="m"
+          onClick={handleBackButtonClick}
+          className={styles.backButton}
+        >
+          <MdKeyboardArrowLeft size={32} />
+        </Button>
+        <Typography type="header" size="xl">
+          Warenkorb
+        </Typography>
+      </header>
       <div className={styles.content}></div>
       <Button
         type="primary"
