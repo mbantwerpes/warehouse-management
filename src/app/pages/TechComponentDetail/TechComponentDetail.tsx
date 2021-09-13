@@ -27,7 +27,9 @@ const TechComponentDetail = ({
   // Student functions
   const [cartAmount, setCartAmount] = useState<number>(0);
   const onAddClick = () => {
-    setCartAmount(cartAmount + 1);
+    if (techComponent !== null) {
+      if (cartAmount < techComponent.amount) setCartAmount(cartAmount + 1);
+    }
   };
   const onSubtractClick = () => {
     if (cartAmount > 0) {
