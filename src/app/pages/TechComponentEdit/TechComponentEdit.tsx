@@ -9,7 +9,8 @@ import TechComponentForm from '../../components/TechComponentForm/TechComponentF
 import { useParams } from 'react-router-dom';
 
 const TechComponentEdit = (): JSX.Element => {
-  const { id } = useParams();
+  const { id }: { id: string } = useParams();
+  console.log(id);
 
   const [titleValue, setTitleValue] = useState<string>('');
   const [artNrValue, setArtNrValue] = useState<string>('');

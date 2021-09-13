@@ -71,7 +71,7 @@ const TechComponentDetail = (): JSX.Element => {
         <Button
           type="primary"
           size="l"
-          onClick={() => console.log('placeholder')}
+          onClick={() => history.push(`/techcomponent/edit/${id}`)}
         >
           Bearbeiten
         </Button>
