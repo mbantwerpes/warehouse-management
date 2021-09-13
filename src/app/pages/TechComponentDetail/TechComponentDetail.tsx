@@ -22,6 +22,18 @@ const TechComponentDetail = (): JSX.Element => {
     history.push('/');
   };
 
+  const handleDeleteTechComponent = async () => {
+    const response = await fetch(`/api/techcomponent/${id}`, {
+      method: 'DELETE',
+    });
+
+    console.log(await response.json());
+
+    hide();
+
+    history.push('/');
+  };
+
   return (
     <div className={styles.container}>
       <Button
@@ -79,7 +91,7 @@ const TechComponentDetail = (): JSX.Element => {
       </div>
       <RenderDeleteModal title="Löschen">
         <TechComponentDeleteModal
-          onDelete={() => console.log('placeholder')}
+          onDelete={handleDeleteTechComponent}
           onClose={hide}
         />
       </RenderDeleteModal>
