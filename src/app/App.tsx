@@ -19,7 +19,7 @@ const App = (): JSX.Element => {
           <TechComponentDetail />
         </Route>
         <Route path="/">
-          <TechComponentList isAdmin={true} />
+          <TechComponentList />
         </Route>
       </Switch>
       <div id="modal-root" />

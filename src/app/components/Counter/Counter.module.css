@@ -3,7 +3,6 @@
   grid-auto-flow: column;
   gap: 1.5rem;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 50%;
 }
 
 .input {

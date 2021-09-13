@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdKeyboardArrowLeft, MdDelete } from 'react-icons/md';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -8,19 +8,35 @@ import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import useTechComponent from '../../hooks/useTechComponent';
 import { useModal } from '../../hooks/useModal';
 import TechComponentDeleteModal from '../../components/TechComponentDeleteModal/TechComponentDeleteModal';
+import Counter from '../../components/Counter/Counter';
 
-const TechComponentDetail = (): JSX.Element => {
-  const { show, hide, RenderModal: RenderDeleteModal } = useModal();
+export type TechComponentDetailProps = {
+  isAdmin?: boolean;
+};
 
-  const { id }: { id: string } = useParams();
-
-  const { techComponent } = useTechComponent(id);
-
+const TechComponentDetail = ({
+  isAdmin = false,
+}: TechComponentDetailProps): JSX.Element => {
   const history = useHistory();
-
   const handleBackButtonClick = () => {
     history.push('/');
   };
+  const { id }: { id: string } = useParams();
+  const { techComponent } = useTechComponent(id);
+
+  // Student functions
+  const [cartAmount, setCartAmount] = useState<number>(0);
+  const onAddClick = () => {
+    setCartAmount(cartAmount + 1);
+  };
+  const onSubtractClick = () => {
+    if (cartAmount > 0) {
+      setCartAmount(cartAmount - 1);
+    }
+  };
+
+  // Admin functions
+  const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
   const handleDeleteTechComponent = async () => {
     const response = await fetch(`/api/techcomponent/${id}`, {
@@ -77,18 +93,38 @@ const TechComponentDetail = (): JSX.Element => {
           </Typography>
         </div>
       </div>
-      <div className={styles.buttonGroup}>
-        <Button type="error" size="l" onClick={show}>
-          <MdDelete size={24} />
-        </Button>
+      {/* Only show counter if user is not an admin */}
+      {!isAdmin && (
+        <Counter
+          value={cartAmount}
+          onAddClick={onAddClick}
+          onSubtractClick={onSubtractClick}
+          className={styles.counter}
+        />
+      )}
+      {/* Render buttons conditionally if user role is student or admin */}
+      {isAdmin ? (
+        <div className={styles.buttonGroup}>
+          <Button type="error" size="l" onClick={show}>
+            <MdDelete size={24} />
+          </Button>
+          <Button
+            type="primary"
+            size="l"
+            onClick={() => history.push(`/techcomponent/edit/${id}`)}
+          >
+            Bearbeiten
+          </Button>
+        </div>
+      ) : (
         <Button
           type="primary"
           size="l"
           onClick={() => history.push(`/techcomponent/edit/${id}`)}
         >
-          Bearbeiten
+          Zum Warenkorb hinzufügen
         </Button>
-      </div>
+      )}
       <RenderDeleteModal title="Löschen">
         <TechComponentDeleteModal
           onDelete={handleDeleteTechComponent}

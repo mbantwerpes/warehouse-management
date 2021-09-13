@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 import useTechComponents from '../../hooks/useTechComponents';
 
 export type TechComponentListProps = {
-  isAdmin: boolean;
+  isAdmin?: boolean;
 };
 
 const TechComponentList = ({

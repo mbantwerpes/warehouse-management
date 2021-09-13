@@ -3,12 +3,13 @@ import styles from './Input.module.css';
 
 export type InputProps = {
   value: string | number;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   type: 'text' | 'password' | 'number';
   placeholder: string;
   icon?: ReactNode;
   containerStyling?: string;
   inputStyling?: string;
+  readOnly?: boolean;
 };
 
 const Input = ({
@@ -19,6 +20,7 @@ const Input = ({
   icon,
   containerStyling,
   inputStyling,
+  readOnly = false,
 }: InputProps): JSX.Element => {
   return (
     <div className={`${styles.container} ${containerStyling}`}>
@@ -28,6 +30,7 @@ const Input = ({
         value={value}
         type={type}
         placeholder={placeholder}
+        readOnly={readOnly}
       />
       <div className={styles.icon}>{icon}</div>
     </div>
