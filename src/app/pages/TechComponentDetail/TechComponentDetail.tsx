@@ -9,7 +9,7 @@ import useTechComponent from '../../hooks/useTechComponent';
 import { useModal } from '../../hooks/useModal';
 
 const TechComponentDetail = (): JSX.Element => {
-  const { show, hide, RenderModal: RenderDeleteModal } = useModal();
+  const { show, RenderModal: RenderDeleteModal } = useModal();
 
   const { id }: { id: string } = useParams();
 
