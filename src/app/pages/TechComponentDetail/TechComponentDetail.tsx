@@ -6,8 +6,11 @@ import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import useTechComponent from '../../hooks/useTechComponent';
+import { useModal } from '../../hooks/useModal';
 
 const TechComponentDetail = (): JSX.Element => {
+  const { show, RenderModal: RenderDeleteModal } = useModal();
+
   const { id }: { id: string } = useParams();
 
   const { techComponent } = useTechComponent(id);
@@ -20,7 +23,12 @@ const TechComponentDetail = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Button type="secondary" size="m" onClick={handleBackButtonClick}>
+      <Button
+        type="secondary"
+        size="m"
+        onClick={handleBackButtonClick}
+        className={styles.backButton}
+      >
         <MdKeyboardArrowLeft size={32} />
       </Button>
       <Typography type="header" size="xl">
@@ -57,11 +65,7 @@ const TechComponentDetail = (): JSX.Element => {
         </div>
       </div>
       <div className={styles.buttonGroup}>
-        <Button
-          type="error"
-          size="l"
-          onClick={() => console.log('placeholder')}
-        >
+        <Button type="error" size="l" onClick={show}>
           <MdDelete size={24} />
         </Button>
         <Button
@@ -72,6 +76,7 @@ const TechComponentDetail = (): JSX.Element => {
           Bearbeiten
         </Button>
       </div>
+      <RenderDeleteModal title="Delete">Test</RenderDeleteModal>
     </div>
   );
 };

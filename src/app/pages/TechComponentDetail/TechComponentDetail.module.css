@@ -8,6 +8,14 @@
   height: 100vh;
 }
 
+.backButton {
+  justify-self: start;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
 .content {
   display: grid;
   gap: 1rem;
@@ -17,13 +25,6 @@
 
 ::-webkit-scrollbar {
   display: none;
-}
-
-.backButton {
-  justify-self: start;
-  width: 3rem;
-  height: 3rem;
-  padding: 0;
 }
 
 .buttonGroup {
