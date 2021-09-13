@@ -49,9 +49,11 @@ const TechComponentCard = ({
             <Typography type="text" size="s">
               Anzahl: {amount}
             </Typography>
-            <Typography type="text" size="s">
-              Löschen
-            </Typography>
+            <div onClick={() => console.log('juhu')}>
+              <Typography type="text" size="s">
+                Löschen
+              </Typography>
+            </div>
           </div>
         ) : (
           <Typography type="text" size="s">
