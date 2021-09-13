@@ -10,6 +10,8 @@ import { useModal } from '../../hooks/useModal';
 import TechComponentDeleteModal from '../../components/TechComponentDeleteModal/TechComponentDeleteModal';
 import Counter from '../../components/Counter/Counter';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import useShoppingCart from '../../hooks/useShoppingCart';
+import { TechComponentOrder } from '../../../lib/types';
 
 export type TechComponentDetailProps = {
   isAdmin?: boolean;
@@ -38,12 +40,15 @@ const TechComponentDetail = ({
     }
   };
 
+  const { addCartItem } = useShoppingCart();
+
   const handleAddToCart = () => {
     if (cartAmount > 0) {
-      useLocalStorage('cart', {
-        id,
-        cartAmount,
-      });
+      const cardItem: TechComponentOrder = {
+        techComponentId: id,
+        amount: cartAmount,
+      };
+      addCartItem(cardItem);
     }
   };
 
