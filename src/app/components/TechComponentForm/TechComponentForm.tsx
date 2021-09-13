@@ -6,6 +6,7 @@ import Typography from '../Typography/Typography';
 import styles from './TechComponentForm.module.css';
 
 export type TechComponentFormProps = {
+  isEdit?: boolean;
   titleValue: string;
   artNrValue: string;
   locationValue: string;
@@ -20,6 +21,7 @@ export type TechComponentFormProps = {
 };
 
 const TechComponentForm = ({
+  isEdit = false,
   titleValue,
   artNrValue,
   locationValue,
@@ -92,7 +94,7 @@ const TechComponentForm = ({
         </label>
       </div>
       <Button type="primary" size="l" className={styles.submitButton}>
-        Bauteil anlegen
+        {isEdit ? 'Änderungen speichern' : 'Bauteil anlegen'}
       </Button>
     </form>
   );
