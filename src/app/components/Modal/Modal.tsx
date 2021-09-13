@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Divider from '../Divider/Divider';
+import Typography from '../Typography/Typography';
 import styles from './Modal.module.css';
 
-type Props = {
+export type ModalProps = {
   children: React.ReactChild;
   closeModal: () => void;
   title: string;
 };
 
-const Modal = React.memo(({ children, closeModal, title }: Props) => {
+const Modal = React.memo(({ children, closeModal, title }: ModalProps) => {
   const domEl = document.querySelector('#modal-root');
 
   if (!domEl) return null;
@@ -18,10 +20,15 @@ const Modal = React.memo(({ children, closeModal, title }: Props) => {
   return ReactDOM.createPortal(
     <div className={styles.container}>
       <div className={styles.titleContainer}>
-        <h3>{title}</h3>
-        <button onClick={closeModal}>X</button>
+        <Typography type="header" size="l">
+          {title}
+        </Typography>
+        <button onClick={closeModal} className={styles.closeButton}>
+          X
+        </button>
       </div>
-      {children}
+      <Divider />
+      <div className={styles.contentContainer}>{children}</div>
     </div>,
     domEl
   );
