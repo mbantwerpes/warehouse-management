@@ -9,6 +9,7 @@ export type CounterProps = {
   onAddClick: () => void;
   onSubtractClick: () => void;
   onChange: () => void;
+  className?: string;
 };
 
 const Counter = ({
@@ -16,9 +17,10 @@ const Counter = ({
   onAddClick,
   onSubtractClick,
   onChange,
+  className,
 }: CounterProps): JSX.Element => {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className}`}>
       <Button type="primary" size="l" onClick={onSubtractClick}>
         <MdRemove />
       </Button>
