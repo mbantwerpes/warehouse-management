@@ -31,7 +31,7 @@ const TechComponentEdit = (): JSX.Element => {
   }, [techComponent]);
 
   const handleBackButtonClick = () => {
-    history.push('/');
+    history.push(`/techcomponent/${id}`);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
