@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentEdit.module.css';
@@ -7,10 +7,12 @@ import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { TechComponentForFrontend } from '../../../lib/types';
 import TechComponentForm from '../../components/TechComponentForm/TechComponentForm';
 import { useParams } from 'react-router-dom';
+import useTechComponent from '../../hooks/useTechComponent';
 
 const TechComponentEdit = (): JSX.Element => {
+  const history = useHistory();
+
   const { id }: { id: string } = useParams();
-  console.log(id);
 
   const [titleValue, setTitleValue] = useState<string>('');
   const [artNrValue, setArtNrValue] = useState<string>('');
@@ -18,7 +20,15 @@ const TechComponentEdit = (): JSX.Element => {
   const [descriptionValue, setDescriptionValue] = useState<string>('');
   const [amountValue, setAmountValue] = useState<string>('');
 
-  const history = useHistory();
+  // Fetch techComponent and set state values
+  const { techComponent } = useTechComponent(id);
+  useEffect(() => {
+    setTitleValue(techComponent?.title || '');
+    setArtNrValue(techComponent?.artNr || '');
+    setLocationValue(techComponent?.location || '');
+    setDescriptionValue(techComponent?.description || '');
+    setAmountValue(techComponent?.amount.toString() || '');
+  }, [techComponent]);
 
   const handleBackButtonClick = () => {
     history.push('/');
@@ -59,7 +69,7 @@ const TechComponentEdit = (): JSX.Element => {
         <MdKeyboardArrowLeft size={32} />
       </Button>
       <Typography type="header" size="xl">
-        Bauteil anlegen.
+        Bauteil bearbeiten.
       </Typography>
       <TechComponentForm
         titleValue={titleValue}
