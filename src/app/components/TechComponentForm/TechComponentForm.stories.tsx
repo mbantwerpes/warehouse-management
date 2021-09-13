@@ -11,12 +11,6 @@ export default {
       default: 'dark',
     },
   },
-  argTypes: {
-    layout: {
-      options: ['horizontal', 'vertical'],
-      control: { type: 'select' },
-    },
-  },
 };
 
 const Template: Story<TechComponentFormProps> = (args) => (
