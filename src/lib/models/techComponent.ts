@@ -5,7 +5,9 @@ import { getCurrentDate } from '../utils/time';
 
 export async function getTechComponents(): Promise<TechComponent[]> {
   const techComponentCollection = getTechComponentCollection();
-  const techComponents = await techComponentCollection.find().toArray();
+  const techComponents = await techComponentCollection
+    .find({ isDeleted: false })
+    .toArray();
   return techComponents;
 }
 
