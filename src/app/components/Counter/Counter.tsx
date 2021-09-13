@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import styles from './Counter.module.css';
@@ -8,7 +8,7 @@ export type CounterProps = {
   value: number;
   onAddClick: () => void;
   onSubtractClick: () => void;
-  onChange: () => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 };
 
@@ -16,7 +16,6 @@ const Counter = ({
   value,
   onAddClick,
   onSubtractClick,
-  onChange,
   className,
 }: CounterProps): JSX.Element => {
   return (
@@ -25,11 +24,11 @@ const Counter = ({
         <MdRemove />
       </Button>
       <Input
-        onChange={onChange}
         value={value}
         placeholder="0"
         type="number"
         inputStyling={styles.input}
+        readOnly={true}
       />
       <Button type="primary" size="l" onClick={onAddClick}>
         <MdAdd />

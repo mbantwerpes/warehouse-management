@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdKeyboardArrowLeft, MdDelete } from 'react-icons/md';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -17,17 +17,26 @@ export type TechComponentDetailProps = {
 const TechComponentDetail = ({
   isAdmin = false,
 }: TechComponentDetailProps): JSX.Element => {
-  const { show, hide, RenderModal: RenderDeleteModal } = useModal();
-
-  const { id }: { id: string } = useParams();
-
-  const { techComponent } = useTechComponent(id);
-
   const history = useHistory();
-
   const handleBackButtonClick = () => {
     history.push('/');
   };
+  const { id }: { id: string } = useParams();
+  const { techComponent } = useTechComponent(id);
+
+  // Student functions
+  const [cartAmount, setCartAmount] = useState<number>(0);
+  const onAddClick = () => {
+    setCartAmount(cartAmount + 1);
+  };
+  const onSubtractClick = () => {
+    if (cartAmount > 0) {
+      setCartAmount(cartAmount - 1);
+    }
+  };
+
+  // Admin functions
+  const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
   const handleDeleteTechComponent = async () => {
     const response = await fetch(`/api/techcomponent/${id}`, {
@@ -87,10 +96,9 @@ const TechComponentDetail = ({
       {/* Only show counter if user is not an admin */}
       {!isAdmin && (
         <Counter
-          value={0}
-          onChange={() => console.log('juhu')}
-          onAddClick={() => console.log('juhu')}
-          onSubtractClick={() => console.log('juhu')}
+          value={cartAmount}
+          onAddClick={onAddClick}
+          onSubtractClick={onSubtractClick}
           className={styles.counter}
         />
       )}
