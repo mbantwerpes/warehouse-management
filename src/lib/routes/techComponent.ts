@@ -6,6 +6,7 @@ import {
   addTechComponent,
   updateTechComponent,
   deleteTechComponent,
+  getTechComponentsByIdArray,
 } from '../models/techComponent';
 import type { TechComponent } from '../types';
 
@@ -21,6 +22,18 @@ router.get('/', async (req, res) => {
     } else {
       const techComponents = await getTechComponents();
       res.json(techComponents);
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get('/multiple', async (req, res) => {
+  try {
+    const query = req.query;
+    const ids: string[] = query.id as string[];
+    if (query) {
+      console.log(await getTechComponentsByIdArray(ids));
     }
   } catch (err) {
     res.status(500).json({ message: err.message });

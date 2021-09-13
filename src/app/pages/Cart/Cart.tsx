@@ -13,6 +13,16 @@ const Cart = (): JSX.Element => {
   };
 
   const { cartItems } = useShoppingCart();
+  let url = '/api/techcomponent/multiple?';
+  cartItems.forEach((cartItem, index) => {
+    if (index === cartItems.length - 1) {
+      url += `id=${cartItem.techComponentId}`;
+    } else {
+      url += `id=${cartItem.techComponentId}&`;
+    }
+  });
+
+  fetch(url);
 
   return (
     <div className={styles.container}>
