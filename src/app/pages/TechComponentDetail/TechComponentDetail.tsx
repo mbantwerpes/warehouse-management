@@ -120,7 +120,7 @@ const TechComponentDetail = ({
         <Button
           type="primary"
           size="l"
-          onClick={() => history.push(`/techcomponent/edit/${id}`)}
+          onClick={() => console.log('placeholder')}
         >
           Zum Warenkorb hinzufügen
         </Button>
