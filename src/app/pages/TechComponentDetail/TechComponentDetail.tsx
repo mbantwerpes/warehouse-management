@@ -23,7 +23,12 @@ const TechComponentDetail = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Button type="secondary" size="m" onClick={handleBackButtonClick}>
+      <Button
+        type="secondary"
+        size="m"
+        onClick={handleBackButtonClick}
+        className={styles.backButton}
+      >
         <MdKeyboardArrowLeft size={32} />
       </Button>
       <Typography type="header" size="xl">
