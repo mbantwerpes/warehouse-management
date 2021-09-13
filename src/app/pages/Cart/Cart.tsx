@@ -3,6 +3,7 @@ import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Typography from '../../components/Typography/Typography';
+import useShoppingCart from '../../hooks/useShoppingCart';
 import styles from './Cart.module.css';
 
 const Cart = (): JSX.Element => {
@@ -10,6 +11,8 @@ const Cart = (): JSX.Element => {
   const handleBackButtonClick = () => {
     history.push('/');
   };
+
+  const { cartItems } = useShoppingCart();
 
   return (
     <div className={styles.container}>
