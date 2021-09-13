@@ -48,6 +48,8 @@ const TechComponentDetail = ({
         amount: cartAmount,
       };
       addCartItem(cardItem);
+
+      history.push('/cart');
     }
   };
 
