@@ -1,4 +1,7 @@
 .buttonContainer {
+  margin-top: 5rem;
   display: grid;
-  grid-auto-flow: row;
+  grid-auto-flow: column;
+  justify-content: end;
+  gap: 1rem;
 }

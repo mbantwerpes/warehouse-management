@@ -7,9 +7,10 @@ import styles from './TechComponentDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import useTechComponent from '../../hooks/useTechComponent';
 import { useModal } from '../../hooks/useModal';
+import TechComponentDeleteModal from '../../components/TechComponentDeleteModal/TechComponentDeleteModal';
 
 const TechComponentDetail = (): JSX.Element => {
-  const { show, RenderModal: RenderDeleteModal } = useModal();
+  const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
   const { id }: { id: string } = useParams();
 
@@ -76,7 +77,12 @@ const TechComponentDetail = (): JSX.Element => {
           Bearbeiten
         </Button>
       </div>
-      <RenderDeleteModal title="Delete">Test</RenderDeleteModal>
+      <RenderDeleteModal title="Löschen">
+        <TechComponentDeleteModal
+          onDelete={() => console.log('placeholder')}
+          onClose={hide}
+        />
+      </RenderDeleteModal>
     </div>
   );
 };

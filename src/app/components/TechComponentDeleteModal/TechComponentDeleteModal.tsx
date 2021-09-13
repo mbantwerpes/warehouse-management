@@ -17,13 +17,14 @@ const TechComponentDeleteModal = ({
       <Typography type="text" size="m">
         Bist du dir sicher, dass du das Bauteil löschen möchtest?
       </Typography>
-      <div className={styles.buttonContainer}></div>
-      <Button type="error" size="m" onClick={onClose}>
-        Abbrechen
-      </Button>
-      <Button type="primary" size="m" onClick={onDelete}>
-        Löschen
-      </Button>
+      <div className={styles.buttonContainer}>
+        <Button type="error" size="m" onClick={onClose}>
+          Abbrechen
+        </Button>
+        <Button type="primary" size="m" onClick={onDelete}>
+          Löschen
+        </Button>
+      </div>
     </div>
   );
 };
