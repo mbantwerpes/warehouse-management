@@ -114,7 +114,7 @@ const TechComponentDetail = ({
           size="l"
           onClick={() => history.push(`/techcomponent/edit/${id}`)}
         >
-          Bearbeiten
+          Zum Warenkorb hinzufügen
         </Button>
       )}
       <RenderDeleteModal title="Löschen">
