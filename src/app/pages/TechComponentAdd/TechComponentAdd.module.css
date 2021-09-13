@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  background-color: var(--color-main-medium);
+  grid-template-columns: 90%;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  height: 100vh;
+  grid-template-rows: 10% 6% 84%;
+}
+
+.backButton {
+  justify-self: start;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+}
+
+.labelGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formContent {
+  display: grid;
+  gap: 1rem;
+}
+
+.textarea {
+  height: 6rem;
+}

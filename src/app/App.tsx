@@ -1,12 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import TechComponentList from './pages/TechComponentList/TechComponentList';
+import TechComponentAdd from './pages/TechComponentAdd/TechComponentAdd';
 import TechComponentDetail from './pages/TechComponentDetail/TechComponentDetail';
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/techcomponent/add">
+          <TechComponentAdd />
+        </Route>
         <Route path="/techcomponent/:id">
           <TechComponentDetail />
         </Route>

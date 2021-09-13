@@ -23,6 +23,9 @@ app.use('/api/order', order);
 app.use('/storybook', express.static('dist/storybook'));
 
 app.use(express.static('dist/app'));
+app.get('*', (_request, response) => {
+  response.sendFile('index.html', { root: 'dist/app' });
+});
 
 connectDatabase(process.env.MONGO_DB_URL).then(() => {
   app.listen(PORT, () => {
