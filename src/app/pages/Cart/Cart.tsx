@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Typography from '../../components/Typography/Typography';
 import useShoppingCart from '../../hooks/useShoppingCart';
+import useTechComponents from '../../hooks/useTechComponents';
 import styles from './Cart.module.css';
 
 const Cart = (): JSX.Element => {
@@ -13,16 +14,28 @@ const Cart = (): JSX.Element => {
   };
 
   const { cartItems } = useShoppingCart();
-  let url = '/api/techcomponent/multiple?';
-  cartItems.forEach((cartItem, index) => {
-    if (index === cartItems.length - 1) {
-      url += `id=${cartItem.techComponentId}`;
-    } else {
-      url += `id=${cartItem.techComponentId}&`;
-    }
-  });
+  const ids: string[] = cartItems.map((cartItem) => cartItem.techComponentId);
 
-  fetch(url);
+  const { techComponents } = useTechComponents(undefined, ids);
+  console.log(techComponents);
+
+  //   let url = '/api/techcomponent/multiple?';
+  //   cartItems.forEach((cartItem, index) => {
+  //     if (index === cartItems.length - 1) {
+  //       url += `id=${cartItem.techComponentId}`;
+  //     } else {
+  //       url += `id=${cartItem.techComponentId}&`;
+  //     }
+  //   });
+
+  //   const fetchTechComponents = async () => {
+  //     const response = await fetch(url);
+  //     console.log(await response.json());
+  //   };
+
+  //   useEffect(() => {
+  //     fetchTechComponents();
+  //   }, []);
 
   return (
     <div className={styles.container}>

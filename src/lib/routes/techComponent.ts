@@ -14,26 +14,20 @@ const router = Router();
 
 router.get('/', async (req, res) => {
   try {
-    const { query } = req.query;
-    // If query exists use search function else get all
-    if (query && typeof query === 'string') {
-      const techComponents = await searchTechComponents(query);
+    const { searchValue } = req.query;
+    const ids = req.query.id as string[];
+    // If array of ids is given, only query them
+    if (ids) {
+      const techComponents = await getTechComponentsByIdArray(ids);
+      res.json(techComponents);
+    }
+    // If searchValue exists use search function else get all
+    else if (searchValue && typeof searchValue === 'string') {
+      const techComponents = await searchTechComponents(searchValue);
       res.json(techComponents);
     } else {
       const techComponents = await getTechComponents();
       res.json(techComponents);
-    }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-router.get('/multiple', async (req, res) => {
-  try {
-    const query = req.query;
-    const ids: string[] = query.id as string[];
-    if (query) {
-      console.log(await getTechComponentsByIdArray(ids));
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
