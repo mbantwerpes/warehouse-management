@@ -13,6 +13,7 @@
   left: 50%;
   top: 50%;
   padding: 1rem;
+  border-radius: 5px;
 
   /* Use this for centering if unknown width/height */
   transform: translate(-50%, -50%);
