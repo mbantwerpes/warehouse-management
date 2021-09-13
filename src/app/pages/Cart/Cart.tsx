@@ -19,24 +19,6 @@ const Cart = (): JSX.Element => {
   const { techComponents } = useTechComponents(undefined, ids);
   console.log(techComponents);
 
-  //   let url = '/api/techcomponent/multiple?';
-  //   cartItems.forEach((cartItem, index) => {
-  //     if (index === cartItems.length - 1) {
-  //       url += `id=${cartItem.techComponentId}`;
-  //     } else {
-  //       url += `id=${cartItem.techComponentId}&`;
-  //     }
-  //   });
-
-  //   const fetchTechComponents = async () => {
-  //     const response = await fetch(url);
-  //     console.log(await response.json());
-  //   };
-
-  //   useEffect(() => {
-  //     fetchTechComponents();
-  //   }, []);
-
   return (
     <div className={styles.container}>
       <header>
