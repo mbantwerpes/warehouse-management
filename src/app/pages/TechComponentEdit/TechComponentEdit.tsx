@@ -45,8 +45,8 @@ const TechComponentEdit = (): JSX.Element => {
       artNr: artNrValue,
     };
 
-    const response = await fetch('/api/techcomponent/', {
-      method: 'POST',
+    const response = await fetch(`/api/techcomponent/${id}`, {
+      method: 'PUT',
       headers: {
         'Content-type': 'application/json',
       },
@@ -55,7 +55,7 @@ const TechComponentEdit = (): JSX.Element => {
 
     console.log(await response.json());
 
-    history.push('/');
+    history.push(`/techcomponent/${id}`);
   };
 
   return (
