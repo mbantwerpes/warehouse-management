@@ -16,8 +16,8 @@ const Cart = (): JSX.Element => {
   };
 
   const { cartItems, removeCartItem } = useShoppingCart();
+  // TODO check if cartItems contains a value, if not is has to be handled
   const ids: string[] = cartItems.map((cartItem) => cartItem.techComponentId);
-  // TODO check if ids contains a value, if not is has to be handled
   const { techComponents } = useTechComponents(undefined, ids);
 
   const handleReserveClick = async () => {
