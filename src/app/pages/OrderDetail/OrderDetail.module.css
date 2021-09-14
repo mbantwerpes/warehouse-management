@@ -6,7 +6,6 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   height: 100vh;
-  grid-template-rows: 1fr 8fr 1fr;
 }
 
 .backButton {
@@ -24,6 +23,11 @@
   gap: 1rem;
   overflow: scroll;
   margin-bottom: 1rem;
+}
+
+.techComponentDetails {
+  display: flex;
+  gap: 0.5rem;
 }
 
 ::-webkit-scrollbar {
