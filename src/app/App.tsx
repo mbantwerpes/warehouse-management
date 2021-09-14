@@ -11,6 +11,9 @@ const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/order/:id">
+          <div>Placeholder</div>
+        </Route>
         <Route path="/order">
           <OrderList />
         </Route>
