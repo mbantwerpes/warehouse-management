@@ -9,6 +9,7 @@ import useTechComponents from '../../hooks/useTechComponents';
 import styles from './Cart.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import { useModal } from '../../hooks/useModal';
+import ConfirmReserveCartModal from '../../components/ConfirmReserverCartModal/ConfirmReserveCartModal';
 
 const Cart = (): JSX.Element => {
   const history = useHistory();
@@ -32,6 +33,8 @@ const Cart = (): JSX.Element => {
 
     const data = await response.json();
     console.log(data);
+
+    hide();
   };
 
   const handleDeleteClick = (id: string) => {
@@ -84,7 +87,10 @@ const Cart = (): JSX.Element => {
         Reservieren
       </Button>
       <RenderReserveModal title="Warenkorb reservieren">
-        test
+        <ConfirmReserveCartModal
+          onClose={hide}
+          onReserve={handleReserveClick}
+        />
       </RenderReserveModal>
     </div>
   );
