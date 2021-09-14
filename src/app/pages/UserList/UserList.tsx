@@ -24,8 +24,6 @@ const UserList = (): JSX.Element => {
 
   const { users } = useUsers();
 
-  console.log(users);
-
   return (
     <div className={styles.layout}>
       <div className={styles.container}>
