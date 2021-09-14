@@ -1,0 +1,37 @@
+.layout {
+  display: grid;
+  grid-template-rows: 90vh 10vh;
+  background-color: var(--color-main-medium);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 90%;
+  grid-template-rows: 1fr 1fr 10fr;
+  justify-content: center;
+}
+
+.inputContainer {
+  margin-top: 1rem;
+}
+
+.header {
+  margin-top: 2rem;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-auto-flow: column;
+}
+
+.cardList {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  justify-items: center;
+  gap: 1rem;
+  overflow: scroll;
+}
+
+.cardList::-webkit-scrollbar {
+  display: none;
+}
