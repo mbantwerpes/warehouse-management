@@ -16,10 +16,15 @@ router.get('/', async (req, res) => {
   try {
     const { searchValue } = req.query;
     const ids = req.query.id as string[];
-    // If array of ids is given, only query them
     if (ids) {
-      const techComponents = await getTechComponentsByIdArray(ids);
-      res.json(techComponents);
+      // If only one id is given, then it is not an array
+      if (typeof ids === 'string') {
+        const techComponent = await getTechComponent(ids);
+        res.json([techComponent]);
+      } else {
+        const techComponents = await getTechComponentsByIdArray(ids);
+        res.json(techComponents);
+      }
     }
     // If searchValue exists use search function else get all
     else if (searchValue && typeof searchValue === 'string') {

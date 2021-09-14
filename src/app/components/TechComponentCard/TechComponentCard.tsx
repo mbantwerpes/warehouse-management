@@ -12,6 +12,7 @@ export type TechComponentCardProps = {
   amount: number;
   editable?: boolean;
   clickable?: boolean;
+  onDeleteClick?: (id: string) => void;
 };
 
 const TechComponentCard = ({
@@ -24,6 +25,9 @@ const TechComponentCard = ({
   editable = false,
   // I can't make this optional so its just a default function
   onCardClick = () => {
+    return;
+  },
+  onDeleteClick = () => {
     return;
   },
   clickable = true,
@@ -54,7 +58,7 @@ const TechComponentCard = ({
             <Typography type="text" size="s">
               Anzahl: {amount}
             </Typography>
-            <div onClick={() => console.log('juhu')}>
+            <div onClick={() => onDeleteClick(id)}>
               <Typography type="text" size="s">
                 Löschen
               </Typography>

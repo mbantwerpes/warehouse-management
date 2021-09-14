@@ -15,9 +15,8 @@ const Cart = (): JSX.Element => {
     history.push('/');
   };
 
-  const { cartItems } = useShoppingCart();
+  const { cartItems, removeCartItem } = useShoppingCart();
   const ids: string[] = cartItems.map((cartItem) => cartItem.techComponentId);
-
   // TODO check if ids contains a value, if not is has to be handled
   const { techComponents } = useTechComponents(undefined, ids);
 
@@ -32,6 +31,10 @@ const Cart = (): JSX.Element => {
 
     const data = await response.json();
     console.log(data);
+  };
+
+  const handleDeleteClick = (id: string) => {
+    removeCartItem(id);
   };
 
   return (
@@ -69,6 +72,7 @@ const Cart = (): JSX.Element => {
               title={techComponent.title}
               editable={true}
               clickable={false}
+              onDeleteClick={handleDeleteClick}
             />
           );
         })}
