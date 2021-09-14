@@ -6,6 +6,7 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   height: 100vh;
+  grid-template-rows: 1fr 1fr 10fr 1fr;
 }
 
 .backButton {
@@ -17,7 +18,8 @@
 }
 
 .content {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
   overflow: scroll;
   margin-bottom: 1rem;

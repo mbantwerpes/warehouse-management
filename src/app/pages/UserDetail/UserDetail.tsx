@@ -47,7 +47,6 @@ const UserDetail = (): JSX.Element => {
       <Typography type="header" size="xl">
         {user?.name}
       </Typography>
-      <Divider />
       <div className={styles.content}>
         <div>
           <Typography type="header" size="m">
