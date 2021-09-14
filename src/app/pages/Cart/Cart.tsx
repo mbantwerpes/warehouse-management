@@ -68,8 +68,8 @@ const Cart = (): JSX.Element => {
           }
           return (
             <TechComponentCard
-              key={techComponent._id}
-              id={techComponent._id}
+              key={techComponent._id as string}
+              id={techComponent._id as string}
               layout="horizontal"
               onCardClick={() => console.log('placeholder')}
               amount={techComponent.amount}

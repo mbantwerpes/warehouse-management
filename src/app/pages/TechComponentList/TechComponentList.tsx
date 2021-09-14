@@ -65,8 +65,8 @@ const TechComponentList = ({
           {techComponents?.map((techComponent) => {
             return (
               <TechComponentCard
-                key={techComponent._id}
-                id={techComponent._id}
+                key={techComponent._id as string}
+                id={techComponent._id as string}
                 onCardClick={handleCardClick}
                 layout="vertical"
                 title={techComponent.title}

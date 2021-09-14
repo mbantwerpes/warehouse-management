@@ -27,17 +27,15 @@ export const addOrder = async (
 
   const currentDate = getCurrentDate();
 
-  const order: Order = {
+  const result = await orderCollection.insertOne({
     studentId: '61373a108a32c6c7b2ac07e3',
     status: 'reserved',
     techComponents: techComponentOrder,
     crAt: currentDate,
     leAt: currentDate,
-  };
+  });
 
-  const result = await orderCollection.insertOne(order);
-
-  return result.insertedId;
+  return new ObjectId(result.insertedId);
 };
 
 export async function updateOrder(id: string, order: Order): Promise<void> {
