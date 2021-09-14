@@ -37,7 +37,7 @@ export const addOrder = async (
 
   const result = await orderCollection.insertOne(order);
 
-  return result.insertedId;
+  return new ObjectId(result.insertedId);
 };
 
 export async function updateOrder(id: string, order: Order): Promise<void> {

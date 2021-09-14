@@ -45,7 +45,6 @@ export type TechComponentOrder = {
 };
 
 export type Order = {
-  _id: string;
   comment?: string;
   returnPeriod?: string;
   status: 'reserved' | 'booked' | 'returned';
