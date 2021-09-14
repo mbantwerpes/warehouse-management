@@ -8,6 +8,7 @@ import useShoppingCart from '../../hooks/useShoppingCart';
 import useTechComponents from '../../hooks/useTechComponents';
 import styles from './Cart.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
+import { useModal } from '../../hooks/useModal';
 
 const Cart = (): JSX.Element => {
   const history = useHistory();
@@ -36,6 +37,8 @@ const Cart = (): JSX.Element => {
   const handleDeleteClick = (id: string) => {
     removeCartItem(id);
   };
+
+  const { show, hide, RenderModal: RenderReserveModal } = useModal();
 
   return (
     <div className={styles.container}>
@@ -77,9 +80,12 @@ const Cart = (): JSX.Element => {
           );
         })}
       </div>
-      <Button type="primary" size="l" onClick={handleReserveClick}>
+      <Button type="primary" size="l" onClick={show}>
         Reservieren
       </Button>
+      <RenderReserveModal title="Warenkorb reservieren">
+        test
+      </RenderReserveModal>
     </div>
   );
 };
