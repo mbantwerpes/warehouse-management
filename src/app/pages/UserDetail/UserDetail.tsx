@@ -28,7 +28,7 @@ const UserDetail = (): JSX.Element => {
 
     hide();
 
-    history.push('/');
+    history.push('/user');
   };
 
   return (
