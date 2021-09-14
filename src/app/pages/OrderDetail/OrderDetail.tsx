@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -8,12 +8,17 @@ import useOrder from '../../hooks/useOrder';
 import useTechComponents from '../../hooks/useTechComponents';
 import styles from './OrderDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
+import Input from '../../components/Input/Input';
 
 type OrderDetailProps = {
   isAdmin?: boolean;
 };
 
-const OrderDetail = ({ isAdmin = false }: OrderDetailProps): JSX.Element => {
+const OrderDetail = ({ isAdmin = true }: OrderDetailProps): JSX.Element => {
+  const [dateValue, setDateValue] = useState<string>('');
+
+  console.log(dateValue);
+
   const history = useHistory();
 
   const handleBackButtonClick = () => {
@@ -29,8 +34,6 @@ const OrderDetail = ({ isAdmin = false }: OrderDetailProps): JSX.Element => {
   );
 
   const { techComponents } = useTechComponents(undefined, ids);
-
-  console.log(techComponents);
 
   return (
     <div className={styles.container}>
@@ -66,20 +69,28 @@ const OrderDetail = ({ isAdmin = false }: OrderDetailProps): JSX.Element => {
         </div>
         <div className={styles.techComponentDetails}>
           <Typography type="header" size="m">
-            Rückgabefrist:
-          </Typography>
-          <Typography type="text" size="l">
-            {order?.returnPeriod ? order.returnPeriod : '-'}
-          </Typography>
-        </div>
-        <div className={styles.techComponentDetails}>
-          <Typography type="header" size="m">
             Status:
           </Typography>
           <Typography type="text" size="l">
             {order?.status}
           </Typography>
         </div>
+        <div className={styles.techComponentDetails}>
+          <Typography type="header" size="m">
+            Rückgabefrist:
+          </Typography>
+          <Typography type="text" size="l">
+            {order?.returnPeriod ? order.returnPeriod : ''}
+          </Typography>
+        </div>
+        {isAdmin && order?.status === 'reserved' && (
+          <Input
+            value={dateValue}
+            type="date"
+            placeholder="tt.mm.jjjj"
+            onChange={(e) => setDateValue(e.target.value)}
+          />
+        )}
       </section>
       <section className={styles.content}>
         {techComponents?.map((techComponent) => {
