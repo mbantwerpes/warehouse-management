@@ -7,11 +7,15 @@ import TechComponentEdit from './pages/TechComponentEdit/TechComponentEdit';
 import Cart from './pages/Cart/Cart';
 import OrderList from './pages/OrderList/OrderList';
 import OrderDetail from './pages/OrderDetail/OrderDetail';
+import UserList from './pages/UserList/UserList';
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/user">
+          <UserList />
+        </Route>
         <Route path="/order/:id">
           <OrderDetail />
         </Route>

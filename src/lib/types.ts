@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 export type User = {
+  _id: string | ObjectId;
   role: 'admin' | 'student';
   name: string;
   matrNumber: string;
