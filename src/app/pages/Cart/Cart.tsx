@@ -9,7 +9,6 @@ import useTechComponents from '../../hooks/useTechComponents';
 import styles from './Cart.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import { useModal } from '../../hooks/useModal';
-import ConfirmReserveCartModal from '../../components/ConfirmReserverCartModal/ConfirmReserveCartModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 
 const Cart = (): JSX.Element => {
