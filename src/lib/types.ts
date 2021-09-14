@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 export type User = {
   role: 'admin' | 'student';
   name: string;
@@ -14,7 +16,7 @@ export type User = {
 };
 
 export type TechComponent = {
-  _id: string;
+  _id: string | ObjectId;
   adminId: string; // Track which admin has created the TechComponent
   title: string;
   description: string;
