@@ -8,11 +8,15 @@ import Cart from './pages/Cart/Cart';
 import OrderList from './pages/OrderList/OrderList';
 import OrderDetail from './pages/OrderDetail/OrderDetail';
 import UserList from './pages/UserList/UserList';
+import UserDetail from './pages/UserDetail/UserDetail';
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/user/:id">
+          <UserDetail />
+        </Route>
         <Route path="/user">
           <UserList />
         </Route>
