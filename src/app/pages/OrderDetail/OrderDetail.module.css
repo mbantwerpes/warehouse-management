@@ -26,6 +26,13 @@
   margin-bottom: 1rem;
 }
 
+.orderDetails {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .techComponentDetails {
   display: flex;
   gap: 0.5rem;

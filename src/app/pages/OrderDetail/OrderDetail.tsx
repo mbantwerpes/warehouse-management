@@ -9,7 +9,11 @@ import useTechComponents from '../../hooks/useTechComponents';
 import styles from './OrderDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 
-const OrderDetail = (): JSX.Element => {
+type OrderDetailProps = {
+  isAdmin?: boolean;
+};
+
+const OrderDetail = ({ isAdmin = false }: OrderDetailProps): JSX.Element => {
   const history = useHistory();
 
   const handleBackButtonClick = () => {
@@ -43,7 +47,7 @@ const OrderDetail = (): JSX.Element => {
           Ausleihauftrag.
         </Typography>
       </header>
-      <section>
+      <section className={styles.orderDetails}>
         <div className={styles.techComponentDetails}>
           <Typography type="header" size="m">
             Name:
@@ -88,8 +92,8 @@ const OrderDetail = (): JSX.Element => {
           }
           return (
             <TechComponentCard
-              key={techComponent._id}
-              id={techComponent._id}
+              key={techComponent._id as string}
+              id={techComponent._id as string}
               layout="horizontal"
               amount={techComponent.amount}
               description={techComponent.description}
@@ -99,13 +103,24 @@ const OrderDetail = (): JSX.Element => {
           );
         })}
       </section>
-      <Button
-        type="primary"
-        size="l"
-        onClick={() => console.log('placeholder')}
-      >
-        Ausleihauftrag bestätigen
-      </Button>
+      {isAdmin &&
+        (order?.status === 'booked' ? (
+          <Button
+            type="primary"
+            size="l"
+            onClick={() => console.log('placeholder')}
+          >
+            Rückgabe bestätigen
+          </Button>
+        ) : (
+          <Button
+            type="primary"
+            size="l"
+            onClick={() => console.log('placeholder')}
+          >
+            Ausleihauftrag bestätigen
+          </Button>
+        ))}
     </div>
   );
 };
