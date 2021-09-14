@@ -1,3 +1,22 @@
+.layout {
+  display: grid;
+  grid-template-rows: 90vh 10vh;
+  background-color: var(--color-main-medium);
+}
+
 .container {
   display: grid;
+  grid-template-columns: 90%;
+  justify-content: center;
+}
+
+.header {
+  margin: 2rem 0 1rem 0;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: scroll;
 }
