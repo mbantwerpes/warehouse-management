@@ -5,15 +5,22 @@ import {
   addUser,
   updateUser,
   deleteUser,
+  searchUsers,
 } from '../models/user';
 import type { User } from '../types';
 
 const router = Router();
 
-router.get('/', async (_req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const users = await getUsers();
-    res.json(users);
+    const { searchValue } = req.query;
+    if (searchValue && typeof searchValue === 'string') {
+      const users = await searchUsers(searchValue);
+      res.json(users);
+    } else {
+      const users = await getUsers();
+      res.json(users);
+    }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

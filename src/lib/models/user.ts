@@ -20,6 +20,14 @@ export async function getUser(id: string): Promise<User> {
   return user;
 }
 
+export async function searchUsers(query: string): Promise<User[]> {
+  const userCollection = getUserCollection();
+  const techComponents = await userCollection
+    .find({ name: { $regex: query, $options: 'i' } })
+    .toArray();
+  return techComponents;
+}
+
 export const addUser = async (user: User): Promise<ObjectId> => {
   const userCollection = getUserCollection();
 
