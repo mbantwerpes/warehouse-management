@@ -7,7 +7,6 @@ import styles from './UserDetail.module.css';
 import { useModal } from '../../hooks/useModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 import useUser from '../../hooks/useUser';
-import Divider from '../../components/Divider/Divider';
 
 const UserDetail = (): JSX.Element => {
   const history = useHistory();
