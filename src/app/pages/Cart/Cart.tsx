@@ -21,6 +21,19 @@ const Cart = (): JSX.Element => {
   // TODO check if ids contains a value, if not is has to be handled
   const { techComponents } = useTechComponents(undefined, ids);
 
+  const handleReserveClick = async () => {
+    const response = await fetch('/api/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItems),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <div className={styles.container}>
       <header>
@@ -59,11 +72,7 @@ const Cart = (): JSX.Element => {
           );
         })}
       </div>
-      <Button
-        type="primary"
-        size="l"
-        onClick={() => console.log('placeholder')}
-      >
+      <Button type="primary" size="l" onClick={handleReserveClick}>
         Reservieren
       </Button>
     </div>
