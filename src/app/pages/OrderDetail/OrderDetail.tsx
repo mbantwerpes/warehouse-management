@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Typography from '../../components/Typography/Typography';
 import useOrder from '../../hooks/useOrder';
+import useTechComponents from '../../hooks/useTechComponents';
 import styles from './OrderDetail.module.css';
 
 const OrderDetail = (): JSX.Element => {
@@ -17,7 +18,13 @@ const OrderDetail = (): JSX.Element => {
 
   const { order } = useOrder(id);
 
-  console.log(order);
+  const ids: string[] | undefined = order?.techComponents.map(
+    (techComponent) => techComponent.techComponentId
+  );
+
+  const { techComponents } = useTechComponents(undefined, ids);
+
+  console.log(techComponents);
 
   return (
     <div className={styles.container}>
