@@ -68,6 +68,7 @@ const Cart = (): JSX.Element => {
               image={placeholderImage}
               title={techComponent.title}
               editable={true}
+              clickable={false}
             />
           );
         })}
