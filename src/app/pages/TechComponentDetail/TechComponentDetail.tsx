@@ -17,7 +17,7 @@ export type TechComponentDetailProps = {
 };
 
 const TechComponentDetail = ({
-  isAdmin = true,
+  isAdmin = false,
 }: TechComponentDetailProps): JSX.Element => {
   const history = useHistory();
   const handleBackButtonClick = () => {
