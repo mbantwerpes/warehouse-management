@@ -17,7 +17,7 @@ export async function getTechComponentsByIdArray(
   const techComponentCollection = getTechComponentCollection();
   const objectIds: ObjectId[] = ids.map((id) => new ObjectId(id));
   const techComponents = await techComponentCollection
-    .find({ _id: { $in: objectIds } })
+    .find<TechComponent>({ _id: { $in: objectIds } })
     .toArray();
   return techComponents;
 }
