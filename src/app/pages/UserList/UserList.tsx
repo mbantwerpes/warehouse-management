@@ -6,6 +6,8 @@ import { MdSearch, MdAdd } from 'react-icons/md';
 import Input from '../../components/Input/Input';
 import Navbar from '../../components/Navbar/Navbar';
 import { useHistory } from 'react-router-dom';
+import useUsers from '../../hooks/useUsers';
+import UserCard from '../../components/UserCard/UserCard';
 
 const UserList = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -20,7 +22,9 @@ const UserList = (): JSX.Element => {
     history.push(`/user/${id}`);
   };
 
-  //   const { users } = useUsers();
+  const { users } = useUsers();
+
+  console.log(users);
 
   return (
     <div className={styles.layout}>
@@ -42,7 +46,17 @@ const UserList = (): JSX.Element => {
           icon={<MdSearch />}
           containerStyling={styles.inputContainer}
         />
-        <section className={styles.cardList}></section>
+        <section className={styles.cardList}>
+          {users?.map((user) => {
+            return (
+              <UserCard
+                name={user.name}
+                email={user.email}
+                matrNr={user.matrNumber}
+              />
+            );
+          })}
+        </section>
       </div>
       <Navbar active="user" />
     </div>
