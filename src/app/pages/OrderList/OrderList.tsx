@@ -26,9 +26,9 @@ const OrderList = (): JSX.Element => {
           {orders?.map((order) => {
             return (
               <OrderCard
-                key={order._id}
-                id={order._id}
-                name={order._id}
+                key={order._id as string}
+                id={order._id as string}
+                name={order._id as string}
                 reservedAt={order.crAt}
                 returnAt={order.returnPeriod ? order.returnPeriod : '-'}
                 status={order.status}
