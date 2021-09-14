@@ -10,6 +10,7 @@ import styles from './Cart.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import { useModal } from '../../hooks/useModal';
 import ConfirmReserveCartModal from '../../components/ConfirmReserverCartModal/ConfirmReserveCartModal';
+import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 
 const Cart = (): JSX.Element => {
   const history = useHistory();
@@ -87,9 +88,14 @@ const Cart = (): JSX.Element => {
         Reservieren
       </Button>
       <RenderReserveModal title="Warenkorb reservieren">
-        <ConfirmReserveCartModal
+        <ConfirmActionModal
           onClose={hide}
-          onReserve={handleReserveClick}
+          onConfirmAction={handleReserveClick}
+          content="Bist du dir sicher, dass du den Warenkorb
+          reservieren möchtest? Diese Aktion kann
+          nur von einem Admin rückgängig gemacht
+          werden."
+          confirmButtonText="Reservieren"
         />
       </RenderReserveModal>
     </div>
