@@ -29,7 +29,7 @@ export const addUser = async (user: User): Promise<ObjectId> => {
 
   const result = await userCollection.insertOne(user);
 
-  return result.insertedId;
+  return new ObjectId(result.insertedId);
 };
 
 export async function updateUser(id: string, user: User): Promise<void> {
