@@ -17,8 +17,6 @@ const UserDetail = (): JSX.Element => {
 
   const { user } = useUser(id);
 
-  console.log(user);
-
   const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
   const handleDeleteUser = async () => {
