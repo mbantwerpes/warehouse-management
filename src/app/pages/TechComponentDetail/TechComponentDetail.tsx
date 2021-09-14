@@ -9,6 +9,8 @@ import useTechComponent from '../../hooks/useTechComponent';
 import { useModal } from '../../hooks/useModal';
 import TechComponentDeleteModal from '../../components/TechComponentDeleteModal/TechComponentDeleteModal';
 import Counter from '../../components/Counter/Counter';
+import useShoppingCart from '../../hooks/useShoppingCart';
+import { TechComponentOrder } from '../../../lib/types';
 
 export type TechComponentDetailProps = {
   isAdmin?: boolean;
@@ -25,13 +27,29 @@ const TechComponentDetail = ({
   const { techComponent } = useTechComponent(id);
 
   // Student functions
-  const [cartAmount, setCartAmount] = useState<number>(0);
+  const [cartAmount, setCartAmount] = useState<number>(1);
   const onAddClick = () => {
-    setCartAmount(cartAmount + 1);
+    if (techComponent !== null) {
+      if (cartAmount < techComponent.amount) setCartAmount(cartAmount + 1);
+    }
   };
   const onSubtractClick = () => {
-    if (cartAmount > 0) {
+    if (cartAmount > 1) {
       setCartAmount(cartAmount - 1);
+    }
+  };
+
+  const { addCartItem } = useShoppingCart();
+
+  const handleAddToCart = () => {
+    if (cartAmount > 0) {
+      const cardItem: TechComponentOrder = {
+        techComponentId: id,
+        amount: cartAmount,
+      };
+      addCartItem(cardItem);
+
+      history.push('/cart');
     }
   };
 
@@ -117,11 +135,7 @@ const TechComponentDetail = ({
           </Button>
         </div>
       ) : (
-        <Button
-          type="primary"
-          size="l"
-          onClick={() => history.push(`/techcomponent/edit/${id}`)}
-        >
+        <Button type="primary" size="l" onClick={handleAddToCart}>
           Zum Warenkorb hinzufügen
         </Button>
       )}

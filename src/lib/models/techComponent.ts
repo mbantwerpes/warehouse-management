@@ -11,6 +11,17 @@ export async function getTechComponents(): Promise<TechComponent[]> {
   return techComponents;
 }
 
+export async function getTechComponentsByIdArray(
+  ids: string[]
+): Promise<TechComponent[]> {
+  const techComponentCollection = getTechComponentCollection();
+  const objectIds: ObjectId[] = ids.map((id) => new ObjectId(id));
+  const techComponents = await techComponentCollection
+    .find({ _id: { $in: objectIds } })
+    .toArray();
+  return techComponents;
+}
+
 export async function getTechComponent(id: string): Promise<TechComponent> {
   const techComponentCollection = getTechComponentCollection();
   const techComponent = await techComponentCollection.findOne({

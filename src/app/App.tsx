@@ -4,11 +4,15 @@ import TechComponentList from './pages/TechComponentList/TechComponentList';
 import TechComponentAdd from './pages/TechComponentAdd/TechComponentAdd';
 import TechComponentDetail from './pages/TechComponentDetail/TechComponentDetail';
 import TechComponentEdit from './pages/TechComponentEdit/TechComponentEdit';
+import Cart from './pages/Cart/Cart';
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/cart">
+          <Cart />
+        </Route>
         <Route path="/techcomponent/add">
           <TechComponentAdd />
         </Route>

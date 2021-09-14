@@ -4,13 +4,15 @@ import Typography from '../Typography/Typography';
 
 export type TechComponentCardProps = {
   id: string;
-  onCardClick: (id: string) => void;
+  onCardClick?: (id: string) => void;
   layout: 'horizontal' | 'vertical';
   image: string;
   title: string;
   description: string;
   amount: number;
   editable?: boolean;
+  clickable?: boolean;
+  onDeleteClick?: (id: string) => void;
 };
 
 const TechComponentCard = ({
@@ -21,11 +23,18 @@ const TechComponentCard = ({
   description,
   amount,
   editable = false,
-  onCardClick,
+  // I can't make this optional so its just a default function
+  onCardClick = () => {
+    return;
+  },
+  onDeleteClick = () => {
+    return;
+  },
+  clickable = true,
 }: TechComponentCardProps): JSX.Element => {
   return (
     <div
-      onClick={() => onCardClick(id)}
+      {...(clickable && { onClick: () => onCardClick(id) })}
       className={`${styles.container} ${
         layout === 'horizontal' ? styles.horizontal : styles.vertical
       }`}
@@ -49,9 +58,11 @@ const TechComponentCard = ({
             <Typography type="text" size="s">
               Anzahl: {amount}
             </Typography>
-            <Typography type="text" size="s">
-              Löschen
-            </Typography>
+            <div onClick={() => onDeleteClick(id)}>
+              <Typography type="text" size="s">
+                Löschen
+              </Typography>
+            </div>
           </div>
         ) : (
           <Typography type="text" size="s">
