@@ -7,17 +7,17 @@ import styles from './TechComponentDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import useTechComponent from '../../hooks/useTechComponent';
 import { useModal } from '../../hooks/useModal';
-import TechComponentDeleteModal from '../../components/TechComponentDeleteModal/TechComponentDeleteModal';
 import Counter from '../../components/Counter/Counter';
 import useShoppingCart from '../../hooks/useShoppingCart';
 import { TechComponentOrder } from '../../../lib/types';
+import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 
 export type TechComponentDetailProps = {
   isAdmin?: boolean;
 };
 
 const TechComponentDetail = ({
-  isAdmin = false,
+  isAdmin = true,
 }: TechComponentDetailProps): JSX.Element => {
   const history = useHistory();
   const handleBackButtonClick = () => {
@@ -140,9 +140,11 @@ const TechComponentDetail = ({
         </Button>
       )}
       <RenderDeleteModal title="Löschen">
-        <TechComponentDeleteModal
-          onDelete={handleDeleteTechComponent}
+        <ConfirmActionModal
           onClose={hide}
+          onConfirmAction={handleDeleteTechComponent}
+          content="Bist du dir sicher, dass du das Bauteil löschen möchtest?"
+          confirmButtonText="Löschen"
         />
       </RenderDeleteModal>
     </div>
