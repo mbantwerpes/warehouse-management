@@ -22,7 +22,7 @@ const UserList = (): JSX.Element => {
     history.push(`/user/${id}`);
   };
 
-  const { users } = useUsers();
+  const { users } = useUsers(searchValue);
 
   return (
     <div className={styles.layout}>
