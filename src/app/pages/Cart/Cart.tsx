@@ -18,6 +18,7 @@ const Cart = (): JSX.Element => {
   const { cartItems } = useShoppingCart();
   const ids: string[] = cartItems.map((cartItem) => cartItem.techComponentId);
 
+  // TODO check if ids contains a value, if not is has to be handled
   const { techComponents } = useTechComponents(undefined, ids);
 
   return (
@@ -37,8 +38,15 @@ const Cart = (): JSX.Element => {
       </header>
       <div className={styles.content}>
         {techComponents?.map((techComponent) => {
+          const cartItem = cartItems.find(
+            (cartItem) => cartItem.techComponentId === techComponent._id
+          );
+          if (cartItem) {
+            techComponent.amount = cartItem.amount;
+          }
           return (
             <TechComponentCard
+              key={techComponent._id}
               id={techComponent._id}
               layout="horizontal"
               onCardClick={() => console.log('placeholder')}
@@ -47,7 +55,7 @@ const Cart = (): JSX.Element => {
               image={placeholderImage}
               title={techComponent.title}
               editable={true}
-            ></TechComponentCard>
+            />
           );
         })}
       </div>
