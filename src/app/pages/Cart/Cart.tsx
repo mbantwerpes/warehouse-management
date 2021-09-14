@@ -8,6 +8,8 @@ import useShoppingCart from '../../hooks/useShoppingCart';
 import useTechComponents from '../../hooks/useTechComponents';
 import styles from './Cart.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
+import { useModal } from '../../hooks/useModal';
+import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 
 const Cart = (): JSX.Element => {
   const history = useHistory();
@@ -31,11 +33,15 @@ const Cart = (): JSX.Element => {
 
     const data = await response.json();
     console.log(data);
+
+    hide();
   };
 
   const handleDeleteClick = (id: string) => {
     removeCartItem(id);
   };
+
+  const { show, hide, RenderModal: RenderReserveModal } = useModal();
 
   return (
     <div className={styles.container}>
@@ -77,9 +83,20 @@ const Cart = (): JSX.Element => {
           );
         })}
       </div>
-      <Button type="primary" size="l" onClick={handleReserveClick}>
+      <Button type="primary" size="l" onClick={show}>
         Reservieren
       </Button>
+      <RenderReserveModal title="Warenkorb reservieren">
+        <ConfirmActionModal
+          onClose={hide}
+          onConfirmAction={handleReserveClick}
+          content="Bist du dir sicher, dass du den Warenkorb
+          reservieren möchtest? Diese Aktion kann
+          nur von einem Admin rückgängig gemacht
+          werden."
+          confirmButtonText="Reservieren"
+        />
+      </RenderReserveModal>
     </div>
   );
 };
