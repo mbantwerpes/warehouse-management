@@ -48,9 +48,12 @@ const UserList = (): JSX.Element => {
           {users?.map((user) => {
             return (
               <UserCard
+                key={user._id as string}
+                id={user._id as string}
                 name={user.name}
                 email={user.email}
                 matrNr={user.matrNumber}
+                onClick={handleCardClick}
               />
             );
           })}

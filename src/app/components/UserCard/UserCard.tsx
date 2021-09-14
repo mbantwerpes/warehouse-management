@@ -3,14 +3,22 @@ import Typography from '../Typography/Typography';
 import styles from './UserCard.module.css';
 
 export type UserCardProps = {
+  id: string;
   name: string;
   matrNr: string;
   email: string;
+  onClick: (id: string) => void;
 };
 
-const UserCard = ({ name, matrNr, email }: UserCardProps): JSX.Element => {
+const UserCard = ({
+  id,
+  name,
+  matrNr,
+  email,
+  onClick,
+}: UserCardProps): JSX.Element => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={() => onClick(id)}>
       <div className={styles.flex}>
         <Typography type="header" size="s">
           Name:
