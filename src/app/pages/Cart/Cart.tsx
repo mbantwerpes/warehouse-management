@@ -35,6 +35,8 @@ const Cart = (): JSX.Element => {
     console.log(data);
 
     hide();
+
+    history.push('/order');
   };
 
   const handleDeleteClick = (id: string) => {

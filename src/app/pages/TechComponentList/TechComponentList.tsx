@@ -15,7 +15,7 @@ export type TechComponentListProps = {
 };
 
 const TechComponentList = ({
-  isAdmin = true,
+  isAdmin = false,
 }: TechComponentListProps): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>('');
 
