@@ -7,6 +7,7 @@ import styles from './UserDetail.module.css';
 import { useModal } from '../../hooks/useModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 import useUser from '../../hooks/useUser';
+import Divider from '../../components/Divider/Divider';
 
 const UserDetail = (): JSX.Element => {
   const history = useHistory();
@@ -43,38 +44,67 @@ const UserDetail = (): JSX.Element => {
       >
         <MdKeyboardArrowLeft size={32} />
       </Button>
-      {/* <Typography type="header" size="xl">
+      <Typography type="header" size="xl">
         {user?.name}
-      </Typography> */}
+      </Typography>
+      <Divider />
       <div className={styles.content}>
-        {/* <img src={placeholderImage} alt="placeholder" className={styles.img} />
-        <Typography type="header" size="m">
-          Verfügbar: {techComponent?.amount}
-        </Typography>
         <div>
           <Typography type="header" size="m">
-            Artikelnummer
+            Rolle
           </Typography>
           <Typography type="text" size="m">
-            {techComponent?.artNr}
+            {user?.role}
           </Typography>
         </div>
         <div>
           <Typography type="header" size="m">
-            Beschreibung
+            Name
           </Typography>
           <Typography type="text" size="m">
-            {techComponent?.description}
+            {user?.name}
           </Typography>
         </div>
         <div>
           <Typography type="header" size="m">
-            Ortsangabe
+            Matrikelnummer
           </Typography>
           <Typography type="text" size="m">
-            {techComponent?.location}
+            {user?.matrNumber}
           </Typography>
-        </div> */}
+        </div>
+        <div>
+          <Typography type="header" size="m">
+            Email
+          </Typography>
+          <Typography type="text" size="m">
+            {user?.email}
+          </Typography>
+        </div>
+        <div>
+          <Typography type="header" size="m">
+            Telefonnummer
+          </Typography>
+          <Typography type="text" size="m">
+            {user?.telephone}
+          </Typography>
+        </div>
+        <div>
+          <Typography type="header" size="m">
+            Gruppenname
+          </Typography>
+          <Typography type="text" size="m">
+            {user?.grpName}
+          </Typography>
+        </div>
+        <div>
+          <Typography type="header" size="m">
+            Gruppennummer
+          </Typography>
+          <Typography type="text" size="m">
+            {user?.grpNr}
+          </Typography>
+        </div>
       </div>
 
       <div className={styles.buttonGroup}>
