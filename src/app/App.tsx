@@ -5,11 +5,18 @@ import TechComponentAdd from './pages/TechComponentAdd/TechComponentAdd';
 import TechComponentDetail from './pages/TechComponentDetail/TechComponentDetail';
 import TechComponentEdit from './pages/TechComponentEdit/TechComponentEdit';
 import Cart from './pages/Cart/Cart';
+import OrderList from './pages/OrderList/OrderList';
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/order/:id">
+          <div>Placeholder</div>
+        </Route>
+        <Route path="/order">
+          <OrderList />
+        </Route>
         <Route path="/cart">
           <Cart />
         </Route>
