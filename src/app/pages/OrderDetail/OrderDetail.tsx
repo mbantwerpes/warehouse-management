@@ -116,7 +116,7 @@ const OrderDetail = ({ isAdmin = true }: OrderDetailProps): JSX.Element => {
             {order?.returnPeriod ? order.returnPeriod : ''}
           </Typography>
         </div>
-        {isAdmin && order?.status === 'returned' && (
+        {isAdmin && order?.status === 'reserved' && (
           <Input
             value={dateValue}
             type="date"
