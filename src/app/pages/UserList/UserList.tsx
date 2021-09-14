@@ -13,11 +13,11 @@ const UserList = (): JSX.Element => {
   const history = useHistory();
 
   const handleAddUser = () => {
-    history.push('/techcomponent/add');
+    history.push('/user/add');
   };
 
   const handleCardClick = (id: string) => {
-    history.push(`/techcomponent/${id}`);
+    history.push(`/user/${id}`);
   };
 
   //   const { users } = useUsers();
