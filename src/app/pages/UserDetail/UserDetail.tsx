@@ -110,7 +110,7 @@ const UserDetail = (): JSX.Element => {
         <Button
           type="primary"
           size="l"
-          onClick={() => history.push(`/techcomponent/edit/${id}`)}
+          onClick={() => history.push(`/user/edit/${id}`)}
         >
           Bearbeiten
         </Button>
