@@ -5,7 +5,7 @@ import { getCurrentDate } from '../utils/time';
 
 export async function getUsers(): Promise<User[]> {
   const userCollection = getUserCollection();
-  const users = await userCollection.find().toArray();
+  const users = await userCollection.find({ isDeleted: false }).toArray();
   return users;
 }
 
