@@ -18,48 +18,16 @@ const OrderList = (): JSX.Element => {
           </Typography>
         </header>
         <section className={styles.contentContainer}>
-          <OrderCard
-            name="123"
-            reservedAt="123"
-            returnAt="123"
-            status="reserviert"
-          />
-          <OrderCard
-            name="123"
-            reservedAt="123"
-            returnAt="123"
-            status="reserviert"
-          />
-          <OrderCard
-            name="123"
-            reservedAt="123"
-            returnAt="123"
-            status="reserviert"
-          />
-          <OrderCard
-            name="123"
-            reservedAt="123"
-            returnAt="123"
-            status="reserviert"
-          />
-          <OrderCard
-            name="123"
-            reservedAt="123"
-            returnAt="123"
-            status="reserviert"
-          />
-          <OrderCard
-            name="123"
-            reservedAt="123"
-            returnAt="123"
-            status="reserviert"
-          />
-          <OrderCard
-            name="123"
-            reservedAt="123"
-            returnAt="123"
-            status="reserviert"
-          />
+          {orders?.map((order) => {
+            return (
+              <OrderCard
+                name={order._id}
+                reservedAt={order.crAt}
+                returnAt={order.returnPeriod ? order.returnPeriod : '-'}
+                status={order.status}
+              />
+            );
+          })}
         </section>
       </div>
       <Navbar active="order" />
