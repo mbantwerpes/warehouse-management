@@ -6,6 +6,7 @@ import Typography from '../../components/Typography/Typography';
 import styles from './UserDetail.module.css';
 import { useModal } from '../../hooks/useModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
+import useUser from '../../hooks/useUser';
 
 const UserDetail = (): JSX.Element => {
   const history = useHistory();
@@ -14,7 +15,9 @@ const UserDetail = (): JSX.Element => {
   };
   const { id }: { id: string } = useParams();
 
-  //   const { user } = useUser(id);
+  const { user } = useUser(id);
+
+  console.log(user);
 
   const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
