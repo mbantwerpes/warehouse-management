@@ -17,8 +17,6 @@ type OrderDetailProps = {
 const OrderDetail = ({ isAdmin = true }: OrderDetailProps): JSX.Element => {
   const [dateValue, setDateValue] = useState<string>('');
 
-  console.log(dateValue);
-
   const history = useHistory();
 
   const handleBackButtonClick = () => {
@@ -34,6 +32,41 @@ const OrderDetail = ({ isAdmin = true }: OrderDetailProps): JSX.Element => {
   );
 
   const { techComponents } = useTechComponents(undefined, ids);
+
+  const handleAcceptReservation = async () => {
+    const postData = {
+      status: 'booked',
+      returnPeriod: dateValue,
+    };
+
+    const response = await fetch(`/api/order/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
+
+  const handleReturnOrder = async () => {
+    const postData = {
+      status: 'returned',
+    };
+
+    const response = await fetch(`/api/order/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
 
   return (
     <div className={styles.container}>
@@ -83,7 +116,7 @@ const OrderDetail = ({ isAdmin = true }: OrderDetailProps): JSX.Element => {
             {order?.returnPeriod ? order.returnPeriod : ''}
           </Typography>
         </div>
-        {isAdmin && order?.status === 'reserved' && (
+        {isAdmin && order?.status === 'returned' && (
           <Input
             value={dateValue}
             type="date"
@@ -116,22 +149,14 @@ const OrderDetail = ({ isAdmin = true }: OrderDetailProps): JSX.Element => {
       </section>
       {isAdmin &&
         (order?.status === 'booked' ? (
-          <Button
-            type="primary"
-            size="l"
-            onClick={() => console.log('placeholder')}
-          >
+          <Button type="primary" size="l" onClick={handleReturnOrder}>
             Rückgabe bestätigen
           </Button>
-        ) : (
-          <Button
-            type="primary"
-            size="l"
-            onClick={() => console.log('placeholder')}
-          >
+        ) : order?.status === 'reserved' ? (
+          <Button type="primary" size="l" onClick={handleAcceptReservation}>
             Ausleihauftrag bestätigen
           </Button>
-        ))}
+        ) : null)}
     </div>
   );
 };
