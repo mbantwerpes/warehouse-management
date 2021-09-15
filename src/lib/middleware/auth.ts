@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 
 const secret = process.env.JWT_SECRET;
 
-const withAuth = (req: Request, res: Response, next: NextFunction): void => {
+const authAdmin = (req: Request, res: Response, next: NextFunction): void => {
   const token = req.cookies.token;
   if (!token) {
     res.status(401).send('Unauthorized: No token provided');
@@ -11,7 +11,7 @@ const withAuth = (req: Request, res: Response, next: NextFunction): void => {
     if (secret) {
       // TODO find the types
       jwt.verify(token, secret, function (err: any, decoded: any) {
-        if (err) {
+        if (err || decoded?.role !== 'admin') {
           res.status(401).send('Unauthorized: Invalid token');
         } else {
           console.log(decoded);
@@ -25,4 +25,4 @@ const withAuth = (req: Request, res: Response, next: NextFunction): void => {
   }
 };
 
-export default withAuth;
+export default authAdmin;
