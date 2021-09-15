@@ -8,7 +8,7 @@ import { UserForFrontend } from '../../../lib/types';
 import UserForm from '../../components/UserForm/UserForm';
 
 const UserAdd = (): JSX.Element => {
-  const [nameValue, setnNameValue] = useState<string>('');
+  const [nameValue, setNameValue] = useState<string>('');
   const [passwordValue, setPasswordValue] = useState<string>('');
   const [grpNameValue, setGrpNameValue] = useState<string>('');
   const [grpNrValue, setGrpNrValue] = useState<string>('');
@@ -77,7 +77,7 @@ const UserAdd = (): JSX.Element => {
         setGrpNameValue={setGrpNameValue}
         setGrpNrValue={setGrpNrValue}
         setMatrNumberValue={setMatrNumberValue}
-        setNameValue={setnNameValue}
+        setNameValue={setNameValue}
         setPasswordValue={setPasswordValue}
         setRoleValue={setRoleValue}
         setTelephoneValue={setTelephoneValue}
