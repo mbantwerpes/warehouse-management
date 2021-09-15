@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 
 export type LoginFormProps = {
+  emailValue: string;
+  passwordValue: string;
   onSubmit: () => void;
+  setEmailValue: (email: string) => void;
+  setPasswordValue: (password: string) => void;
 };
 
-const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
-  const [emailValue, setEmailValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-
+const LoginForm = ({
+  emailValue,
+  passwordValue,
+  onSubmit,
+  setEmailValue,
+  setPasswordValue,
+}: LoginFormProps): JSX.Element => {
   return (
     <form onSubmit={onSubmit}>
       <Input
