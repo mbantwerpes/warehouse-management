@@ -47,7 +47,7 @@ const UserAdd = (): JSX.Element => {
 
     console.log(await response.json());
 
-    history.push('/');
+    history.push('/user');
   };
 
   return (
