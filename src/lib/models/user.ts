@@ -20,6 +20,20 @@ export async function getUser(id: string): Promise<User> {
   return user;
 }
 
+export async function getUserByEmailAndPassword(
+  email: string,
+  password: string
+): Promise<User> {
+  const userCollection = getUserCollection();
+  const user = await userCollection.findOne({ email, password });
+
+  if (!user) {
+    throw new Error(`Either email or password was not correct`);
+  }
+
+  return user;
+}
+
 export async function searchUsers(query: string): Promise<User[]> {
   const userCollection = getUserCollection();
   const techComponents = await userCollection

@@ -6,6 +6,7 @@ import {
   updateUser,
   deleteUser,
   searchUsers,
+  getUserByEmailAndPassword,
 } from '../models/user';
 import type { User } from '../types';
 
@@ -30,6 +31,16 @@ router.get('/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const user = await getUser(id);
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.post('/auth', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await getUserByEmailAndPassword(email, password);
     res.json(user);
   } catch (err) {
     res.status(500).json({ message: err.message });
