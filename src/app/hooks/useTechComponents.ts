@@ -1,4 +1,4 @@
-import type { TechComponent } from '../../lib/types';
+import type { TechComponent } from '../../lib/types/types';
 import useFetch from './useFetch';
 
 export default function useTechComponents(

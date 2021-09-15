@@ -8,7 +8,7 @@ import {
   deleteTechComponent,
   getTechComponentsByIdArray,
 } from '../models/techComponent';
-import type { TechComponent } from '../types';
+import type { TechComponent } from '../types/types';
 
 const router = Router();
 

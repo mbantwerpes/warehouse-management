@@ -1,4 +1,4 @@
-import type { User } from '../types';
+import type { User } from '../types/types';
 import { ObjectId } from 'mongodb';
 import { getUserCollection } from '../database';
 import { getCurrentDate } from '../utils/time';

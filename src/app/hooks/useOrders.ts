@@ -1,4 +1,4 @@
-import type { Order } from '../../lib/types';
+import type { Order } from '../../lib/types/types';
 import useFetch from './useFetch';
 
 export default function useOrders(): {

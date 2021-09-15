@@ -1,4 +1,4 @@
-import type { TechComponent } from '../types';
+import type { TechComponent } from '../types/types';
 import { ObjectId } from 'mongodb';
 import { getTechComponentCollection } from '../database';
 import { getCurrentDate } from '../utils/time';

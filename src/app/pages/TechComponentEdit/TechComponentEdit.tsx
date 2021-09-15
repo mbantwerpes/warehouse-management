@@ -4,7 +4,7 @@ import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentEdit.module.css';
 import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
-import { TechComponentForFrontend } from '../../../lib/types';
+import { TechComponentForFrontend } from '../../../lib/types/types';
 import TechComponentForm from '../../components/TechComponentForm/TechComponentForm';
 import { useParams } from 'react-router-dom';
 import useTechComponent from '../../hooks/useTechComponent';

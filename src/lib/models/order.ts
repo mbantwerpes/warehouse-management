@@ -1,4 +1,4 @@
-import type { Order, TechComponentOrder } from '../types';
+import type { Order, TechComponentOrder } from '../types/types';
 import { ObjectId } from 'mongodb';
 import { getOrderCollection } from '../database';
 import { getCurrentDate } from '../utils/time';

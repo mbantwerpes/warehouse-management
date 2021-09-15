@@ -1,17 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 
-interface IReqWithEmail extends Request {
-  email: string;
-}
-
 const secret = process.env.JWT_SECRET;
 
-const withAuth = function (
-  req: IReqWithEmail,
-  res: Response,
-  next: NextFunction
-) {
+const withAuth = (req: Request, res: Response, next: NextFunction): void => {
   const token = req.cookies.token;
   if (!token) {
     res.status(401).send('Unauthorized: No token provided');
@@ -31,4 +23,5 @@ const withAuth = function (
     }
   }
 };
-module.exports = withAuth;
+
+export default withAuth;

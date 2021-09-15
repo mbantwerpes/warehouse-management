@@ -7,11 +7,12 @@ import {
   deleteUser,
   searchUsers,
 } from '../models/user';
-import type { User } from '../types';
+import withAuth from '../middleware/auth';
+import type { User } from '../types/types';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const { searchValue } = req.query;
     if (searchValue && typeof searchValue === 'string') {

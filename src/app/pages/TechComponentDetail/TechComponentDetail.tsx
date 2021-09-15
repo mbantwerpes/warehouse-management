@@ -9,7 +9,7 @@ import useTechComponent from '../../hooks/useTechComponent';
 import { useModal } from '../../hooks/useModal';
 import Counter from '../../components/Counter/Counter';
 import useShoppingCart from '../../hooks/useShoppingCart';
-import { TechComponentOrder } from '../../../lib/types';
+import { TechComponentOrder } from '../../../lib/types/types';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 
 export type TechComponentDetailProps = {
