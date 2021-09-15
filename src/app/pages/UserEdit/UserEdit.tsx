@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import Typography from '../../components/Typography/Typography';
-import styles from './UserAdd.module.css';
+import styles from './UserEdit.module.css';
 import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { UserForFrontend } from '../../../lib/types';
 import UserForm from '../../components/UserForm/UserForm';
+import { useParams } from 'react-router-dom';
+import useUser from '../../hooks/useUser';
 
-const UserAdd = (): JSX.Element => {
+const UserEdit = (): JSX.Element => {
   const [nameValue, setNameValue] = useState<string>('');
   const [passwordValue, setPasswordValue] = useState<string>('');
   const [grpNameValue, setGrpNameValue] = useState<string>('');
@@ -18,6 +20,21 @@ const UserAdd = (): JSX.Element => {
   const [roleValue, setRoleValue] = useState<'admin' | 'student'>('student');
 
   const history = useHistory();
+
+  const { id }: { id: string } = useParams();
+
+  // Fetch user and set state values
+  const { user } = useUser(id);
+  useEffect(() => {
+    setNameValue(user?.name || '');
+    setPasswordValue(user?.password || '');
+    setGrpNameValue(user?.grpName || '');
+    setGrpNrValue(user?.grpNr?.toString() || '');
+    setMatrNumberValue(user?.matrNumber || '');
+    setEmailValue(user?.email || '');
+    setTelephoneValue(user?.telephone || '');
+    setRoleValue(user?.role || 'student');
+  }, [user]);
 
   const handleBackButtonClick = () => {
     history.push('/user');
@@ -37,8 +54,8 @@ const UserAdd = (): JSX.Element => {
       role: roleValue,
     };
 
-    const response = await fetch('/api/user', {
-      method: 'POST',
+    const response = await fetch(`/api/user/${id}`, {
+      method: 'PUT',
       headers: {
         'Content-type': 'application/json',
       },
@@ -47,7 +64,7 @@ const UserAdd = (): JSX.Element => {
 
     console.log(await response.json());
 
-    history.push('/user');
+    history.push(`/user/${id}`);
   };
 
   return (
@@ -61,7 +78,7 @@ const UserAdd = (): JSX.Element => {
         <MdKeyboardArrowLeft size={32} />
       </Button>
       <Typography type="header" size="xl">
-        Nutzer anlegen.
+        Nutzer bearbeiten.
       </Typography>
       <UserForm
         emailValue={emailValue}
@@ -81,9 +98,10 @@ const UserAdd = (): JSX.Element => {
         setPasswordValue={setPasswordValue}
         setRoleValue={setRoleValue}
         setTelephoneValue={setTelephoneValue}
+        isEdit={true}
       />
     </div>
   );
 };
 
-export default UserAdd;
+export default UserEdit;
