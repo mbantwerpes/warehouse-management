@@ -5,6 +5,7 @@ import express from 'express';
 import user from './lib/routes/user';
 import techcomponent from './lib/routes/techComponent';
 import order from './lib/routes/order';
+import auth from './lib/routes/auth';
 import { connectDatabase } from './lib/database';
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/api/techcomponent', techcomponent);
 app.use('/api/user', user);
 app.use('/api/order', order);
+app.use('/api/auth', auth);
 
 app.use('/storybook', express.static('dist/storybook'));
 

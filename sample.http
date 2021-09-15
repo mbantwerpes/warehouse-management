@@ -39,8 +39,8 @@ GET http://localhost:3001/api/user
 ### Get user by id
 GET http://localhost:3001/api/user/61374f7894e9ee8338ee216a
 
-### Get user by email and password
-POST http://localhost:3001/api/user/auth
+### Auth user by email and password
+POST http://localhost:3001/api/auth
 Content-Type: application/json
 
 {
