@@ -5,6 +5,7 @@ import styles from './UserAdd.module.css';
 import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { UserForFrontend } from '../../../lib/types';
+import UserForm from '../../components/UserForm/UserForm';
 
 const UserAdd = (): JSX.Element => {
   const [nameValue, setnNameValue] = useState<string>('');
@@ -12,7 +13,7 @@ const UserAdd = (): JSX.Element => {
   const [grpNameValue, setGrpNameValue] = useState<string>('');
   const [grpNrValue, setGrpNrValue] = useState<string>('');
   const [matrNumberValue, setMatrNumberValue] = useState<string>('');
-  const [emailValue, setTmailValue] = useState<string>('');
+  const [emailValue, setEmailValue] = useState<string>('');
   const [telephoneValue, setTelephoneValue] = useState<string>('');
   const [roleValue, setRoleValue] = useState<'admin' | 'student'>('student');
 
@@ -62,6 +63,25 @@ const UserAdd = (): JSX.Element => {
       <Typography type="header" size="xl">
         Nutzer anlegen.
       </Typography>
+      <UserForm
+        emailValue={emailValue}
+        grpNameValue={grpNameValue}
+        grpNrValue={grpNrValue}
+        matrNumberValue={matrNumberValue}
+        nameValue={nameValue}
+        passwordValue={passwordValue}
+        roleValue={roleValue}
+        telephoneValue={telephoneValue}
+        onSubmit={handleSubmit}
+        setEmailValue={setEmailValue}
+        setGrpNameValue={setGrpNameValue}
+        setGrpNrValue={setGrpNrValue}
+        setMatrNumberValue={setMatrNumberValue}
+        setNameValue={setnNameValue}
+        setPasswordValue={setPasswordValue}
+        setRoleValue={setRoleValue}
+        setTelephoneValue={setTelephoneValue}
+      />
     </div>
   );
 };

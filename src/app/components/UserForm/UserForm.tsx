@@ -15,14 +15,14 @@ export type UserFormProps = {
   telephoneValue: string;
   roleValue: 'admin' | 'student';
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  setNameValue: (title: string) => void;
-  setPasswordValue: (title: string) => void;
-  setGrpNameValue: (title: string) => void;
-  setGrpNrValue: (title: string) => void;
-  setMatrNumberValue: (title: string) => void;
-  setEmailValue: (title: string) => void;
-  setTelephoneValue: (title: string) => void;
-  setRoleValue: (title: string) => void;
+  setNameValue: (name: string) => void;
+  setPasswordValue: (password: string) => void;
+  setGrpNameValue: (grpname: string) => void;
+  setGrpNrValue: (grpNr: string) => void;
+  setMatrNumberValue: (matrNumber: string) => void;
+  setEmailValue: (email: string) => void;
+  setTelephoneValue: (telephone: string) => void;
+  setRoleValue: (role: 'admin' | 'student') => void;
 };
 
 const UserForm = ({
