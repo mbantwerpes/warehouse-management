@@ -11,11 +11,15 @@ import UserList from './pages/UserList/UserList';
 import UserDetail from './pages/UserDetail/UserDetail';
 import UserAdd from './pages/UserAdd/UserAdd';
 import UserEdit from './pages/UserEdit/UserEdit';
+import Login from './pages/Login/Login';
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
         <Route path="/user/edit/:id">
           <UserEdit />
         </Route>
