@@ -23,13 +23,13 @@ const LoginForm = ({
       <Input
         placeholder="Email"
         type="text"
-        value={passwordValue}
+        value={emailValue}
         onChange={(e) => setEmailValue(e.target.value)}
       />
       <Input
         placeholder="Passwort"
         type="password"
-        value={emailValue}
+        value={passwordValue}
         onChange={(e) => setPasswordValue(e.target.value)}
       />
       <Button type="primary" size="l">
