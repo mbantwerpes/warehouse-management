@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
     const user = await getUserByEmailAndPassword(email, password);
     const secret = process.env.JWT_SECRET;
     if (user && secret) {
-      const payload = { email };
+      const payload = { email, role: user.role };
       const token = jwt.sign(payload, secret, {
         expiresIn: '1h',
       });
