@@ -6,7 +6,7 @@ export type LoginFormProps = {
   onSubmit: () => void;
 };
 
-const LoginForm = ({ onSubmit }: LoginFormProps) => {
+const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
   return (
     <form onSubmit={onSubmit}>
       <Input placeholder="Email" type="text" value="123"></Input>
