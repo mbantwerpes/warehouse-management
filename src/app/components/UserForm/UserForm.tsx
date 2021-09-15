@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
-import Textarea from '../Textarea/Textarea';
 import Typography from '../Typography/Typography';
 import styles from './UserForm.module.css';
 
@@ -62,46 +61,79 @@ const UserForm = ({
         </label>
         <label className={styles.labelGroup}>
           <Typography type="header" size="s">
-            Artikelnummer
+            Passwort
           </Typography>
           <Input
             value={passwordValue}
-            placeholder="Artikelnummer"
-            type="text"
+            placeholder="Password"
+            type="password"
             onChange={(e) => setPasswordValue(e.target.value)}
           />
         </label>
         <label className={styles.labelGroup}>
           <Typography type="header" size="s">
-            Ortsangabe
+            Gruppenname
           </Typography>
           <Input
             value={grpNameValue}
-            placeholder="Ortsangabe"
+            placeholder="Gruppenname"
             type="text"
             onChange={(e) => setGrpNameValue(e.target.value)}
           />
         </label>
         <label className={styles.labelGroup}>
           <Typography type="header" size="s">
-            Beschreibung
+            Grp
           </Typography>
-          <Textarea
+          <Input
             value={grpNrValue}
-            placeholder="Beschreibung..."
+            placeholder="0"
+            type="number"
             onChange={(e) => setGrpNrValue(e.target.value)}
-            className={styles.textarea}
           />
         </label>
         <label className={styles.labelGroup}>
           <Typography type="header" size="s">
-            Anzahl
+            Matrikelnummer
           </Typography>
           <Input
             value={matrNumberValue}
-            placeholder="0"
-            type="number"
+            placeholder="Matrikelnummer"
+            type="text"
             onChange={(e) => setMatrNumberValue(e.target.value)}
+          />
+        </label>
+        <label className={styles.labelGroup}>
+          <Typography type="header" size="s">
+            Email
+          </Typography>
+          <Input
+            value={emailValue}
+            placeholder="Email"
+            type="email"
+            onChange={(e) => setEmailValue(e.target.value)}
+          />
+        </label>
+        <label className={styles.labelGroup}>
+          <Typography type="header" size="s">
+            Telefonnummer
+          </Typography>
+          <Input
+            value={telephoneValue}
+            placeholder="Telefonnummer"
+            type="text"
+            onChange={(e) => setTelephoneValue(e.target.value)}
+          />
+        </label>
+        <label className={styles.labelGroup}>
+          <Typography type="header" size="s">
+            Rolle
+          </Typography>
+          <Input
+            value={roleValue}
+            placeholder="Rolle"
+            type="text"
+            onChange={(e) => setRoleValue(e.target.value)}
           />
         </label>
       </div>
