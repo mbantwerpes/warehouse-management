@@ -16,6 +16,17 @@ export type User = {
   leAt: string;
 };
 
+export type UserForFrontend = {
+  role: 'admin' | 'student';
+  name: string;
+  matrNumber: string;
+  email: string;
+  password: string;
+  telephone?: string;
+  grpNr?: number;
+  grpName?: string;
+};
+
 export type TechComponent = {
   _id: string | ObjectId;
   adminId: string; // Track which admin has created the TechComponent

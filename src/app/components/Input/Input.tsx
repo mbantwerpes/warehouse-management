@@ -4,7 +4,7 @@ import styles from './Input.module.css';
 export type InputProps = {
   value: string | number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  type: 'text' | 'password' | 'number' | 'date';
+  type: 'text' | 'password' | 'number' | 'date' | 'email';
   placeholder: string;
   icon?: ReactNode;
   containerStyling?: string;
