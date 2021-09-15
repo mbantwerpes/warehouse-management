@@ -10,11 +10,15 @@ import OrderDetail from './pages/OrderDetail/OrderDetail';
 import UserList from './pages/UserList/UserList';
 import UserDetail from './pages/UserDetail/UserDetail';
 import UserAdd from './pages/UserAdd/UserAdd';
+import UserEdit from './pages/UserEdit/UserEdit';
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/user/edit/:id">
+          <UserEdit />
+        </Route>
         <Route path="/user/add">
           <UserAdd />
         </Route>
