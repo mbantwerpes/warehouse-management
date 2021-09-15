@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { getUserByEmailAndPassword } from '../models/user';
 import jwt from 'jsonwebtoken';
+import withAuth from '../middleware/auth';
 
 const router = Router();
 router.post('/', async (req, res) => {
@@ -20,6 +21,10 @@ router.post('/', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+});
+
+router.get('/checkToken', withAuth, function (_req, res) {
+  res.sendStatus(200);
 });
 
 export default router;
