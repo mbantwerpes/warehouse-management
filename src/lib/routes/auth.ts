@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken';
 import { withAuth } from '../middleware/auth';
 
 const router = Router();
+
+// Login route
 router.post('/', async (req, res) => {
   try {
     const { email, password } = req.body;
