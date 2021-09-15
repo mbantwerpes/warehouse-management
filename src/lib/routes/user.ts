@@ -6,7 +6,6 @@ import {
   updateUser,
   deleteUser,
   searchUsers,
-  getUserByEmailAndPassword,
 } from '../models/user';
 import type { User } from '../types';
 
