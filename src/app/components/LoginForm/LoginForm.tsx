@@ -6,7 +6,7 @@ import styles from './LoginForm.module.css';
 export type LoginFormProps = {
   emailValue: string;
   passwordValue: string;
-  onSubmit: () => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   setEmailValue: (email: string) => void;
   setPasswordValue: (password: string) => void;
 };
