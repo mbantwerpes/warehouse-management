@@ -11,12 +11,8 @@ const withAuth = (ComponentToProtect: any): JSX.Element | null => {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          console.log('jo');
           setIsLoading(false);
         } else {
-          console.log('no');
-          setRedirect(true);
-          setIsLoading(false);
           console.log('error ocurred');
         }
       })

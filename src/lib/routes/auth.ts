@@ -25,6 +25,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Route to check if the user is logged in
 router.get('/checkToken', withAuth, function (_req, res) {
   res.sendStatus(200);
 });
