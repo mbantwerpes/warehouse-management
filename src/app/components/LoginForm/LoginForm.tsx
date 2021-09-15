@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+import styles from './LoginForm.module.css';
 
 export type LoginFormProps = {
   emailValue: string;
@@ -18,7 +19,7 @@ const LoginForm = ({
   setPasswordValue,
 }: LoginFormProps): JSX.Element => {
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className={styles.container}>
       <Input
         placeholder="Email"
         type="text"
