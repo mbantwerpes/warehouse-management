@@ -133,7 +133,9 @@ const UserForm = ({
             value={roleValue}
             placeholder="Rolle"
             type="text"
-            onChange={(e) => setRoleValue(e.target.value)}
+            onChange={(e) =>
+              setRoleValue(e.target.value as 'admin' | 'student')
+            }
           />
         </label>
       </div>
