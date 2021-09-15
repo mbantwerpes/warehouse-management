@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import authAdmin from '../middleware/auth';
+import { authAdmin } from '../middleware/auth';
 import { getOrders, getOrder, addOrder, updateOrder } from '../models/order';
 import type { TechComponentOrder } from '../types/types';
 

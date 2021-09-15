@@ -7,7 +7,7 @@ import {
   deleteUser,
   searchUsers,
 } from '../models/user';
-import authAdmin from '../middleware/auth';
+import { authAdmin } from '../middleware/auth';
 import type { User } from '../types/types';
 
 const router = Router();

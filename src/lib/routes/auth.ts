@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { getUserByEmailAndPassword } from '../models/user';
 import jwt from 'jsonwebtoken';
-import withAuth from '../middleware/auth';
+import { withAuth } from '../middleware/auth';
 
 const router = Router();
 router.post('/', async (req, res) => {
