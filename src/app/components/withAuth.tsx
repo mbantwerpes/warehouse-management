@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 const withAuth = (
-  ComponentToProtect: any,
+  ComponentToProtect: React.ComponentType,
   checkAdmin = false
 ): JSX.Element | null => {
   const [isLoading, setIsLoading] = useState(true);
