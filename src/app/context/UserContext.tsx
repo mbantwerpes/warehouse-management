@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 export type GlobalUser = {
   id: string;
@@ -17,8 +17,6 @@ const UserContext = createContext<GlobalUser>({
 export const useUserContext = (): GlobalUser => useContext(UserContext);
 
 export const AppProvider = (props: ContextProps): JSX.Element => {
-  const [isLoading, setIsLoading] = useState(true);
-
   const [data, setData] = useState<GlobalUser>({ id: '', role: '' });
 
   const fetchCheckAuth = async (): Promise<{ id: string; role: string }> => {
@@ -26,27 +24,16 @@ export const AppProvider = (props: ContextProps): JSX.Element => {
 
     if (response.status === 200) {
       const data = await response.json();
-      console.log(data);
+      setData(data);
       return { id: data.id, role: data.role };
     }
     return { id: '', role: '' };
   };
+  fetchCheckAuth();
 
-  useEffect(() => {
-    const testFunc = async () => {
-      setData(await fetchCheckAuth());
-      setIsLoading(false);
-    };
-    testFunc();
-  }, []);
-
-  if (isLoading) {
-    return <p>Loading</p>;
-  } else {
-    return (
-      <UserContext.Provider value={{ ...data }}>
-        {props.children}
-      </UserContext.Provider>
-    );
-  }
+  return (
+    <UserContext.Provider value={{ ...data }}>
+      {props.children}
+    </UserContext.Provider>
+  );
 };
