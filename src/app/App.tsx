@@ -13,7 +13,7 @@ import UserAdd from './pages/UserAdd/UserAdd';
 import UserEdit from './pages/UserEdit/UserEdit';
 import Login from './pages/Login/Login';
 import { AppProvider } from './context/UserContext';
-import WithAuth from './components/WithAuth';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = (): JSX.Element => {
   return (
@@ -54,7 +54,7 @@ const App = (): JSX.Element => {
             {withAuth(TechComponentDetail)}
           </Route>
           <Route path="/">{withAuth(TechComponentList)}</Route> */}
-          <WithAuth ComponentToProtect={TechComponentList} />
+          <ProtectedRoute path="/" ComponentToProtect={TechComponentList} />
         </Switch>
         <div id="modal-root" />
       </BrowserRouter>
