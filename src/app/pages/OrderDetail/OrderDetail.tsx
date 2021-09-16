@@ -9,12 +9,11 @@ import useTechComponents from '../../hooks/useTechComponents';
 import styles from './OrderDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import Input from '../../components/Input/Input';
+import { useUserContext } from '../../context/UserContext';
 
-type OrderDetailProps = {
-  isAdmin?: boolean;
-};
+const OrderDetail = (): JSX.Element => {
+  const { role } = useUserContext();
 
-const OrderDetail = ({ isAdmin = true }: OrderDetailProps): JSX.Element => {
   const [dateValue, setDateValue] = useState<string>('');
 
   const history = useHistory();
@@ -116,7 +115,7 @@ const OrderDetail = ({ isAdmin = true }: OrderDetailProps): JSX.Element => {
             {order?.returnPeriod ? order.returnPeriod : ''}
           </Typography>
         </div>
-        {isAdmin && order?.status === 'reserved' && (
+        {role === 'admin' && order?.status === 'reserved' && (
           <Input
             value={dateValue}
             type="date"
@@ -147,7 +146,7 @@ const OrderDetail = ({ isAdmin = true }: OrderDetailProps): JSX.Element => {
           );
         })}
       </section>
-      {isAdmin &&
+      {role === 'admin' &&
         (order?.status === 'booked' ? (
           <Button type="primary" size="l" onClick={handleReturnOrder}>
             Rückgabe bestätigen
