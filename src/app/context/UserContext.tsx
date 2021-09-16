@@ -26,6 +26,7 @@ export const AppProvider = (props: ContextProps): JSX.Element => {
 
     if (response.status === 200) {
       const data = await response.json();
+      console.log(data);
       return { id: data.id, role: data.role };
     }
     return { id: '', role: '' };
