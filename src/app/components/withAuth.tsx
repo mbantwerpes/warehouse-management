@@ -2,26 +2,32 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-const withAuth = (ComponentToProtect: any): JSX.Element | null => {
+const withAuth = (
+  ComponentToProtect: any,
+  checkAdmin = false
+): JSX.Element | null => {
   const [isLoading, setIsLoading] = useState(true);
   const [redirect, setRedirect] = useState(false);
 
-  useEffect(() => {
-    fetch('/api/auth/checkToken')
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          setIsLoading(false);
-        } else {
-          setRedirect(true);
-          setIsLoading(false);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+  const fetchCheckAuth = async () => {
+    const response = await fetch('api/auth/checkToken');
+
+    if (response.status === 200) {
+      const data = await response.json();
+
+      setIsLoading(false);
+
+      if (checkAdmin && data.role !== 'admin') {
         setRedirect(true);
-        setIsLoading(false);
-      });
+      }
+    } else {
+      setRedirect(true);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCheckAuth();
   }, []);
 
   if (isLoading) {

@@ -51,7 +51,7 @@ const App = (): JSX.Element => {
         <Route path="/techcomponent/:id">
           <TechComponentDetail />
         </Route>
-        <Route path="/">{withAuth(TechComponentList)}</Route>
+        <Route path="/">{withAuth(TechComponentList, true)}</Route>
       </Switch>
       <div id="modal-root" />
     </BrowserRouter>

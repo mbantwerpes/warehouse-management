@@ -19,6 +19,7 @@ export const withAuth = (
           res.status(401).send('Unauthorized: Invalid token');
         } else {
           console.log(decoded);
+          req.role = decoded?.role;
           req.email = decoded?.email;
           next();
         }
@@ -45,6 +46,7 @@ export const authAdmin = (
           res.status(401).send('Unauthorized: Invalid token');
         } else {
           console.log(decoded);
+          req.role = decoded?.role;
           req.email = decoded?.email;
           next();
         }

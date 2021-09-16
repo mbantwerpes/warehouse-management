@@ -3,5 +3,6 @@
 declare namespace Express {
   interface Request {
     email?: string;
+    role?: 'student' | 'admin';
   }
 }
