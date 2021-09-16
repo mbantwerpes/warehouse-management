@@ -58,7 +58,6 @@ const App = (): JSX.Element => {
         <div id="modal-root" />
       </BrowserRouter>
     </AppProvider>
-    // </UserContext.Provider>
   );
 };
 
