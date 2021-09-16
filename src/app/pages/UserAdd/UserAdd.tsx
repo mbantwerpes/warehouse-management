@@ -4,7 +4,7 @@ import Typography from '../../components/Typography/Typography';
 import styles from './UserAdd.module.css';
 import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
-import { UserForFrontend } from '../../../lib/types';
+import { UserForFrontend } from '../../../lib/types/types';
 import UserForm from '../../components/UserForm/UserForm';
 
 const UserAdd = (): JSX.Element => {

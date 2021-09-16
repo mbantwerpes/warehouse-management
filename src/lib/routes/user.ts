@@ -7,11 +7,12 @@ import {
   deleteUser,
   searchUsers,
 } from '../models/user';
-import type { User } from '../types';
+import { authAdmin } from '../middleware/auth';
+import type { User } from '../types/types';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', authAdmin, async (req, res) => {
   try {
     const { searchValue } = req.query;
     if (searchValue && typeof searchValue === 'string') {
@@ -36,7 +37,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authAdmin, async (req, res) => {
   try {
     const userData: User = req.body;
     addUser(userData);
@@ -46,7 +47,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authAdmin, async (req, res) => {
   try {
     const id = req.params.id;
     const userData = req.body;
@@ -57,7 +58,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authAdmin, async (req, res) => {
   try {
     const id = req.params.id;
     deleteUser(id);

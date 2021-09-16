@@ -21,5 +21,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "files": ["./src/lib/types/express/index.d.ts"]
 }

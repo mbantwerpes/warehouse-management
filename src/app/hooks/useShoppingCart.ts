@@ -1,4 +1,4 @@
-import { TechComponentOrder } from '../../lib/types';
+import { TechComponentOrder } from '../../lib/types/types';
 import useLocalStorage from './useLocalStorage';
 
 export default function useShoppingCart(): {

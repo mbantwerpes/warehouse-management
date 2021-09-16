@@ -1,6 +1,7 @@
 import { Router } from 'express';
+import { authAdmin } from '../middleware/auth';
 import { getOrders, getOrder, addOrder, updateOrder } from '../models/order';
-import type { TechComponentOrder } from '../types';
+import type { TechComponentOrder } from '../types/types';
 
 const router = Router();
 
@@ -33,7 +34,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authAdmin, async (req, res) => {
   try {
     const id = req.params.id;
     const orderData = req.body;

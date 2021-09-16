@@ -1,4 +1,4 @@
-import type { User } from '../../lib/types';
+import type { User } from '../../lib/types/types';
 import useFetch from './useFetch';
 
 export default function useUser(id: string): {

@@ -4,7 +4,7 @@ import Typography from '../../components/Typography/Typography';
 import styles from './UserEdit.module.css';
 import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
-import { UserForFrontend } from '../../../lib/types';
+import { UserForFrontend } from '../../../lib/types/types';
 import UserForm from '../../components/UserForm/UserForm';
 import { useParams } from 'react-router-dom';
 import useUser from '../../hooks/useUser';

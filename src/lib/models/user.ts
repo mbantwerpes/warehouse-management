@@ -1,4 +1,4 @@
-import type { User } from '../types';
+import type { User } from '../types/types';
 import { ObjectId } from 'mongodb';
 import { getUserCollection } from '../database';
 import { getCurrentDate } from '../utils/time';
@@ -15,6 +15,20 @@ export async function getUser(id: string): Promise<User> {
 
   if (!user) {
     throw new Error(`Unable to find user with the id: ${id}`);
+  }
+
+  return user;
+}
+
+export async function getUserByEmailAndPassword(
+  email: string,
+  password: string
+): Promise<User> {
+  const userCollection = getUserCollection();
+  const user = await userCollection.findOne({ email, password });
+
+  if (!user) {
+    throw new Error(`Either email or password was not correct`);
   }
 
   return user;

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { authAdmin } from '../middleware/auth';
 import {
   getTechComponents,
   getTechComponent,
@@ -8,7 +9,7 @@ import {
   deleteTechComponent,
   getTechComponentsByIdArray,
 } from '../models/techComponent';
-import type { TechComponent } from '../types';
+import type { TechComponent } from '../types/types';
 
 const router = Router();
 
@@ -49,7 +50,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authAdmin, async (req, res) => {
   try {
     const techComponentData: TechComponent = req.body;
     addTechComponent(techComponentData);
@@ -59,7 +60,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authAdmin, async (req, res) => {
   try {
     const id = req.params.id;
     const techComponentData = req.body;
@@ -70,7 +71,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authAdmin, async (req, res) => {
   try {
     const id = req.params.id;
     deleteTechComponent(id);

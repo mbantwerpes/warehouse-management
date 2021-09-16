@@ -39,10 +39,6 @@ const Cart = (): JSX.Element => {
     history.push('/order');
   };
 
-  const handleDeleteClick = (id: string) => {
-    removeCartItem(id);
-  };
-
   const { show, hide, RenderModal: RenderReserveModal } = useModal();
 
   return (
@@ -80,7 +76,7 @@ const Cart = (): JSX.Element => {
               title={techComponent.title}
               editable={true}
               clickable={false}
-              onDeleteClick={handleDeleteClick}
+              onDeleteClick={(id) => removeCartItem(id)}
             />
           );
         })}

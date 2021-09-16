@@ -9,16 +9,13 @@ import useTechComponent from '../../hooks/useTechComponent';
 import { useModal } from '../../hooks/useModal';
 import Counter from '../../components/Counter/Counter';
 import useShoppingCart from '../../hooks/useShoppingCart';
-import { TechComponentOrder } from '../../../lib/types';
+import { TechComponentOrder } from '../../../lib/types/types';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
+import { useUserContext } from '../../context/UserContext';
 
-export type TechComponentDetailProps = {
-  isAdmin?: boolean;
-};
+const TechComponentDetail = (): JSX.Element => {
+  const { role } = useUserContext();
 
-const TechComponentDetail = ({
-  isAdmin = false,
-}: TechComponentDetailProps): JSX.Element => {
   const history = useHistory();
   const handleBackButtonClick = () => {
     history.push('/');
@@ -112,7 +109,7 @@ const TechComponentDetail = ({
         </div>
       </div>
       {/* Only show counter if user is not an admin */}
-      {!isAdmin && (
+      {!(role === 'admin') && (
         <Counter
           value={cartAmount}
           onAddClick={onAddClick}
@@ -121,7 +118,7 @@ const TechComponentDetail = ({
         />
       )}
       {/* Render buttons conditionally if user role is student or admin */}
-      {isAdmin ? (
+      {role === 'admin' ? (
         <div className={styles.buttonGroup}>
           <Button type="error" size="l" onClick={show}>
             <MdDelete size={24} />

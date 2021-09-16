@@ -11,47 +11,54 @@ import UserList from './pages/UserList/UserList';
 import UserDetail from './pages/UserDetail/UserDetail';
 import UserAdd from './pages/UserAdd/UserAdd';
 import UserEdit from './pages/UserEdit/UserEdit';
+import Login from './pages/Login/Login';
+import { AppProvider } from './context/UserContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = (): JSX.Element => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/user/edit/:id">
-          <UserEdit />
-        </Route>
-        <Route path="/user/add">
-          <UserAdd />
-        </Route>
-        <Route path="/user/:id">
-          <UserDetail />
-        </Route>
-        <Route path="/user">
-          <UserList />
-        </Route>
-        <Route path="/order/:id">
-          <OrderDetail />
-        </Route>
-        <Route path="/order">
-          <OrderList />
-        </Route>
-        <Route path="/cart">
-          <Cart />
-        </Route>
-        <Route path="/techcomponent/add">
-          <TechComponentAdd />
-        </Route>
-        <Route path="/techcomponent/edit/:id">
-          <TechComponentEdit />
-        </Route>
-        <Route path="/techcomponent/:id">
-          <TechComponentDetail />
-        </Route>
-        <Route path="/">
-          <TechComponentList />
-        </Route>
-      </Switch>
-      <div id="modal-root" />
-    </BrowserRouter>
+    <AppProvider>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/login" component={Login} />
+          <ProtectedRoute
+            ComponentToProtect={UserEdit}
+            path="/user/edit/:id"
+            checkAdmin={true}
+          />
+          <ProtectedRoute
+            ComponentToProtect={UserAdd}
+            path="/user/add"
+            checkAdmin={true}
+          />
+          <ProtectedRoute ComponentToProtect={UserDetail} path="/user/:id" />
+          <ProtectedRoute
+            ComponentToProtect={UserList}
+            path="/user"
+            checkAdmin={false}
+          />
+          <ProtectedRoute ComponentToProtect={OrderDetail} path="/order/:id" />
+          <ProtectedRoute ComponentToProtect={OrderList} path="/order" />
+          <ProtectedRoute ComponentToProtect={Cart} path="/cart" />
+          <ProtectedRoute
+            path="/techcomponent/add"
+            ComponentToProtect={TechComponentAdd}
+            checkAdmin={true}
+          />
+          <ProtectedRoute
+            path="/techcomponent/edit/:id"
+            ComponentToProtect={TechComponentEdit}
+            checkAdmin={true}
+          />
+          <ProtectedRoute
+            path="/techcomponent/:id"
+            ComponentToProtect={TechComponentDetail}
+          />
+          <ProtectedRoute path="/" ComponentToProtect={TechComponentList} />
+        </Switch>
+        <div id="modal-root" />
+      </BrowserRouter>
+    </AppProvider>
   );
 };
 

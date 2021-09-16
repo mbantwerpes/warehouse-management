@@ -2,9 +2,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import user from './lib/routes/user';
 import techcomponent from './lib/routes/techComponent';
 import order from './lib/routes/order';
+import auth from './lib/routes/auth';
 import { connectDatabase } from './lib/database';
 
 const app = express();
@@ -15,10 +17,12 @@ if (!process.env.MONGO_DB_URL) {
 }
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api/techcomponent', techcomponent);
 app.use('/api/user', user);
 app.use('/api/order', order);
+app.use('/api/auth', auth);
 
 app.use('/storybook', express.static('dist/storybook'));
 
