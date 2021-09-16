@@ -13,48 +13,52 @@ import UserAdd from './pages/UserAdd/UserAdd';
 import UserEdit from './pages/UserEdit/UserEdit';
 import Login from './pages/Login/Login';
 import withAuth from './components/withAuth';
+import { AppProvider } from './context/UserContext';
 
 const App = (): JSX.Element => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/user/edit/:id">
-          <UserEdit />
-        </Route>
-        <Route path="/user/add">
-          <UserAdd />
-        </Route>
-        <Route path="/user/:id">
-          <UserDetail />
-        </Route>
-        <Route path="/user">
-          <UserList />
-        </Route>
-        <Route path="/order/:id">
-          <OrderDetail />
-        </Route>
-        <Route path="/order">
-          <OrderList />
-        </Route>
-        <Route path="/cart">
-          <Cart />
-        </Route>
-        <Route path="/techcomponent/add">
-          <TechComponentAdd />
-        </Route>
-        <Route path="/techcomponent/edit/:id">
-          <TechComponentEdit />
-        </Route>
-        <Route path="/techcomponent/:id">
-          <TechComponentDetail />
-        </Route>
-        <Route path="/">{withAuth(TechComponentList, true)}</Route>
-      </Switch>
-      <div id="modal-root" />
-    </BrowserRouter>
+    <AppProvider>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/user/edit/:id">
+            <UserEdit />
+          </Route>
+          <Route path="/user/add">
+            <UserAdd />
+          </Route>
+          <Route path="/user/:id">
+            <UserDetail />
+          </Route>
+          <Route path="/user">
+            <UserList />
+          </Route>
+          <Route path="/order/:id">
+            <OrderDetail />
+          </Route>
+          <Route path="/order">
+            <OrderList />
+          </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+          <Route path="/techcomponent/add">
+            <TechComponentAdd />
+          </Route>
+          <Route path="/techcomponent/edit/:id">
+            <TechComponentEdit />
+          </Route>
+          <Route path="/techcomponent/:id">
+            <TechComponentDetail />
+          </Route>
+          <Route path="/">{withAuth(TechComponentList, false)}</Route>
+        </Switch>
+        <div id="modal-root" />
+      </BrowserRouter>
+    </AppProvider>
+    // </UserContext.Provider>
   );
 };
 
