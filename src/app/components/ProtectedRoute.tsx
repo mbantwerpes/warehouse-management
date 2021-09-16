@@ -5,9 +5,11 @@ import { useUserContext } from '../context/UserContext';
 const ProtectedRoute = ({
   ComponentToProtect,
   path,
+  checkAdmin = false,
 }: {
   ComponentToProtect: React.ElementType;
   path: string;
+  checkAdmin?: boolean;
 }): JSX.Element => {
   const { role } = useUserContext();
 
@@ -16,7 +18,17 @@ const ProtectedRoute = ({
       path={path}
       render={(props) => {
         if (role) {
-          return <ComponentToProtect {...props} />;
+          if (checkAdmin && role !== 'admin') {
+            return (
+              <Redirect
+                to={{
+                  pathname: '/login',
+                }}
+              />
+            );
+          } else {
+            return <ComponentToProtect {...props} />;
+          }
         } else {
           return (
             <Redirect

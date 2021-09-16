@@ -21,27 +21,34 @@ const App = (): JSX.Element => {
       <BrowserRouter>
         <Switch>
           <Route path="/login" component={Login} />
-          <ProtectedRoute ComponentToProtect={UserEdit} path="/user/edit/:id" />
-
-          <ProtectedRoute ComponentToProtect={UserAdd} path="/user/add" />
-
+          <ProtectedRoute
+            ComponentToProtect={UserEdit}
+            path="/user/edit/:id"
+            checkAdmin={true}
+          />
+          <ProtectedRoute
+            ComponentToProtect={UserAdd}
+            path="/user/add"
+            checkAdmin={true}
+          />
           <ProtectedRoute ComponentToProtect={UserDetail} path="/user/:id" />
-
-          <ProtectedRoute ComponentToProtect={UserList} path="/user" />
-
+          <ProtectedRoute
+            ComponentToProtect={UserList}
+            path="/user"
+            checkAdmin={false}
+          />
           <ProtectedRoute ComponentToProtect={OrderDetail} path="/order/:id" />
-
           <ProtectedRoute ComponentToProtect={OrderList} path="/order" />
-
           <ProtectedRoute ComponentToProtect={Cart} path="/cart" />
-
           <ProtectedRoute
             path="/techcomponent/add"
             ComponentToProtect={TechComponentAdd}
+            checkAdmin={true}
           />
           <ProtectedRoute
             path="/techcomponent/edit/:id"
             ComponentToProtect={TechComponentEdit}
+            checkAdmin={true}
           />
           <ProtectedRoute
             path="/techcomponent/:id"
