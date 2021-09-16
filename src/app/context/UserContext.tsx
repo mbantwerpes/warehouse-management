@@ -1,30 +1,51 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export type GlobalUser = {
   id: string;
   role: string;
 };
 
-export const UserContext = createContext<GlobalUser>({
+type ContextProps = {
+  children: React.ReactNode;
+};
+
+const UserContext = createContext<GlobalUser>({
   id: '',
   role: '',
 });
 
 export const useUserContext = (): GlobalUser => useContext(UserContext);
 
-const fetchCheckAuth = async (): Promise<{ id: string; role: string }> => {
-  const response = await fetch('api/auth/checkToken');
+export const AppProvider = (props: ContextProps): JSX.Element => {
+  const [isLoading, setIsLoading] = useState(true);
 
-  if (response.status === 200) {
-    const data = await response.json();
-    return { id: data.id, role: data.role };
+  const [data, setData] = useState<GlobalUser>({ id: '', role: '' });
+
+  const fetchCheckAuth = async (): Promise<{ id: string; role: string }> => {
+    const response = await fetch('api/auth/checkToken');
+
+    if (response.status === 200) {
+      const data = await response.json();
+      return { id: data.id, role: data.role };
+    }
+    return { id: '', role: '' };
+  };
+
+  useEffect(() => {
+    const testFunc = async () => {
+      setData(await fetchCheckAuth());
+      setIsLoading(false);
+    };
+    testFunc();
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading</p>;
+  } else {
+    return (
+      <UserContext.Provider value={{ ...data }}>
+        {props.children}
+      </UserContext.Provider>
+    );
   }
-  return { id: '', role: '' };
 };
-const data = await fetchCheckAuth();
-
-export const AppProvider = (props: any): JSX.Element => (
-  <UserContext.Provider value={{ ...data }}>
-    {props.children}
-  </UserContext.Provider>
-);
