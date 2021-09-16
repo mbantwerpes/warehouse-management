@@ -20,40 +20,33 @@ const App = (): JSX.Element => {
     <AppProvider>
       <BrowserRouter>
         <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/user/edit/:id">
-            <UserEdit />
-          </Route>
-          <Route path="/user/add">
-            <UserAdd />
-          </Route>
-          <Route path="/user/:id">
-            <UserDetail />
-          </Route>
-          <Route path="/user">
-            <UserList />
-          </Route>
-          <Route path="/order/:id">
-            <OrderDetail />
-          </Route>
-          <Route path="/order">
-            <OrderList />
-          </Route>
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route path="/techcomponent/add">
-            <TechComponentAdd />
-          </Route>
-          <Route path="/techcomponent/edit/:id">
-            <TechComponentEdit />
-          </Route>
-          {/* <Route path="/techcomponent/:id">
-            {withAuth(TechComponentDetail)}
-          </Route>
-          <Route path="/">{withAuth(TechComponentList)}</Route> */}
+          <ProtectedRoute ComponentToProtect={Login} path="/login" />
+          <ProtectedRoute ComponentToProtect={UserEdit} path="/user/edit/:id" />
+
+          <ProtectedRoute ComponentToProtect={UserAdd} path="/user/add" />
+
+          <ProtectedRoute ComponentToProtect={UserDetail} path="/user/:id" />
+
+          <ProtectedRoute ComponentToProtect={UserList} path="/user" />
+
+          <ProtectedRoute ComponentToProtect={OrderDetail} path="/order/:id" />
+
+          <ProtectedRoute ComponentToProtect={OrderList} path="/order" />
+
+          <ProtectedRoute ComponentToProtect={Cart} path="/cart" />
+
+          <ProtectedRoute
+            path="/techcomponent/add"
+            ComponentToProtect={TechComponentAdd}
+          />
+          <ProtectedRoute
+            path="/techcomponent/edit/:id"
+            ComponentToProtect={TechComponentEdit}
+          />
+          <ProtectedRoute
+            path="/techcomponent/:id"
+            ComponentToProtect={TechComponentDetail}
+          />
           <ProtectedRoute path="/" ComponentToProtect={TechComponentList} />
         </Switch>
         <div id="modal-root" />
