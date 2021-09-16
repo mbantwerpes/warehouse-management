@@ -1,3 +1,4 @@
+import { forceReRender } from '@storybook/react';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm';
