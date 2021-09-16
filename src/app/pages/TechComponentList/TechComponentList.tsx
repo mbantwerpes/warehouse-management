@@ -11,13 +11,7 @@ import { useHistory } from 'react-router-dom';
 import useTechComponents from '../../hooks/useTechComponents';
 import { useUserContext } from '../../context/UserContext';
 
-export type TechComponentListProps = {
-  isAdmin?: boolean;
-};
-
-const TechComponentList = ({
-  isAdmin = false,
-}: TechComponentListProps): JSX.Element => {
+const TechComponentList = (): JSX.Element => {
   const { role } = useUserContext();
 
   const [searchValue, setSearchValue] = useState<string>('');
