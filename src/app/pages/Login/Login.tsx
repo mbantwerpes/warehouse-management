@@ -37,7 +37,7 @@ const Login = (): JSX.Element => {
         onSubmit={handleSubmit}
         setEmailValue={setEmailValue}
         setPasswordValue={setPasswordValue}
-      ></LoginForm>
+      />
     </div>
   );
 };
