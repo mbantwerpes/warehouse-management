@@ -2,6 +2,7 @@ import type { User } from '../types/types';
 import { ObjectId } from 'mongodb';
 import { getUserCollection } from '../database';
 import { getCurrentDate } from '../utils/time';
+import bcrypt from 'bcrypt';
 
 export async function getUsers(): Promise<User[]> {
   const userCollection = getUserCollection();
@@ -25,9 +26,15 @@ export async function getUserByEmailAndPassword(
   password: string
 ): Promise<User> {
   const userCollection = getUserCollection();
-  const user = await userCollection.findOne({ email, password });
+  const user = await userCollection.findOne({ email });
 
   if (!user) {
+    throw new Error(`Either email or password was not correct`);
+  }
+
+  const passwordCorrect = await bcrypt.compare(password, user.password);
+
+  if (!passwordCorrect) {
     throw new Error(`Either email or password was not correct`);
   }
 
@@ -48,6 +55,11 @@ export const addUser = async (user: User): Promise<ObjectId> => {
   user.crAt = getCurrentDate();
   user.leAt = getCurrentDate();
   user.isDeleted = false;
+
+  const saltRounds = 10;
+  const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+
+  user.password = hashedPassword;
 
   const result = await userCollection.insertOne(user);
 
