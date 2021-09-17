@@ -18,6 +18,7 @@ if (!process.env.MONGO_DB_URL) {
 
 app.use(express.json());
 app.use(cookieParser());
+app.set('trust proxy', 1);
 
 app.use('/api/techcomponent', techcomponent);
 app.use('/api/user', user);

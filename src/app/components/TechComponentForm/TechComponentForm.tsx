@@ -1,102 +1,118 @@
 import React from 'react';
-import Button from '../Button/Button';
-import Input from '../Input/Input';
-import Textarea from '../Textarea/Textarea';
-import Typography from '../Typography/Typography';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import styles from './TechComponentForm.module.css';
+import Button from '../Button/Button';
+import Input from '../FormikInput/FormikInput';
+import Textarea from '../FormikTextarea/FormikTextarea';
+import { TechComponentForFrontend } from '../../../lib/types/types';
 
-export type TechComponentFormProps = {
-  isEdit?: boolean;
-  titleValue: string;
-  artNrValue: string;
-  locationValue: string;
-  descriptionValue: string;
-  amountValue: string;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  setTitleValue: (title: string) => void;
-  setArtNrValue: (title: string) => void;
-  setLocationValue: (title: string) => void;
-  setDescriptionValue: (title: string) => void;
-  setAmountValue: (title: string) => void;
+type TechComponentFormProps = {
+  handleSubmit: (values: TechComponentForFrontend) => void;
+  titleValue?: string;
+  artNrValue?: string;
+  locationValue?: string;
+  descriptionValue?: string;
+  amountValue?: number;
 };
 
 const TechComponentForm = ({
-  isEdit = false,
-  titleValue,
-  artNrValue,
-  locationValue,
-  descriptionValue,
-  amountValue,
-  onSubmit,
-  setTitleValue,
-  setArtNrValue,
-  setLocationValue,
-  setDescriptionValue,
-  setAmountValue,
+  handleSubmit,
+  titleValue = '',
+  artNrValue = '',
+  locationValue = '',
+  descriptionValue = '',
+  amountValue = 1,
 }: TechComponentFormProps): JSX.Element => {
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
-      <div className={styles.formContent}>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Name
-          </Typography>
+    <div className={styles.container}>
+      <Formik
+        initialValues={{
+          title: titleValue,
+          artNr: artNrValue,
+          location: locationValue,
+          description: descriptionValue,
+          amount: amountValue,
+        }}
+        validationSchema={Yup.object({
+          title: Yup.string()
+            .max(50, 'Name kann nicht länger als 50 Zeichen sein')
+            .required('Bitte gib einen Namen an'),
+          artNr: Yup.string().required('Bitte gib eine Artikelnummer an'),
+          location: Yup.string()
+            .max(50, 'Ort kann nicht länger als 50 Zeichen sein')
+            .required('Bitte gib einen Ort an'),
+          description: Yup.string().max(
+            250,
+            'Beschreibung kann nicht länger als 250 Zeichen sein'
+          ),
+          amount: Yup.number()
+            .min(1, 'Menge muss mehr als 0 sein')
+            .max(10000, 'Menge muss weniger als 10000 sein')
+            .required('Bitte gib eine Menge an'),
+        })}
+        onSubmit={(
+          values: TechComponentForFrontend,
+          { setSubmitting, resetForm }
+        ) => {
+          setTimeout(async () => {
+            handleSubmit(values);
+
+            resetForm();
+            setSubmitting(false);
+          }, 400);
+        }}
+      >
+        <Form className={styles.form}>
           <Input
-            value={titleValue}
+            id="title"
+            name="title"
+            label="Name"
+            type="text"
             placeholder="Name"
-            type="text"
-            onChange={(e) => setTitleValue(e.target.value)}
+            required={true}
           />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Artikelnummer
-          </Typography>
+
           <Input
-            value={artNrValue}
+            id="artNr"
+            name="artNr"
+            label="Artikelnummer"
+            type="text"
             placeholder="Artikelnummer"
-            type="text"
-            onChange={(e) => setArtNrValue(e.target.value)}
+            required={true}
           />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Ortsangabe
-          </Typography>
+
           <Input
-            value={locationValue}
+            id="location"
+            name="location"
+            label="Ortsangabe"
+            type="text"
             placeholder="Ortsangabe"
-            type="text"
-            onChange={(e) => setLocationValue(e.target.value)}
+            required={true}
           />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Beschreibung
-          </Typography>
+
           <Textarea
-            value={descriptionValue}
+            id="description"
+            name="description"
+            label="Beschreibung"
             placeholder="Beschreibung..."
-            onChange={(e) => setDescriptionValue(e.target.value)}
-            className={styles.textarea}
+            required={true}
           />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Anzahl
-          </Typography>
+
           <Input
-            value={amountValue}
-            placeholder="0"
+            id="amount"
+            name="amount"
+            label="Anzahl"
             type="number"
-            onChange={(e) => setAmountValue(e.target.value)}
+            required={true}
           />
-        </label>
-      </div>
-      <Button type="primary" size="l" className={styles.submitButton}>
-        {isEdit ? 'Änderungen speichern' : 'Bauteil anlegen'}
-      </Button>
-    </form>
+
+          <Button type="primary" size="l" isSubmit={true}>
+            Bauteil anlegen
+          </Button>
+        </Form>
+      </Formik>
+    </div>
   );
 };
 

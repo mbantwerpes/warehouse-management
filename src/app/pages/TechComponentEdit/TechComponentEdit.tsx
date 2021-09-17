@@ -4,58 +4,48 @@ import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentEdit.module.css';
 import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
-import { TechComponentForFrontend } from '../../../lib/types/types';
-import TechComponentForm from '../../components/TechComponentForm/TechComponentForm';
 import { useParams } from 'react-router-dom';
 import useTechComponent from '../../hooks/useTechComponent';
+import TechComponentForm from '../../components/TechComponentForm/TechComponentForm';
+import { TechComponentForFrontend } from '../../../lib/types/types';
 
 const TechComponentEdit = (): JSX.Element => {
   const history = useHistory();
 
   const { id }: { id: string } = useParams();
 
+  const [isLoading, setIsLoading] = useState(true);
   const [titleValue, setTitleValue] = useState<string>('');
   const [artNrValue, setArtNrValue] = useState<string>('');
   const [locationValue, setLocationValue] = useState<string>('');
   const [descriptionValue, setDescriptionValue] = useState<string>('');
-  const [amountValue, setAmountValue] = useState<string>('');
+  const [amountValue, setAmountValue] = useState<number>();
 
   // Fetch techComponent and set state values
   const { techComponent } = useTechComponent(id);
   useEffect(() => {
+    if (techComponent !== null) setIsLoading(false);
     setTitleValue(techComponent?.title || '');
     setArtNrValue(techComponent?.artNr || '');
     setLocationValue(techComponent?.location || '');
     setDescriptionValue(techComponent?.description || '');
-    setAmountValue(techComponent?.amount.toString() || '');
+    setAmountValue(techComponent?.amount || 0);
   }, [techComponent]);
 
-  const handleBackButtonClick = () => {
+  const redirectToTechComponentDetail = () => {
     history.push(`/techcomponent/${id}`);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const postData: TechComponentForFrontend = {
-      title: titleValue,
-      description: descriptionValue,
-      location: locationValue,
-      amount: Number(amountValue),
-      artNr: artNrValue,
-    };
-
-    const response = await fetch(`/api/techcomponent/${id}`, {
+  const handleSubmit = async (values: TechComponentForFrontend) => {
+    await fetch(`/api/techcomponent/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(postData),
+      body: JSON.stringify(values),
     });
 
-    console.log(await response.json());
-
-    history.push(`/techcomponent/${id}`);
+    redirectToTechComponentDetail();
   };
 
   return (
@@ -63,7 +53,7 @@ const TechComponentEdit = (): JSX.Element => {
       <Button
         type="secondary"
         size="none"
-        onClick={handleBackButtonClick}
+        onClick={redirectToTechComponentDetail}
         className={styles.backButton}
       >
         <MdKeyboardArrowLeft size={32} />
@@ -71,20 +61,16 @@ const TechComponentEdit = (): JSX.Element => {
       <Typography type="header" size="xl">
         Bauteil bearbeiten.
       </Typography>
-      <TechComponentForm
-        isEdit={true}
-        titleValue={titleValue}
-        artNrValue={artNrValue}
-        locationValue={locationValue}
-        descriptionValue={descriptionValue}
-        amountValue={amountValue}
-        onSubmit={handleSubmit}
-        setTitleValue={setTitleValue}
-        setArtNrValue={setArtNrValue}
-        setLocationValue={setLocationValue}
-        setDescriptionValue={setDescriptionValue}
-        setAmountValue={setAmountValue}
-      ></TechComponentForm>
+      {!isLoading && (
+        <TechComponentForm
+          handleSubmit={handleSubmit}
+          titleValue={titleValue}
+          artNrValue={artNrValue}
+          locationValue={locationValue}
+          descriptionValue={descriptionValue}
+          amountValue={amountValue}
+        />
+      )}
     </div>
   );
 };

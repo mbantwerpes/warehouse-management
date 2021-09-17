@@ -1,0 +1,25 @@
+.textarea {
+  border-style: none;
+  border-radius: 5px;
+  padding: 0.75rem 0.5rem;
+  height: 5rem;
+  width: 100%;
+  color: var(--color-text);
+  background-color: var(--color-main-light);
+  font-family: var(--font-family-primary);
+  resize: none;
+}
+
+.textareaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+.textarea::placeholder {
+  color: var(--color-text);
+}
