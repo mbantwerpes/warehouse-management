@@ -8,6 +8,7 @@ export type ButtonProps = {
   size: 'm' | 'l' | 'none';
   onClick?: () => void;
   className?: string;
+  isSubmit?: boolean;
 };
 
 const Button = ({
@@ -16,6 +17,7 @@ const Button = ({
   size,
   onClick,
   className,
+  isSubmit = false,
 }: ButtonProps): JSX.Element => {
   const typeMap = {
     primary: styles.primary,
@@ -33,6 +35,7 @@ const Button = ({
     <button
       onClick={onClick}
       className={`${styles.button} ${typeMap[type]} ${sizeMap[size]} ${className}`}
+      {...(isSubmit && { type: 'submit' })}
     >
       {children}
     </button>
