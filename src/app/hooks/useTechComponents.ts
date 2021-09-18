@@ -3,7 +3,7 @@ import axios from 'axios';
 import { TechComponent } from '../../lib/types/types';
 import { UseQueryResult } from 'react-query';
 
-export default function useReactQueryTechComponents(
+export default function useTechComponents(
   searchValue?: string,
   ids?: string[]
 ): UseQueryResult<TechComponent[], Error> {
