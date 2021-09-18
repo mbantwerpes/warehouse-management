@@ -113,6 +113,7 @@ const UserForm = ({
               name="grpNr"
               label="Gruppennummer"
               type="number"
+              placeholder="Gruppennummer"
             />
 
             <Input
