@@ -20,7 +20,7 @@ Add.args = {
   nameValue: '',
   passwordValue: '',
   grpNameValue: '',
-  grpNrValue: '',
+  grpNrValue: 0,
   matrNumberValue: '',
   emailValue: '',
   telephoneValue: '',
