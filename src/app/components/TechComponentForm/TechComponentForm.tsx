@@ -66,49 +66,50 @@ const TechComponentForm = ({
         }}
       >
         <Form className={styles.form}>
-          <Input
-            id="title"
-            name="title"
-            label="Name"
-            type="text"
-            placeholder="Name"
-            required={true}
-          />
+          <div className={styles.fields}>
+            <Input
+              id="title"
+              name="title"
+              label="Name"
+              type="text"
+              placeholder="Name"
+              required={true}
+            />
 
-          <Input
-            id="artNr"
-            name="artNr"
-            label="Artikelnummer"
-            type="text"
-            placeholder="Artikelnummer"
-            required={true}
-          />
+            <Input
+              id="artNr"
+              name="artNr"
+              label="Artikelnummer"
+              type="text"
+              placeholder="Artikelnummer"
+              required={true}
+            />
 
-          <Input
-            id="location"
-            name="location"
-            label="Ortsangabe"
-            type="text"
-            placeholder="Ortsangabe"
-            required={true}
-          />
+            <Input
+              id="location"
+              name="location"
+              label="Ortsangabe"
+              type="text"
+              placeholder="Ortsangabe"
+              required={true}
+            />
 
-          <Textarea
-            id="description"
-            name="description"
-            label="Beschreibung"
-            placeholder="Beschreibung..."
-            required={true}
-          />
+            <Textarea
+              id="description"
+              name="description"
+              label="Beschreibung"
+              placeholder="Beschreibung..."
+              required={true}
+            />
 
-          <Input
-            id="amount"
-            name="amount"
-            label="Anzahl"
-            type="number"
-            required={true}
-          />
-
+            <Input
+              id="amount"
+              name="amount"
+              label="Anzahl"
+              type="number"
+              required={true}
+            />
+          </div>
           <Button type="primary" size="l" isSubmit={true}>
             {isEdit ? 'Änderungen speichern' : 'Bauteil anlegen'}
           </Button>
