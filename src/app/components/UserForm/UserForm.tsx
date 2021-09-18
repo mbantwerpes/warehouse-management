@@ -32,6 +32,35 @@ const UserForm = ({
   telephoneValue = '',
   roleValue = 'student',
 }: UserFormProps): JSX.Element => {
+  const validationSchema = Yup.object({
+    name: Yup.string()
+      .max(50, 'Name kann nicht länger als 50 Zeichen sein')
+      .required('Bitte gib einen Namen an'),
+    password: isEdit
+      ? Yup.string()
+      : Yup.string().required('Bitt gib ein Passwort an'),
+    grpName: Yup.string().max(
+      50,
+      'Gruppenname kann nicht länger als 50 Zeichen sein'
+    ),
+    grpNr: Yup.number()
+      .min(1, 'Gruppennummer muss mehr als 0 sein')
+      .max(100000, 'Gruppennummer muss weniger als 100000 sein'),
+    matrNumber: Yup.string()
+      .max(15, 'Matrikelnummer kann nicht länger als 15 Zeichen sein')
+      .required('Bitte gib eine Matrikelnummer an'),
+    email: Yup.string()
+      .email('Email Adresse ist ungültig')
+      .required('Bitte gib eine Email Adresse an'),
+    telephone: Yup.string().max(
+      25,
+      'Telefonnummer kann nicht länger als 25 Zeichen sein'
+    ),
+    role: Yup.string()
+      .oneOf(['student', 'admin'], 'Rolle ist ungültig')
+      .required('Bitte wähl eine Rolle aus'),
+  });
+
   return (
     <div className={styles.container}>
       <Formik
@@ -45,32 +74,7 @@ const UserForm = ({
           telephone: telephoneValue,
           role: roleValue,
         }}
-        validationSchema={Yup.object({
-          name: Yup.string()
-            .max(50, 'Name kann nicht länger als 50 Zeichen sein')
-            .required('Bitte gib einen Namen an'),
-          password: Yup.string().required('Bitte gib ein Passwort an'),
-          grpName: Yup.string().max(
-            50,
-            'Gruppenname kann nicht länger als 50 Zeichen sein'
-          ),
-          grpNr: Yup.number()
-            .min(1, 'Gruppennummer muss mehr als 0 sein')
-            .max(100000, 'Gruppennummer muss weniger als 100000 sein'),
-          matrNumber: Yup.string()
-            .max(15, 'Matrikelnummer kann nicht länger als 15 Zeichen sein')
-            .required('Bitte gib eine Matrikelnummer an'),
-          email: Yup.string()
-            .email('Email Adresse ist ungültig')
-            .required('Bitte gib eine Email Adresse an'),
-          telephone: Yup.string().max(
-            25,
-            'Telefonnummer kann nicht länger als 25 Zeichen sein'
-          ),
-          role: Yup.string()
-            .oneOf(['student', 'admin'], 'Rolle ist ungültig')
-            .required('Bitte wähl eine Rolle aus'),
-        })}
+        validationSchema={validationSchema}
         onSubmit={(values: UserForFrontend, { setSubmitting, resetForm }) => {
           setTimeout(async () => {
             handleSubmit(values);
