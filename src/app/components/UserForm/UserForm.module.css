@@ -1,20 +1,13 @@
-.labelGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.formContent {
   display: grid;
   gap: 1rem;
+  margin-top: 1rem;
+  overflow-y: scroll;
+  height: 100%;
 }
 
-.textarea {
-  height: 6rem;
+.fields {
+  display: grid;
+  gap: 1rem;
+  overflow-y: scroll;
 }

@@ -1,148 +1,164 @@
+import { Form, Formik } from 'formik';
 import React from 'react';
+import * as Yup from 'yup';
+import { UserForFrontend } from '../../../lib/types/types';
 import Button from '../Button/Button';
-import Input from '../Input/Input';
-import Typography from '../Typography/Typography';
+import Input from '../FormikInput/FormikInput';
+import Select from '../Select/Select';
 import styles from './UserForm.module.css';
 
 export type UserFormProps = {
+  handleSubmit: (values: UserForFrontend) => void;
   isEdit?: boolean;
-  nameValue: string;
-  passwordValue: string;
-  grpNameValue: string;
-  grpNrValue: string;
-  matrNumberValue: string;
-  emailValue: string;
-  telephoneValue: string;
-  roleValue: 'admin' | 'student';
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  setNameValue: (name: string) => void;
-  setPasswordValue: (password: string) => void;
-  setGrpNameValue: (grpname: string) => void;
-  setGrpNrValue: (grpNr: string) => void;
-  setMatrNumberValue: (matrNumber: string) => void;
-  setEmailValue: (email: string) => void;
-  setTelephoneValue: (telephone: string) => void;
-  setRoleValue: (role: 'admin' | 'student') => void;
+  nameValue?: string;
+  passwordValue?: string;
+  grpNameValue?: string;
+  grpNrValue?: number;
+  matrNumberValue?: string;
+  emailValue?: string;
+  telephoneValue?: string;
+  roleValue?: 'admin' | 'student';
 };
 
 const UserForm = ({
+  handleSubmit,
   isEdit = false,
-  nameValue,
-  passwordValue,
-  grpNameValue,
-  grpNrValue,
-  matrNumberValue,
-  emailValue,
-  telephoneValue,
-  roleValue,
-  onSubmit,
-  setNameValue,
-  setPasswordValue,
-  setGrpNameValue,
-  setGrpNrValue,
-  setMatrNumberValue,
-  setEmailValue,
-  setTelephoneValue,
-  setRoleValue,
+  nameValue = '',
+  passwordValue = '',
+  grpNameValue = '',
+  grpNrValue = 0,
+  matrNumberValue = '',
+  emailValue = '',
+  telephoneValue = '',
+  roleValue = 'student',
 }: UserFormProps): JSX.Element => {
+  const validationSchema = Yup.object({
+    name: Yup.string()
+      .max(50, 'Name kann nicht länger als 50 Zeichen sein')
+      .required('Bitte gib einen Namen an'),
+    password: isEdit
+      ? Yup.string()
+      : Yup.string().required('Bitt gib ein Passwort an'),
+    grpName: Yup.string().max(
+      50,
+      'Gruppenname kann nicht länger als 50 Zeichen sein'
+    ),
+    grpNr: Yup.number()
+      .min(1, 'Gruppennummer muss mehr als 0 sein')
+      .max(100000, 'Gruppennummer muss weniger als 100000 sein'),
+    matrNumber: Yup.string()
+      .max(15, 'Matrikelnummer kann nicht länger als 15 Zeichen sein')
+      .required('Bitte gib eine Matrikelnummer an'),
+    email: Yup.string()
+      .email('Email Adresse ist ungültig')
+      .required('Bitte gib eine Email Adresse an'),
+    telephone: Yup.string().max(
+      25,
+      'Telefonnummer kann nicht länger als 25 Zeichen sein'
+    ),
+    role: Yup.string()
+      .oneOf(['student', 'admin'], 'Rolle ist ungültig')
+      .required('Bitte wähl eine Rolle aus'),
+  });
+
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
-      <div className={styles.formContent}>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Name
-          </Typography>
-          <Input
-            value={nameValue}
-            placeholder="Name"
-            type="text"
-            onChange={(e) => setNameValue(e.target.value)}
-          />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Passwort
-          </Typography>
-          <Input
-            value={passwordValue}
-            placeholder="Password"
-            type="password"
-            onChange={(e) => setPasswordValue(e.target.value)}
-          />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Gruppenname
-          </Typography>
-          <Input
-            value={grpNameValue}
-            placeholder="Gruppenname"
-            type="text"
-            onChange={(e) => setGrpNameValue(e.target.value)}
-          />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Grp
-          </Typography>
-          <Input
-            value={grpNrValue}
-            placeholder="0"
-            type="number"
-            onChange={(e) => setGrpNrValue(e.target.value)}
-          />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Matrikelnummer
-          </Typography>
-          <Input
-            value={matrNumberValue}
-            placeholder="Matrikelnummer"
-            type="text"
-            onChange={(e) => setMatrNumberValue(e.target.value)}
-          />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Email
-          </Typography>
-          <Input
-            value={emailValue}
-            placeholder="Email"
-            type="email"
-            onChange={(e) => setEmailValue(e.target.value)}
-          />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Telefonnummer
-          </Typography>
-          <Input
-            value={telephoneValue}
-            placeholder="Telefonnummer"
-            type="text"
-            onChange={(e) => setTelephoneValue(e.target.value)}
-          />
-        </label>
-        <label className={styles.labelGroup}>
-          <Typography type="header" size="s">
-            Rolle
-          </Typography>
-          <Input
-            value={roleValue}
-            placeholder="Rolle"
-            type="text"
-            onChange={(e) =>
-              setRoleValue(e.target.value as 'admin' | 'student')
-            }
-          />
-        </label>
-      </div>
-      <Button type="primary" size="l" className={styles.submitButton}>
-        {isEdit ? 'Änderungen speichern' : 'Nutzer anlegen'}
-      </Button>
-    </form>
+    <div className={styles.container}>
+      <Formik
+        initialValues={{
+          name: nameValue,
+          password: passwordValue,
+          grpName: grpNameValue,
+          grpNr: grpNrValue,
+          matrNumber: matrNumberValue,
+          email: emailValue,
+          telephone: telephoneValue,
+          role: roleValue,
+        }}
+        validationSchema={validationSchema}
+        onSubmit={(values: UserForFrontend, { setSubmitting, resetForm }) => {
+          setTimeout(async () => {
+            handleSubmit(values);
+
+            resetForm();
+            setSubmitting(false);
+          }, 400);
+        }}
+      >
+        <Form className={styles.form}>
+          <div className={styles.fields}>
+            <Input
+              id="name"
+              name="name"
+              label="Name"
+              type="text"
+              placeholder="Name"
+              required={true}
+            />
+
+            <Input
+              id="password"
+              name="password"
+              label="Passwort"
+              type="text"
+              placeholder="Passwort"
+              required={true}
+            />
+
+            <Input
+              id="grpName"
+              name="grpName"
+              label="Gruppenname"
+              type="text"
+              placeholder="Gruppenname"
+            />
+
+            <Input
+              id="grpNr"
+              name="grpNr"
+              label="Gruppennummer"
+              type="number"
+              placeholder="Gruppennummer"
+            />
+
+            <Input
+              id="matrNumber"
+              name="matrNumber"
+              label="Matrikelnummer"
+              type="text"
+              placeholder="Matrikelnummer"
+              required={true}
+            />
+
+            <Input
+              id="email"
+              name="email"
+              label="Email"
+              type="email"
+              placeholder="Email"
+              required={true}
+            />
+
+            <Input
+              id="telephone"
+              name="telephone"
+              label="Telefonnummer"
+              type="text"
+              placeholder="Telefonnummer"
+            />
+
+            <Select id="role" name="role" label="Rolle" required={true}>
+              <option value="">Rolle auswählen</option>
+              <option value="student">Student</option>
+              <option value="admin">Admin</option>
+            </Select>
+          </div>
+
+          <Button type="primary" size="l" isSubmit={true}>
+            {isEdit ? 'Änderungen speichern' : 'Nutzer anlegen'}
+          </Button>
+        </Form>
+      </Formik>
+    </div>
   );
 };
 

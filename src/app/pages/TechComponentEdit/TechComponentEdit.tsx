@@ -63,6 +63,7 @@ const TechComponentEdit = (): JSX.Element => {
       </Typography>
       {!isLoading && (
         <TechComponentForm
+          isEdit={true}
           handleSubmit={handleSubmit}
           titleValue={titleValue}
           artNrValue={artNrValue}

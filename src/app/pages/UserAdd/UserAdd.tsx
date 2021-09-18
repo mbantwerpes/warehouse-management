@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
 import Typography from '../../components/Typography/Typography';
 import styles from './UserAdd.module.css';
@@ -8,41 +8,19 @@ import { UserForFrontend } from '../../../lib/types/types';
 import UserForm from '../../components/UserForm/UserForm';
 
 const UserAdd = (): JSX.Element => {
-  const [nameValue, setNameValue] = useState<string>('');
-  const [passwordValue, setPasswordValue] = useState<string>('');
-  const [grpNameValue, setGrpNameValue] = useState<string>('');
-  const [grpNrValue, setGrpNrValue] = useState<string>('');
-  const [matrNumberValue, setMatrNumberValue] = useState<string>('');
-  const [emailValue, setEmailValue] = useState<string>('');
-  const [telephoneValue, setTelephoneValue] = useState<string>('');
-  const [roleValue, setRoleValue] = useState<'admin' | 'student'>('student');
-
   const history = useHistory();
 
   const handleBackButtonClick = () => {
     history.push('/user');
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const postData: UserForFrontend = {
-      name: nameValue,
-      password: passwordValue,
-      grpName: grpNameValue,
-      grpNr: Number(grpNrValue),
-      matrNumber: matrNumberValue,
-      email: emailValue,
-      telephone: telephoneValue,
-      role: roleValue,
-    };
-
+  const handleSubmit = async (values: UserForFrontend) => {
     const response = await fetch('/api/user', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(postData),
+      body: JSON.stringify(values),
     });
 
     console.log(await response.json());
@@ -63,25 +41,7 @@ const UserAdd = (): JSX.Element => {
       <Typography type="header" size="xl">
         Nutzer anlegen.
       </Typography>
-      <UserForm
-        emailValue={emailValue}
-        grpNameValue={grpNameValue}
-        grpNrValue={grpNrValue}
-        matrNumberValue={matrNumberValue}
-        nameValue={nameValue}
-        passwordValue={passwordValue}
-        roleValue={roleValue}
-        telephoneValue={telephoneValue}
-        onSubmit={handleSubmit}
-        setEmailValue={setEmailValue}
-        setGrpNameValue={setGrpNameValue}
-        setGrpNrValue={setGrpNrValue}
-        setMatrNumberValue={setMatrNumberValue}
-        setNameValue={setNameValue}
-        setPasswordValue={setPasswordValue}
-        setRoleValue={setRoleValue}
-        setTelephoneValue={setTelephoneValue}
-      />
+      <UserForm handleSubmit={handleSubmit} />
     </div>
   );
 };

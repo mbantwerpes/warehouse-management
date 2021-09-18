@@ -119,7 +119,7 @@ const UserDetail = (): JSX.Element => {
         <ConfirmActionModal
           onClose={hide}
           onConfirmAction={handleDeleteUser}
-          content="Bist du dir sicher, dass du das Bauteil löschen möchtest?"
+          content="Bist du dir sicher, dass du den Nutzer löschen möchtest?"
           confirmButtonText="Löschen"
         />
       </RenderDeleteModal>

@@ -1,14 +1,14 @@
+import { FieldHookConfig, useField } from 'formik';
 import React from 'react';
-import { useField, FieldHookConfig } from 'formik';
-import styles from './FormikInput.module.css';
 import Typography from '../Typography/Typography';
+import styles from './Select.module.css';
 
-interface ICustomFieldProps {
+type ICustomFieldProps = {
   label?: string;
   required?: boolean;
-}
+};
 
-const Input: React.FC<FieldHookConfig<string> & ICustomFieldProps> = ({
+const Select: React.FC<FieldHookConfig<string> & ICustomFieldProps> = ({
   label,
   required = false,
   ...props
@@ -24,14 +24,9 @@ const Input: React.FC<FieldHookConfig<string> & ICustomFieldProps> = ({
           </Typography>
         </label>
       )}
-      <input
-        {...field}
-        className={styles.input}
-        id={props.id}
-        name={props.name}
-        placeholder={props.placeholder}
-        type={props.type}
-      />
+      <select {...field} name={props.name} className={styles.select}>
+        {props.children}
+      </select>
       {meta.touched && meta.error ? (
         // TODO MAKE THIS TO OWN COMPONENT AND USE IT IN INPUT, TEXTAREA AND SELECT
         <Typography type="text" size="s" className={styles.errorMessage}>
@@ -42,4 +37,4 @@ const Input: React.FC<FieldHookConfig<string> & ICustomFieldProps> = ({
   );
 };
 
-export default Input;
+export default Select;

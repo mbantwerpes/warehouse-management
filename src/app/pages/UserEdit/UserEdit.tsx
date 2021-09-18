@@ -10,26 +10,27 @@ import { useParams } from 'react-router-dom';
 import useUser from '../../hooks/useUser';
 
 const UserEdit = (): JSX.Element => {
+  const history = useHistory();
+
+  const { id }: { id: string } = useParams();
+
+  const [isLoading, setIsLoading] = useState(true);
+
   const [nameValue, setNameValue] = useState<string>('');
-  const [passwordValue, setPasswordValue] = useState<string>('');
   const [grpNameValue, setGrpNameValue] = useState<string>('');
-  const [grpNrValue, setGrpNrValue] = useState<string>('');
+  const [grpNrValue, setGrpNrValue] = useState<number>();
   const [matrNumberValue, setMatrNumberValue] = useState<string>('');
   const [emailValue, setEmailValue] = useState<string>('');
   const [telephoneValue, setTelephoneValue] = useState<string>('');
   const [roleValue, setRoleValue] = useState<'admin' | 'student'>('student');
 
-  const history = useHistory();
-
-  const { id }: { id: string } = useParams();
-
   // Fetch user and set state values
   const { user } = useUser(id);
   useEffect(() => {
+    if (user !== null) setIsLoading(false);
     setNameValue(user?.name || '');
-    setPasswordValue(user?.password || '');
     setGrpNameValue(user?.grpName || '');
-    setGrpNrValue(user?.grpNr?.toString() || '');
+    setGrpNrValue(user?.grpNr || 0);
     setMatrNumberValue(user?.matrNumber || '');
     setEmailValue(user?.email || '');
     setTelephoneValue(user?.telephone || '');
@@ -37,29 +38,16 @@ const UserEdit = (): JSX.Element => {
   }, [user]);
 
   const handleBackButtonClick = () => {
-    history.push('/user');
+    history.push(`/user/${id}`);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const postData: UserForFrontend = {
-      name: nameValue,
-      password: passwordValue,
-      grpName: grpNameValue,
-      grpNr: Number(grpNrValue),
-      matrNumber: matrNumberValue,
-      email: emailValue,
-      telephone: telephoneValue,
-      role: roleValue,
-    };
-
+  const handleSubmit = async (values: UserForFrontend) => {
     const response = await fetch(`/api/user/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(postData),
+      body: JSON.stringify(values),
     });
 
     console.log(await response.json());
@@ -80,26 +68,19 @@ const UserEdit = (): JSX.Element => {
       <Typography type="header" size="xl">
         Nutzer bearbeiten.
       </Typography>
-      <UserForm
-        emailValue={emailValue}
-        grpNameValue={grpNameValue}
-        grpNrValue={grpNrValue}
-        matrNumberValue={matrNumberValue}
-        nameValue={nameValue}
-        passwordValue={passwordValue}
-        roleValue={roleValue}
-        telephoneValue={telephoneValue}
-        onSubmit={handleSubmit}
-        setEmailValue={setEmailValue}
-        setGrpNameValue={setGrpNameValue}
-        setGrpNrValue={setGrpNrValue}
-        setMatrNumberValue={setMatrNumberValue}
-        setNameValue={setNameValue}
-        setPasswordValue={setPasswordValue}
-        setRoleValue={setRoleValue}
-        setTelephoneValue={setTelephoneValue}
-        isEdit={true}
-      />
+      {!isLoading && (
+        <UserForm
+          handleSubmit={handleSubmit}
+          isEdit={true}
+          emailValue={emailValue}
+          grpNameValue={grpNameValue}
+          grpNrValue={grpNrValue}
+          matrNumberValue={matrNumberValue}
+          nameValue={nameValue}
+          roleValue={roleValue}
+          telephoneValue={telephoneValue}
+        />
+      )}
     </div>
   );
 };
