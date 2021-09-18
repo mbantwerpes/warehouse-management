@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FloatingActionButton from '../../components/FloatinActionButton/FloatingActionButton';
+import FloatingActionButton from '../../components/FloatingActionButton/FloatingActionButton';
 import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentList.module.css';
 import { MdShoppingCart, MdSearch, MdAdd } from 'react-icons/md';
