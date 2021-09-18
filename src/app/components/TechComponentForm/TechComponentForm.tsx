@@ -8,6 +8,7 @@ import Textarea from '../FormikTextarea/FormikTextarea';
 import { TechComponentForFrontend } from '../../../lib/types/types';
 
 type TechComponentFormProps = {
+  isEdit?: boolean;
   handleSubmit: (values: TechComponentForFrontend) => void;
   titleValue?: string;
   artNrValue?: string;
@@ -17,6 +18,7 @@ type TechComponentFormProps = {
 };
 
 const TechComponentForm = ({
+  isEdit = false,
   handleSubmit,
   titleValue = '',
   artNrValue = '',
@@ -108,7 +110,7 @@ const TechComponentForm = ({
           />
 
           <Button type="primary" size="l" isSubmit={true}>
-            Bauteil anlegen
+            {isEdit ? 'Änderungen speichern' : 'Bauteil anlegen'}
           </Button>
         </Form>
       </Formik>
