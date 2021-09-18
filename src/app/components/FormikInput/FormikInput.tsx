@@ -33,7 +33,7 @@ const Input: React.FC<FieldHookConfig<string> & ICustomFieldProps> = ({
         type={props.type}
       />
       {meta.touched && meta.error ? (
-        // TODO MAKE THIS TO OWN COMPONENT AND USE IT IN INPUT AND TEXTAREA
+        // TODO MAKE THIS TO OWN COMPONENT AND USE IT IN INPUT, TEXTAREA AND SELECT
         <Typography type="text" size="s" className={styles.errorMessage}>
           {meta.error}
         </Typography>
