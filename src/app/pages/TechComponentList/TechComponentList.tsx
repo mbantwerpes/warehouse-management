@@ -8,8 +8,9 @@ import TechComponentCard from '../../components/TechComponentCard/TechComponentC
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import Navbar from '../../components/Navbar/Navbar';
 import { useHistory } from 'react-router-dom';
-import useTechComponents from '../../hooks/useTechComponents';
 import { useUserContext } from '../../context/UserContext';
+import useTechComponents from '../../hooks/useTechComponents';
+import PulseLoader from 'react-spinners/PulseLoader';
 
 const TechComponentList = (): JSX.Element => {
   const { role } = useUserContext();
@@ -29,7 +30,7 @@ const TechComponentList = (): JSX.Element => {
     history.push(`/techcomponent/${id}`);
   };
 
-  const { techComponents } = useTechComponents(searchValue);
+  const { status, data: techComponents } = useTechComponents(searchValue);
 
   return (
     <div className={styles.layout}>
@@ -59,20 +60,24 @@ const TechComponentList = (): JSX.Element => {
           containerStyling={styles.inputContainer}
         />
         <section className={styles.cardList}>
-          {techComponents?.map((techComponent) => {
-            return (
-              <TechComponentCard
-                key={techComponent._id as string}
-                id={techComponent._id as string}
-                onCardClick={handleCardClick}
-                layout="vertical"
-                title={techComponent.title}
-                description={techComponent.description}
-                amount={techComponent.amount}
-                image={placeholderImage}
-              />
-            );
-          })}
+          {status === 'loading' ? (
+            <PulseLoader loading={true} size={20} color={'#fff'} />
+          ) : (
+            techComponents?.map((techComponent) => {
+              return (
+                <TechComponentCard
+                  key={techComponent._id as string}
+                  id={techComponent._id as string}
+                  onCardClick={handleCardClick}
+                  layout="vertical"
+                  title={techComponent.title}
+                  description={techComponent.description}
+                  amount={techComponent.amount}
+                  image={placeholderImage}
+                />
+              );
+            })
+          )}
         </section>
       </div>
       <Navbar active="home" />

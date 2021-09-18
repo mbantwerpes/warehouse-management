@@ -5,11 +5,11 @@ import Button from '../../components/Button/Button';
 import TechComponentCard from '../../components/TechComponentCard/TechComponentCard';
 import Typography from '../../components/Typography/Typography';
 import useShoppingCart from '../../hooks/useShoppingCart';
-import useTechComponents from '../../hooks/useTechComponents';
 import styles from './Cart.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import { useModal } from '../../hooks/useModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
+import useTechComponents from '../../hooks/useTechComponents';
 
 const Cart = (): JSX.Element => {
   const history = useHistory();
@@ -20,7 +20,8 @@ const Cart = (): JSX.Element => {
   const { cartItems, removeCartItem } = useShoppingCart();
   // TODO check if cartItems contains a value, if not is has to be handled
   const ids: string[] = cartItems.map((cartItem) => cartItem.techComponentId);
-  const { techComponents } = useTechComponents(undefined, ids);
+
+  const { data: techComponents } = useTechComponents(undefined, ids);
 
   const handleReserveClick = async () => {
     const response = await fetch('/api/order', {

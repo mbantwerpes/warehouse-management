@@ -5,11 +5,11 @@ import Button from '../../components/Button/Button';
 import TechComponentCard from '../../components/TechComponentCard/TechComponentCard';
 import Typography from '../../components/Typography/Typography';
 import useOrder from '../../hooks/useOrder';
-import useTechComponents from '../../hooks/useTechComponents';
 import styles from './OrderDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import Input from '../../components/Input/Input';
 import { useUserContext } from '../../context/UserContext';
+import useTechComponents from '../../hooks/useTechComponents';
 
 const OrderDetail = (): JSX.Element => {
   const { role } = useUserContext();
@@ -30,7 +30,7 @@ const OrderDetail = (): JSX.Element => {
     (techComponent) => techComponent.techComponentId
   );
 
-  const { techComponents } = useTechComponents(undefined, ids);
+  const { data: techComponents } = useTechComponents(undefined, ids);
 
   const handleAcceptReservation = async () => {
     const postData = {
