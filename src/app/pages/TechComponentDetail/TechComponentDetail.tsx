@@ -49,6 +49,11 @@ const TechComponentDetail = (): JSX.Element => {
       };
       addCartItem(cardItem);
 
+      toast.info('Erfolgreich hinzugefügt', {
+        theme: 'colored',
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+
       history.push('/cart');
     }
   };

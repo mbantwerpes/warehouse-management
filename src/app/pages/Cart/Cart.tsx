@@ -32,6 +32,15 @@ const Cart = (): JSX.Element => {
     return data;
   };
 
+  const handleDeleteFromCart = (id: string) => {
+    removeCartItem(id);
+
+    toast.info('Bauteil erfolgreich entfernt', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+  };
+
   const addOrderMutation = useMutation(addOrder);
 
   const handleReserveClick = async () => {
@@ -84,7 +93,7 @@ const Cart = (): JSX.Element => {
               title={techComponent.title}
               editable={true}
               clickable={false}
-              onDeleteClick={(id) => removeCartItem(id)}
+              onDeleteClick={handleDeleteFromCart}
             />
           );
         })}
