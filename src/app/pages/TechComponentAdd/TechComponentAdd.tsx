@@ -8,6 +8,7 @@ import TechComponentForm from '../../components/TechComponentForm/TechComponentF
 import { TechComponentForFrontend } from '../../../lib/types/types';
 import { useMutation } from 'react-query';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const TechComponentAdd = (): JSX.Element => {
   const history = useHistory();
@@ -17,14 +18,23 @@ const TechComponentAdd = (): JSX.Element => {
   };
 
   const addTechComponent = async (techComponent: TechComponentForFrontend) => {
-    const { data } = await axios.post(`/api/techcomponent`, techComponent);
-    return data;
+    return await axios.post(`/api/techcomponent`, techComponent);
   };
 
   const addTechComponentMutation = useMutation(addTechComponent);
 
-  const handleSubmit = async (values: TechComponentForFrontend) => {
-    addTechComponentMutation.mutate(values);
+  console.log(addTechComponentMutation.isIdle);
+  console.log(addTechComponentMutation.isLoading);
+  console.log(addTechComponentMutation.isError);
+  console.log(addTechComponentMutation.isSuccess);
+
+  const handleSubmit = async (techComponent: TechComponentForFrontend) => {
+    addTechComponentMutation.mutate(techComponent);
+
+    toast.info('Bauteil erfolgreich angelegt', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     redirectToTechComponentList();
   };

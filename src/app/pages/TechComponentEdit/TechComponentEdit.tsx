@@ -9,6 +9,7 @@ import useTechComponent from '../../hooks/useTechComponent';
 import TechComponentForm from '../../components/TechComponentForm/TechComponentForm';
 import { TechComponentForFrontend } from '../../../lib/types/types';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { useMutation } from 'react-query';
 
 const TechComponentEdit = (): JSX.Element => {
@@ -46,6 +47,11 @@ const TechComponentEdit = (): JSX.Element => {
 
   const handleSubmit = async (techComponent: TechComponentForFrontend) => {
     editTechComponentMutation.mutate(techComponent);
+
+    toast.info('Bauteil erfolgreich geändert', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     redirectToTechComponentDetail();
   };

@@ -8,6 +8,7 @@ import { UserForFrontend } from '../../../lib/types/types';
 import UserForm from '../../components/UserForm/UserForm';
 import axios from 'axios';
 import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 
 const UserAdd = (): JSX.Element => {
   const history = useHistory();
@@ -25,6 +26,11 @@ const UserAdd = (): JSX.Element => {
 
   const handleSubmit = async (user: UserForFrontend) => {
     addUserMutation.mutate(user);
+
+    toast.info('Nutzer erfolgreich angelegt', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     history.push('/user');
   };

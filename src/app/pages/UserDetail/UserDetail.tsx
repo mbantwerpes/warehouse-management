@@ -9,6 +9,7 @@ import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActio
 import useUser from '../../hooks/useUser';
 import axios from 'axios';
 import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 
 const UserDetail = (): JSX.Element => {
   const history = useHistory();
@@ -30,6 +31,11 @@ const UserDetail = (): JSX.Element => {
 
   const handleDeleteUser = async () => {
     deleteUserMutation.mutate();
+
+    toast.info('Nutzer erfolgreich gelöscht', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     hide();
 

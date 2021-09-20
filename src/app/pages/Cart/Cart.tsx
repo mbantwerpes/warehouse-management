@@ -13,6 +13,7 @@ import useTechComponents from '../../hooks/useTechComponents';
 import axios from 'axios';
 import { useMutation } from 'react-query';
 import { TechComponentOrder } from '../../../lib/types/types';
+import { toast } from 'react-toastify';
 
 const Cart = (): JSX.Element => {
   const history = useHistory();
@@ -31,10 +32,24 @@ const Cart = (): JSX.Element => {
     return data;
   };
 
+  const handleDeleteFromCart = (id: string) => {
+    removeCartItem(id);
+
+    toast.info('Bauteil erfolgreich entfernt', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+  };
+
   const addOrderMutation = useMutation(addOrder);
 
   const handleReserveClick = async () => {
     addOrderMutation.mutate(cartItems);
+
+    toast.info('Warenkorb erfolgreich reserviert', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     hide();
 
@@ -78,7 +93,7 @@ const Cart = (): JSX.Element => {
               title={techComponent.title}
               editable={true}
               clickable={false}
-              onDeleteClick={(id) => removeCartItem(id)}
+              onDeleteClick={handleDeleteFromCart}
             />
           );
         })}
