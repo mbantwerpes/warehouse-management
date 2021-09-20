@@ -22,7 +22,7 @@ const TechComponentEdit = (): JSX.Element => {
   const [amountValue, setAmountValue] = useState<number>();
 
   // Fetch techComponent and set state values
-  const { techComponent } = useTechComponent(id);
+  const { data: techComponent } = useTechComponent(id);
   useEffect(() => {
     if (techComponent !== null) setIsLoading(false);
     setTitleValue(techComponent?.title || '');

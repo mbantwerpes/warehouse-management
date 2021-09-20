@@ -1,20 +1,16 @@
+import axios from 'axios';
+import { useQuery, UseQueryResult } from 'react-query';
 import type { TechComponent } from '../../lib/types/types';
-import useFetch from './useFetch';
 
-export default function useTechComponents(id: string): {
-  techComponent: TechComponent | null;
-  techComponentIsLoading: boolean;
-  techComponentErrorMessage: string | null;
-} {
-  const {
-    data: techComponent,
-    isLoading: techComponentIsLoading,
-    errorMessage: techComponentErrorMessage,
-  } = useFetch<TechComponent>(`/api/techcomponent/${id}`);
+const getTechComponent = async (id: string) => {
+  const { data } = await axios.get(`/api/techcomponent/${id}`);
+  return data;
+};
 
-  return {
-    techComponent,
-    techComponentIsLoading,
-    techComponentErrorMessage,
-  };
-}
+const useTechComponent = (id: string): UseQueryResult<TechComponent, Error> => {
+  return useQuery<TechComponent, Error>(['techComponent', id], () =>
+    getTechComponent(id)
+  );
+};
+
+export default useTechComponent;

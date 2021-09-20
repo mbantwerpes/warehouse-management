@@ -21,12 +21,12 @@ const TechComponentDetail = (): JSX.Element => {
     history.push('/');
   };
   const { id }: { id: string } = useParams();
-  const { techComponent } = useTechComponent(id);
+  const { data: techComponent } = useTechComponent(id);
 
   // Student functions
   const [cartAmount, setCartAmount] = useState<number>(1);
   const onAddClick = () => {
-    if (techComponent !== null) {
+    if (techComponent !== undefined) {
       if (cartAmount < techComponent.amount) setCartAmount(cartAmount + 1);
     }
   };
