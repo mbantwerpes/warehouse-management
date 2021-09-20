@@ -1,20 +1,16 @@
+import axios from 'axios';
+import { useQuery, UseQueryResult } from 'react-query';
 import type { User } from '../../lib/types/types';
-import useFetch from './useFetch';
 
-export default function useUsers(searchValue?: string): {
-  users: User[] | null;
-  usersIsLoading: boolean;
-  usersErrorMessage: string | null;
-} {
-  const {
-    data: users,
-    isLoading: usersIsLoading,
-    errorMessage: usersErrorMessage,
-  } = useFetch<User[]>(`/api/user?searchValue=${searchValue}`);
+const getUsers = async (searchValue?: string) => {
+  const { data } = await axios.get(`/api/user?searchValue=${searchValue}`);
+  return data;
+};
 
-  return {
-    users,
-    usersIsLoading,
-    usersErrorMessage,
-  };
-}
+const useUsers = (searchValue?: string): UseQueryResult<User[], Error> => {
+  return useQuery<User[], Error>(['users', searchValue], () =>
+    getUsers(searchValue)
+  );
+};
+
+export default useUsers;
