@@ -25,7 +25,7 @@ const UserEdit = (): JSX.Element => {
   const [roleValue, setRoleValue] = useState<'admin' | 'student'>('student');
 
   // Fetch user and set state values
-  const { user } = useUser(id);
+  const { data: user } = useUser(id);
   useEffect(() => {
     if (user !== null) setIsLoading(false);
     setNameValue(user?.name || '');

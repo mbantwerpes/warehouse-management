@@ -15,7 +15,7 @@ const UserDetail = (): JSX.Element => {
   };
   const { id }: { id: string } = useParams();
 
-  const { user } = useUser(id);
+  const { data: user } = useUser(id);
 
   const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
