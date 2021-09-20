@@ -10,6 +10,9 @@ import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import { useModal } from '../../hooks/useModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 import useTechComponents from '../../hooks/useTechComponents';
+import axios from 'axios';
+import { useMutation } from 'react-query';
+import { TechComponentOrder } from '../../../lib/types/types';
 
 const Cart = (): JSX.Element => {
   const history = useHistory();
@@ -23,17 +26,15 @@ const Cart = (): JSX.Element => {
 
   const { data: techComponents } = useTechComponents(undefined, ids);
 
-  const handleReserveClick = async () => {
-    const response = await fetch('/api/order', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(cartItems),
-    });
+  const addOrder = async (cartItems: TechComponentOrder[]) => {
+    const { data } = await axios.post('/api/order', cartItems);
+    return data;
+  };
 
-    const data = await response.json();
-    console.log(data);
+  const addOrderMutation = useMutation(addOrder);
+
+  const handleReserveClick = async () => {
+    addOrderMutation.mutate(cartItems);
 
     hide();
 

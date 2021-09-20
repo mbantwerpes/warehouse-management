@@ -7,6 +7,8 @@ import styles from './UserDetail.module.css';
 import { useModal } from '../../hooks/useModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 import useUser from '../../hooks/useUser';
+import axios from 'axios';
+import { useMutation } from 'react-query';
 
 const UserDetail = (): JSX.Element => {
   const history = useHistory();
@@ -19,12 +21,15 @@ const UserDetail = (): JSX.Element => {
 
   const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
-  const handleDeleteUser = async () => {
-    const response = await fetch(`/api/user/${id}`, {
-      method: 'DELETE',
-    });
+  const deleteUser = async () => {
+    const { data } = await axios.delete(`/api/user/${id}`);
+    return data;
+  };
 
-    console.log(await response.json());
+  const deleteUserMutation = useMutation(deleteUser);
+
+  const handleDeleteUser = async () => {
+    deleteUserMutation.mutate();
 
     hide();
 

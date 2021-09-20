@@ -6,6 +6,8 @@ import Button from '../../components/Button/Button';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { UserForFrontend } from '../../../lib/types/types';
 import UserForm from '../../components/UserForm/UserForm';
+import axios from 'axios';
+import { useMutation } from 'react-query';
 
 const UserAdd = (): JSX.Element => {
   const history = useHistory();
@@ -14,16 +16,15 @@ const UserAdd = (): JSX.Element => {
     history.push('/user');
   };
 
-  const handleSubmit = async (values: UserForFrontend) => {
-    const response = await fetch('/api/user', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    });
+  const addUser = async (user: UserForFrontend) => {
+    const { data } = await axios.post('/api/user', user);
+    return data;
+  };
 
-    console.log(await response.json());
+  const addUserMutation = useMutation(addUser);
+
+  const handleSubmit = async (user: UserForFrontend) => {
+    addUserMutation.mutate(user);
 
     history.push('/user');
   };

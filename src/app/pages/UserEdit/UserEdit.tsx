@@ -8,6 +8,8 @@ import { UserForFrontend } from '../../../lib/types/types';
 import UserForm from '../../components/UserForm/UserForm';
 import { useParams } from 'react-router-dom';
 import useUser from '../../hooks/useUser';
+import axios from 'axios';
+import { useMutation } from 'react-query';
 
 const UserEdit = (): JSX.Element => {
   const history = useHistory();
@@ -24,7 +26,6 @@ const UserEdit = (): JSX.Element => {
   const [telephoneValue, setTelephoneValue] = useState<string>('');
   const [roleValue, setRoleValue] = useState<'admin' | 'student'>('student');
 
-  // Fetch user and set state values
   const { data: user } = useUser(id);
   useEffect(() => {
     if (user !== null) setIsLoading(false);
@@ -41,16 +42,15 @@ const UserEdit = (): JSX.Element => {
     history.push(`/user/${id}`);
   };
 
-  const handleSubmit = async (values: UserForFrontend) => {
-    const response = await fetch(`/api/user/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    });
+  const editUser = async (user: UserForFrontend) => {
+    const { data } = await axios.put(`/api/user/${id}`, user);
+    return data;
+  };
 
-    console.log(await response.json());
+  const editUserMutation = useMutation(editUser);
+
+  const handleSubmit = async (user: UserForFrontend) => {
+    editUserMutation.mutate(user);
 
     history.push(`/user/${id}`);
   };

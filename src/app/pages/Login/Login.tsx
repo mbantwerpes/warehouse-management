@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useMutation } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
@@ -8,23 +10,22 @@ const Login = (): JSX.Element => {
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const login = async () => {
     const postData = {
       email: emailValue,
       password: passwordValue,
     };
 
-    const response = await fetch('/api/auth', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
-    });
+    const { data } = await axios.post('/api/auth', postData);
+    return data;
+  };
 
-    console.log(response);
+  const loginMutation = useMutation(login);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    loginMutation.mutate();
 
     history.push('/');
   };

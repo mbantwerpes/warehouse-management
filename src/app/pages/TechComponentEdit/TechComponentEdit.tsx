@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom';
 import useTechComponent from '../../hooks/useTechComponent';
 import TechComponentForm from '../../components/TechComponentForm/TechComponentForm';
 import { TechComponentForFrontend } from '../../../lib/types/types';
+import axios from 'axios';
+import { useMutation } from 'react-query';
 
 const TechComponentEdit = (): JSX.Element => {
   const history = useHistory();
@@ -21,7 +23,6 @@ const TechComponentEdit = (): JSX.Element => {
   const [descriptionValue, setDescriptionValue] = useState<string>('');
   const [amountValue, setAmountValue] = useState<number>();
 
-  // Fetch techComponent and set state values
   const { data: techComponent } = useTechComponent(id);
   useEffect(() => {
     if (techComponent !== null) setIsLoading(false);
@@ -36,14 +37,15 @@ const TechComponentEdit = (): JSX.Element => {
     history.push(`/techcomponent/${id}`);
   };
 
-  const handleSubmit = async (values: TechComponentForFrontend) => {
-    await fetch(`/api/techcomponent/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    });
+  const editTechComponent = async (techComponent: TechComponentForFrontend) => {
+    const { data } = await axios.put(`/api/techcomponent/${id}`, techComponent);
+    return data;
+  };
+
+  const editTechComponentMutation = useMutation(editTechComponent);
+
+  const handleSubmit = async (techComponent: TechComponentForFrontend) => {
+    editTechComponentMutation.mutate(techComponent);
 
     redirectToTechComponentDetail();
   };
