@@ -17,6 +17,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient();
@@ -65,6 +66,7 @@ const App = (): JSX.Element => {
             />
             <ProtectedRoute path="/" ComponentToProtect={TechComponentList} />
           </Switch>
+          <ReactQueryDevtools initialIsOpen={false} />
           <ToastContainer />
           <div id="modal-root" />
         </BrowserRouter>

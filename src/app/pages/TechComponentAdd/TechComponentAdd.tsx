@@ -33,6 +33,7 @@ const TechComponentAdd = (): JSX.Element => {
   const handleSubmit = async (techComponent: TechComponentForFrontend) => {
     addTechComponentMutation.mutate(techComponent);
 
+    console.log(addTechComponentMutation.isIdle);
     console.log(addTechComponentMutation.isLoading);
     console.log(addTechComponentMutation.isError);
     console.log(addTechComponentMutation.isSuccess);
