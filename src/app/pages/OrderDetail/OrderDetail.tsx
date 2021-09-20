@@ -24,7 +24,7 @@ const OrderDetail = (): JSX.Element => {
 
   const { id }: { id: string } = useParams();
 
-  const { order } = useOrder(id);
+  const { data: order } = useOrder(id);
 
   const ids: string[] | undefined = order?.techComponents.map(
     (techComponent) => techComponent.techComponentId
