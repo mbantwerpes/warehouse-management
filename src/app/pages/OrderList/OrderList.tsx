@@ -8,7 +8,7 @@ import styles from './OrderList.module.css';
 
 const OrderList = (): JSX.Element => {
   const history = useHistory();
-  const { orders } = useOrders();
+  const { data: orders } = useOrders();
 
   const handleOrderClick = (id: string) => {
     history.push(`/order/${id}`);
