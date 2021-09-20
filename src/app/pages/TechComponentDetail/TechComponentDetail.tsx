@@ -14,6 +14,7 @@ import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActio
 import { useUserContext } from '../../context/UserContext';
 import axios from 'axios';
 import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 
 const TechComponentDetail = (): JSX.Element => {
   const { role } = useUserContext();
@@ -64,6 +65,11 @@ const TechComponentDetail = (): JSX.Element => {
 
   const handleDeleteTechComponent = async () => {
     deleteTechComponentMutation.mutate();
+
+    toast.info('Bauteil erfolgreich gelöscht', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     hide();
 
