@@ -5,11 +5,13 @@ import Button from '../../components/Button/Button';
 import TechComponentCard from '../../components/TechComponentCard/TechComponentCard';
 import Typography from '../../components/Typography/Typography';
 import useOrder from '../../hooks/useOrder';
-import useTechComponents from '../../hooks/useTechComponents';
 import styles from './OrderDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import Input from '../../components/Input/Input';
 import { useUserContext } from '../../context/UserContext';
+import useTechComponents from '../../hooks/useTechComponents';
+import axios from 'axios';
+import { useMutation } from 'react-query';
 
 const OrderDetail = (): JSX.Element => {
   const { role } = useUserContext();
@@ -24,47 +26,41 @@ const OrderDetail = (): JSX.Element => {
 
   const { id }: { id: string } = useParams();
 
-  const { order } = useOrder(id);
+  const { data: order } = useOrder(id);
 
   const ids: string[] | undefined = order?.techComponents.map(
     (techComponent) => techComponent.techComponentId
   );
 
-  const { techComponents } = useTechComponents(undefined, ids);
+  const { data: techComponents } = useTechComponents(undefined, ids);
 
-  const handleAcceptReservation = async () => {
+  const putReservation = async () => {
     const postData = {
       status: 'booked',
       returnPeriod: dateValue,
     };
-
-    const response = await fetch(`/api/order/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
-    });
-
-    const data = await response.json();
-    console.log(data);
+    const { data } = await axios.put(`/api/order/${id}`, postData);
+    return data;
   };
 
-  const handleReturnOrder = async () => {
+  const putReservationMutation = useMutation(putReservation);
+
+  const handleAcceptReservation = async () => {
+    putReservationMutation.mutate();
+  };
+
+  const putReturned = async () => {
     const postData = {
       status: 'returned',
     };
+    const { data } = await axios.put(`/api/order/${id}`, postData);
+    return data;
+  };
 
-    const response = await fetch(`/api/order/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
-    });
+  const putReturnedMutation = useMutation(putReturned);
 
-    const data = await response.json();
-    console.log(data);
+  const handleReturnOrder = async () => {
+    putReturnedMutation.mutate();
   };
 
   return (

@@ -5,11 +5,14 @@ import Button from '../../components/Button/Button';
 import TechComponentCard from '../../components/TechComponentCard/TechComponentCard';
 import Typography from '../../components/Typography/Typography';
 import useShoppingCart from '../../hooks/useShoppingCart';
-import useTechComponents from '../../hooks/useTechComponents';
 import styles from './Cart.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import { useModal } from '../../hooks/useModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
+import useTechComponents from '../../hooks/useTechComponents';
+import axios from 'axios';
+import { useMutation } from 'react-query';
+import { TechComponentOrder } from '../../../lib/types/types';
 
 const Cart = (): JSX.Element => {
   const history = useHistory();
@@ -20,19 +23,18 @@ const Cart = (): JSX.Element => {
   const { cartItems, removeCartItem } = useShoppingCart();
   // TODO check if cartItems contains a value, if not is has to be handled
   const ids: string[] = cartItems.map((cartItem) => cartItem.techComponentId);
-  const { techComponents } = useTechComponents(undefined, ids);
+
+  const { data: techComponents } = useTechComponents(undefined, ids);
+
+  const addOrder = async (cartItems: TechComponentOrder[]) => {
+    const { data } = await axios.post('/api/order', cartItems);
+    return data;
+  };
+
+  const addOrderMutation = useMutation(addOrder);
 
   const handleReserveClick = async () => {
-    const response = await fetch('/api/order', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(cartItems),
-    });
-
-    const data = await response.json();
-    console.log(data);
+    addOrderMutation.mutate(cartItems);
 
     hide();
 

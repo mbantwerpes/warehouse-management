@@ -1,20 +1,14 @@
+import axios from 'axios';
+import { useQuery, UseQueryResult } from 'react-query';
 import type { User } from '../../lib/types/types';
-import useFetch from './useFetch';
 
-export default function useUser(id: string): {
-  user: User | null;
-  userIsLoading: boolean;
-  userErrorMessage: string | null;
-} {
-  const {
-    data: user,
-    isLoading: userIsLoading,
-    errorMessage: userErrorMessage,
-  } = useFetch<User>(`/api/user/${id}`);
+const getUser = async (id: string) => {
+  const { data } = await axios.get(`/api/user/${id}`);
+  return data;
+};
 
-  return {
-    user,
-    userIsLoading,
-    userErrorMessage,
-  };
-}
+const useUser = (id: string): UseQueryResult<User, Error> => {
+  return useQuery<User, Error>(['user', id], () => getUser(id));
+};
+
+export default useUser;

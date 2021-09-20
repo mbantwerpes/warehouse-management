@@ -1,14 +1,9 @@
-import type { TechComponent } from '../../lib/types/types';
-import useFetch from './useFetch';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import { TechComponent } from '../../lib/types/types';
+import { UseQueryResult } from 'react-query';
 
-export default function useTechComponents(
-  searchValue?: string,
-  ids?: string[]
-): {
-  techComponents: TechComponent[] | null;
-  techComponentsIsLoading: boolean;
-  techComponentsErrorMessage: string | null;
-} {
+const getTechComponents = async (searchValue?: string, ids?: string[]) => {
   let url = '/api/techcomponent?';
   if (searchValue) {
     url += `searchValue=${searchValue}`;
@@ -23,15 +18,18 @@ export default function useTechComponents(
     });
   }
 
-  const {
-    data: techComponents,
-    isLoading: techComponentsIsLoading,
-    errorMessage: techComponentsErrorMessage,
-  } = useFetch<TechComponent[]>(url);
+  const { data } = await axios.get(url);
+  return data;
+};
 
-  return {
-    techComponents,
-    techComponentsIsLoading,
-    techComponentsErrorMessage,
-  };
-}
+const useTechComponents = (
+  searchValue?: string,
+  ids?: string[]
+): UseQueryResult<TechComponent[], Error> => {
+  return useQuery<TechComponent[], Error>(
+    ['techComponents', searchValue, ids],
+    () => getTechComponents(searchValue, ids)
+  );
+};
+
+export default useTechComponents;

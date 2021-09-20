@@ -1,20 +1,14 @@
+import axios from 'axios';
+import { useQuery, UseQueryResult } from 'react-query';
 import type { Order } from '../../lib/types/types';
-import useFetch from './useFetch';
 
-export default function useOrders(): {
-  orders: Order[] | null;
-  ordersIsLoading: boolean;
-  ordersErrorMessage: string | null;
-} {
-  const {
-    data: orders,
-    isLoading: ordersIsLoading,
-    errorMessage: ordersErrorMessage,
-  } = useFetch<Order[]>('/api/order');
+const getOrders = async () => {
+  const { data } = await axios.get(`/api/order`);
+  return data;
+};
 
-  return {
-    orders,
-    ordersIsLoading,
-    ordersErrorMessage,
-  };
-}
+const useOrders = (): UseQueryResult<Order[], Error> => {
+  return useQuery<Order[], Error>(['orders'], () => getOrders());
+};
+
+export default useOrders;
