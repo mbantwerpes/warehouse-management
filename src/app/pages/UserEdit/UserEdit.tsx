@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import useUser from '../../hooks/useUser';
 import axios from 'axios';
 import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 
 const UserEdit = (): JSX.Element => {
   const history = useHistory();
@@ -51,6 +52,11 @@ const UserEdit = (): JSX.Element => {
 
   const handleSubmit = async (user: UserForFrontend) => {
     editUserMutation.mutate(user);
+
+    toast.info('Nutzer erfolgreich geändert', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     history.push(`/user/${id}`);
   };

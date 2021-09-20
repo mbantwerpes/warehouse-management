@@ -13,13 +13,6 @@ import { toast } from 'react-toastify';
 const TechComponentAdd = (): JSX.Element => {
   const history = useHistory();
 
-  const successNotify = () => {
-    toast.info('Bauteil erfolgreich angelegt', {
-      theme: 'colored',
-      position: toast.POSITION.BOTTOM_CENTER,
-    });
-  };
-
   const redirectToTechComponentList = () => {
     history.push('/');
   };
@@ -37,7 +30,11 @@ const TechComponentAdd = (): JSX.Element => {
     console.log(addTechComponentMutation.isLoading);
     console.log(addTechComponentMutation.isError);
     console.log(addTechComponentMutation.isSuccess);
-    successNotify();
+
+    toast.info('Bauteil erfolgreich angelegt', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     redirectToTechComponentList();
   };
