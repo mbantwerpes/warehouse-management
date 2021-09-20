@@ -12,6 +12,8 @@ import useShoppingCart from '../../hooks/useShoppingCart';
 import { TechComponentOrder } from '../../../lib/types/types';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 import { useUserContext } from '../../context/UserContext';
+import axios from 'axios';
+import { useMutation } from 'react-query';
 
 const TechComponentDetail = (): JSX.Element => {
   const { role } = useUserContext();
@@ -53,12 +55,15 @@ const TechComponentDetail = (): JSX.Element => {
   // Admin functions
   const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
-  const handleDeleteTechComponent = async () => {
-    const response = await fetch(`/api/techcomponent/${id}`, {
-      method: 'DELETE',
-    });
+  const deleteTechComponent = async () => {
+    const { data } = await axios.delete(`/api/techcomponent/${id}`);
+    return data;
+  };
 
-    console.log(await response.json());
+  const deleteTechComponentMutation = useMutation(deleteTechComponent);
+
+  const handleDeleteTechComponent = async () => {
+    deleteTechComponentMutation.mutate();
 
     hide();
 
