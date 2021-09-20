@@ -13,6 +13,7 @@ import useTechComponents from '../../hooks/useTechComponents';
 import axios from 'axios';
 import { useMutation } from 'react-query';
 import { TechComponentOrder } from '../../../lib/types/types';
+import { toast } from 'react-toastify';
 
 const Cart = (): JSX.Element => {
   const history = useHistory();
@@ -35,6 +36,11 @@ const Cart = (): JSX.Element => {
 
   const handleReserveClick = async () => {
     addOrderMutation.mutate(cartItems);
+
+    toast.info('Warenkorb erfolgreich reserviert', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     hide();
 
