@@ -12,6 +12,7 @@ import { useUserContext } from '../../context/UserContext';
 import useTechComponents from '../../hooks/useTechComponents';
 import axios from 'axios';
 import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 
 const OrderDetail = (): JSX.Element => {
   const { role } = useUserContext();
@@ -20,7 +21,7 @@ const OrderDetail = (): JSX.Element => {
 
   const history = useHistory();
 
-  const handleBackButtonClick = () => {
+  const redirectToOrderList = () => {
     history.push('/order');
   };
 
@@ -47,6 +48,13 @@ const OrderDetail = (): JSX.Element => {
 
   const handleAcceptReservation = async () => {
     putReservationMutation.mutate();
+
+    toast.info('Ausleihauftrag erfolgreich bestätigt', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+
+    redirectToOrderList();
   };
 
   const putReturned = async () => {
@@ -61,6 +69,13 @@ const OrderDetail = (): JSX.Element => {
 
   const handleReturnOrder = async () => {
     putReturnedMutation.mutate();
+
+    toast.info('Ausleihauftrag erfolgreich zurückgegeben', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+
+    redirectToOrderList();
   };
 
   return (
@@ -69,7 +84,7 @@ const OrderDetail = (): JSX.Element => {
         <Button
           type="secondary"
           size="m"
-          onClick={handleBackButtonClick}
+          onClick={redirectToOrderList}
           className={styles.backButton}
         >
           <MdKeyboardArrowLeft size={32} />
