@@ -12,6 +12,9 @@ const getTechComponents = async (
   if (searchValue) {
     url += `searchValue=${searchValue}`;
   }
+  if (cartRequest) {
+    url += 'cartRequest=true&';
+  }
   if (ids) {
     ids.forEach((id, index) => {
       if (index === ids.length - 1) {
@@ -20,9 +23,6 @@ const getTechComponents = async (
         url += `id=${id}&`;
       }
     });
-  }
-  if (cartRequest) {
-    url += 'cartRequest=true';
   }
 
   const { data } = await axios.get(url);
