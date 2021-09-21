@@ -32,11 +32,11 @@ export const AppProvider = (props: ContextProps): JSX.Element => {
   };
 
   useEffect(() => {
-    const testFunc = async () => {
+    const asyncFunc = async () => {
       setData(await fetchCheckAuth());
       setIsLoading(false);
     };
-    testFunc();
+    asyncFunc();
   }, []);
 
   if (isLoading) {
