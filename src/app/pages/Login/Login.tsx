@@ -31,7 +31,6 @@ const Login = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>
-        {/* <img src={logo} alt="App logo" className={styles.logo} /> */}
         <Logo width="50" />
         <Typography type="header" size="m">
           Lagerverwaltung
