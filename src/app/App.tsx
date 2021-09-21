@@ -68,7 +68,6 @@ const App = (): JSX.Element => {
           </Switch>
           <ReactQueryDevtools initialIsOpen={false} />
           <ToastContainer />
-          <div id="modal-root" />
         </BrowserRouter>
       </QueryClientProvider>
     </AppProvider>

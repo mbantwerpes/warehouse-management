@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -7,15 +7,17 @@ import Typography from '../../components/Typography/Typography';
 import useShoppingCart from '../../hooks/useShoppingCart';
 import styles from './Cart.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
-import { useModal } from '../../hooks/useModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 import useTechComponents from '../../hooks/useTechComponents';
 import axios from 'axios';
 import { useMutation } from 'react-query';
 import { TechComponentOrder } from '../../../lib/types/types';
 import { toast } from 'react-toastify';
+import Modal from '../../components/Modal/Modal';
 
 const Cart = (): JSX.Element => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const history = useHistory();
   const handleBackButtonClick = () => {
     history.push('/');
@@ -51,12 +53,10 @@ const Cart = (): JSX.Element => {
       position: toast.POSITION.BOTTOM_CENTER,
     });
 
-    hide();
+    setModalIsOpen(false);
 
     history.push('/order');
   };
-
-  const { show, hide, RenderModal: RenderReserveModal } = useModal();
 
   return (
     <div className={styles.container}>
@@ -98,12 +98,16 @@ const Cart = (): JSX.Element => {
           );
         })}
       </div>
-      <Button type="primary" size="l" onClick={show}>
+      <Button type="primary" size="l" onClick={() => setModalIsOpen(true)}>
         Reservieren
       </Button>
-      <RenderReserveModal title="Warenkorb reservieren">
+      <Modal
+        isOpen={modalIsOpen}
+        hideModal={() => setModalIsOpen(false)}
+        title="Warenkorb reservieren"
+      >
         <ConfirmActionModal
-          onClose={hide}
+          onClose={() => setModalIsOpen(false)}
           onConfirmAction={handleReserveClick}
           content="Bist du dir sicher, dass du den Warenkorb
           reservieren möchtest? Diese Aktion kann
@@ -111,7 +115,7 @@ const Cart = (): JSX.Element => {
           werden."
           confirmButtonText="Reservieren"
         />
-      </RenderReserveModal>
+      </Modal>
     </div>
   );
 };

@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdKeyboardArrowLeft, MdDelete } from 'react-icons/md';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Typography from '../../components/Typography/Typography';
 import styles from './UserDetail.module.css';
-import { useModal } from '../../hooks/useModal';
 import ConfirmActionModal from '../../components/ConfirmActionModal/ConfirmActionModal';
 import useUser from '../../hooks/useUser';
 import axios from 'axios';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
+import Modal from '../../components/Modal/Modal';
 
 const UserDetail = (): JSX.Element => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const history = useHistory();
   const handleBackButtonClick = () => {
     history.push('/user');
@@ -19,8 +21,6 @@ const UserDetail = (): JSX.Element => {
   const { id }: { id: string } = useParams();
 
   const { data: user } = useUser(id);
-
-  const { show, hide, RenderModal: RenderDeleteModal } = useModal();
 
   const deleteUser = async () => {
     const { data } = await axios.delete(`/api/user/${id}`);
@@ -37,7 +37,7 @@ const UserDetail = (): JSX.Element => {
       position: toast.POSITION.BOTTOM_CENTER,
     });
 
-    hide();
+    setModalIsOpen(false);
 
     history.push('/user');
   };
@@ -115,7 +115,7 @@ const UserDetail = (): JSX.Element => {
       </div>
 
       <div className={styles.buttonGroup}>
-        <Button type="error" size="l" onClick={show}>
+        <Button type="error" size="l" onClick={() => setModalIsOpen(true)}>
           <MdDelete size={24} />
         </Button>
         <Button
@@ -126,14 +126,18 @@ const UserDetail = (): JSX.Element => {
           Bearbeiten
         </Button>
       </div>
-      <RenderDeleteModal title="Löschen">
+      <Modal
+        isOpen={modalIsOpen}
+        hideModal={() => setModalIsOpen(false)}
+        title="Löschen"
+      >
         <ConfirmActionModal
-          onClose={hide}
+          onClose={() => setModalIsOpen(false)}
           onConfirmAction={handleDeleteUser}
           content="Bist du dir sicher, dass du den Nutzer löschen möchtest?"
           confirmButtonText="Löschen"
         />
-      </RenderDeleteModal>
+      </Modal>
     </div>
   );
 };
