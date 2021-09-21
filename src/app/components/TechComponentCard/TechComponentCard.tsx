@@ -59,8 +59,8 @@ const TechComponentCard = ({
               Anzahl: {amount}
             </Typography>
             <div onClick={() => onDeleteClick(id)}>
-              <Typography type="text" size="s">
-                Löschen
+              <Typography type="text" size="s" className={styles.deleteText}>
+                X Löschen
               </Typography>
             </div>
           </div>

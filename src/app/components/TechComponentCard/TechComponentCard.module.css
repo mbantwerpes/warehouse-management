@@ -47,5 +47,10 @@
 .editableContent {
   display: grid;
   grid-auto-flow: column;
+  gap: 1rem;
   justify-content: space-between;
+}
+
+.deleteText {
+  color: var(--color-highlight);
 }
