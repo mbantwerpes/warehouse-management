@@ -1,3 +1,20 @@
 .container {
+  height: 100vh;
+  background: url('../../../assets/loginBackground.svg');
+  background-size: cover;
   display: grid;
+  grid-template-columns: 70%;
+  grid-template-rows: 30vh 70vh;
+  justify-content: center;
+}
+
+.logo {
+  width: 3rem;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: center;
 }
