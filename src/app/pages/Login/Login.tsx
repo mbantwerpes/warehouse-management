@@ -4,8 +4,8 @@ import { useMutation } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import styles from './Login.module.css';
-import logo from '../../../assets/logo.svg';
 import Typography from '../../components/Typography/Typography';
+import Logo from '../../components/Logo/Logo';
 
 const Login = (): JSX.Element => {
   const history = useHistory();
@@ -36,7 +36,8 @@ const Login = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>
-        <img src={logo} alt="App logo" className={styles.logo} />
+        {/* <img src={logo} alt="App logo" className={styles.logo} /> */}
+        <Logo width="50" />
         <Typography type="header" size="m">
           Lagerverwaltung
         </Typography>
