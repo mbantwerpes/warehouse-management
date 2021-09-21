@@ -5,16 +5,21 @@ import styles from './FloatingActionButton.module.css';
 export type FloatingActionButtonProps = {
   icon: ReactNode;
   onClick?: () => void;
+  cartCounter?: number;
 };
 
 const FloatingActionButton = ({
   icon,
   onClick,
+  cartCounter,
 }: FloatingActionButtonProps): JSX.Element => {
   return (
-    <button className={styles.button} onClick={onClick}>
-      {icon}
-    </button>
+    <div className={styles.container}>
+      <button className={styles.button} onClick={onClick}>
+        {icon}
+      </button>
+      {cartCounter && <div className={styles.cartCounter}>{cartCounter}</div>}
+    </div>
   );
 };
 

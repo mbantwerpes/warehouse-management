@@ -1,3 +1,8 @@
+.container {
+  position: relative;
+  padding: 5px;
+}
+
 .button {
   background: var(--color-action);
   border-style: none;
@@ -6,4 +11,19 @@
   cursor: pointer;
   height: 3rem;
   width: 3rem;
+}
+
+.cartCounter {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-highlight);
+  color: var(--color-main-bright);
+  border-radius: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  text-align: center;
+  top: 0;
+  right: 0;
+  font-size: 0.75rem;
 }

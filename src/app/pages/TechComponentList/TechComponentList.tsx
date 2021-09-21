@@ -11,11 +11,14 @@ import { useHistory } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext';
 import useTechComponents from '../../hooks/useTechComponents';
 import PulseLoader from 'react-spinners/PulseLoader';
+import useShoppingCart from '../../hooks/useShoppingCart';
 
 const TechComponentList = (): JSX.Element => {
   const { role } = useUserContext();
 
   const [searchValue, setSearchValue] = useState<string>('');
+
+  const { cartItems } = useShoppingCart();
 
   const history = useHistory();
   const handleCartClick = () => {
@@ -47,6 +50,7 @@ const TechComponentList = (): JSX.Element => {
           ) : (
             <FloatingActionButton
               onClick={handleCartClick}
+              cartCounter={cartItems.length}
               icon={<MdShoppingCart size={24} />}
             />
           )}
