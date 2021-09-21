@@ -1,8 +1,10 @@
 .container {
   height: 100vh;
-  background-color: var(--color-main-medium);
+  background: url('../../../assets/loginBackground.svg');
+  background-size: cover;
   display: grid;
   grid-template-columns: 70%;
+  grid-template-rows: 30vh 70vh;
   justify-content: center;
 }
 
