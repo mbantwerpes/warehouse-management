@@ -18,6 +18,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import StudentProfile from './pages/StudentProfile/StudentProfile';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient();
@@ -42,6 +43,11 @@ const App = (): JSX.Element => {
             <ProtectedRoute
               ComponentToProtect={UserList}
               path="/user"
+              checkAdmin={false}
+            />
+            <ProtectedRoute
+              ComponentToProtect={StudentProfile}
+              path="/userprofile"
               checkAdmin={false}
             />
             <ProtectedRoute
