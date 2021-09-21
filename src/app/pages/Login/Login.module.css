@@ -1,4 +1,17 @@
 .container {
   height: 100vh;
   background-color: var(--color-main-medium);
+  display: grid;
+  grid-template-columns: 70%;
+  justify-content: center;
+}
+
+.logo {
+  width: 3rem;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
