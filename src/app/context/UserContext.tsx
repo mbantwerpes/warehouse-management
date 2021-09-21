@@ -22,7 +22,7 @@ export const AppProvider = (props: ContextProps): JSX.Element => {
   const [data, setData] = useState<GlobalUser>({ id: '', role: '' });
 
   const fetchCheckAuth = async (): Promise<{ id: string; role: string }> => {
-    const response = await fetch('api/auth/checkToken');
+    const response = await fetch('/api/auth/checkToken');
 
     if (response.status === 200) {
       const data = await response.json();
