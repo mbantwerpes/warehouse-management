@@ -23,7 +23,7 @@ const Cart = (): JSX.Element => {
     history.push('/');
   };
 
-  const { cartItems, removeCartItem } = useShoppingCart();
+  const { cartItems, removeCartItem, clearCart } = useShoppingCart();
   // TODO check if cartItems contains a value, if not is has to be handled
   const ids: string[] = cartItems.map((cartItem) => cartItem.techComponentId);
 
@@ -47,6 +47,8 @@ const Cart = (): JSX.Element => {
 
   const handleReserveClick = async () => {
     addOrderMutation.mutate(cartItems);
+
+    clearCart();
 
     toast.info('Warenkorb erfolgreich reserviert', {
       theme: 'colored',
