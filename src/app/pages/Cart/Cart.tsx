@@ -76,29 +76,35 @@ const Cart = (): JSX.Element => {
         </Typography>
       </header>
       <div className={styles.content}>
-        {techComponents?.map((techComponent) => {
-          const cartItem = cartItems.find(
-            (cartItem) => cartItem.techComponentId === techComponent._id
-          );
-          if (cartItem) {
-            techComponent.amount = cartItem.amount;
-          }
-          return (
-            <TechComponentCard
-              key={techComponent._id as string}
-              id={techComponent._id as string}
-              layout="horizontal"
-              onCardClick={() => console.log('placeholder')}
-              amount={techComponent.amount}
-              description={techComponent.description}
-              image={placeholderImage}
-              title={techComponent.title}
-              editable={true}
-              clickable={false}
-              onDeleteClick={handleDeleteFromCart}
-            />
-          );
-        })}
+        {!techComponents ? (
+          <Typography type="header" size="s">
+            Keine Einträge vorhanden
+          </Typography>
+        ) : (
+          techComponents.map((techComponent) => {
+            const cartItem = cartItems.find(
+              (cartItem) => cartItem.techComponentId === techComponent._id
+            );
+            if (cartItem) {
+              techComponent.amount = cartItem.amount;
+            }
+            return (
+              <TechComponentCard
+                key={techComponent._id as string}
+                id={techComponent._id as string}
+                layout="horizontal"
+                onCardClick={() => console.log('placeholder')}
+                amount={techComponent.amount}
+                description={techComponent.description}
+                image={placeholderImage}
+                title={techComponent.title}
+                editable={true}
+                clickable={false}
+                onDeleteClick={handleDeleteFromCart}
+              />
+            );
+          })
+        )}
       </div>
       <Button type="primary" size="l" onClick={() => setModalIsOpen(true)}>
         Reservieren
