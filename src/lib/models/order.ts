@@ -21,14 +21,15 @@ export async function getOrder(id: string): Promise<Order> {
 }
 
 export const addOrder = async (
-  techComponentOrder: TechComponentOrder[]
+  techComponentOrder: TechComponentOrder[],
+  studentId: string
 ): Promise<ObjectId> => {
   const orderCollection = getOrderCollection();
 
   const currentDate = getCurrentDate();
 
   const result = await orderCollection.insertOne({
-    studentId: '61373a108a32c6c7b2ac07e3',
+    studentId,
     status: 'reserved',
     techComponents: techComponentOrder,
     crAt: currentDate,

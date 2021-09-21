@@ -3,10 +3,17 @@ import axios from 'axios';
 import { TechComponent } from '../../lib/types/types';
 import { UseQueryResult } from 'react-query';
 
-const getTechComponents = async (searchValue?: string, ids?: string[]) => {
+const getTechComponents = async (
+  searchValue?: string,
+  ids?: string[],
+  cartRequest = false
+) => {
   let url = '/api/techcomponent?';
   if (searchValue) {
     url += `searchValue=${searchValue}`;
+  }
+  if (cartRequest) {
+    url += 'cartRequest=true&';
   }
   if (ids) {
     ids.forEach((id, index) => {
@@ -24,11 +31,12 @@ const getTechComponents = async (searchValue?: string, ids?: string[]) => {
 
 const useTechComponents = (
   searchValue?: string,
-  ids?: string[]
+  ids?: string[],
+  cartRequest?: boolean
 ): UseQueryResult<TechComponent[], Error> => {
   return useQuery<TechComponent[], Error>(
-    ['techComponents', searchValue, ids],
-    () => getTechComponents(searchValue, ids)
+    ['techComponents', searchValue, ids, cartRequest],
+    () => getTechComponents(searchValue, ids, cartRequest)
   );
 };
 

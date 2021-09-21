@@ -23,11 +23,11 @@ const Cart = (): JSX.Element => {
     history.push('/');
   };
 
-  const { cartItems, removeCartItem } = useShoppingCart();
+  const { cartItems, removeCartItem, clearCart } = useShoppingCart();
   // TODO check if cartItems contains a value, if not is has to be handled
   const ids: string[] = cartItems.map((cartItem) => cartItem.techComponentId);
 
-  const { data: techComponents } = useTechComponents(undefined, ids);
+  const { data: techComponents } = useTechComponents(undefined, ids, true);
 
   const addOrder = async (cartItems: TechComponentOrder[]) => {
     const { data } = await axios.post('/api/order', cartItems);
@@ -47,6 +47,8 @@ const Cart = (): JSX.Element => {
 
   const handleReserveClick = async () => {
     addOrderMutation.mutate(cartItems);
+
+    clearCart();
 
     toast.info('Warenkorb erfolgreich reserviert', {
       theme: 'colored',
@@ -74,29 +76,35 @@ const Cart = (): JSX.Element => {
         </Typography>
       </header>
       <div className={styles.content}>
-        {techComponents?.map((techComponent) => {
-          const cartItem = cartItems.find(
-            (cartItem) => cartItem.techComponentId === techComponent._id
-          );
-          if (cartItem) {
-            techComponent.amount = cartItem.amount;
-          }
-          return (
-            <TechComponentCard
-              key={techComponent._id as string}
-              id={techComponent._id as string}
-              layout="horizontal"
-              onCardClick={() => console.log('placeholder')}
-              amount={techComponent.amount}
-              description={techComponent.description}
-              image={placeholderImage}
-              title={techComponent.title}
-              editable={true}
-              clickable={false}
-              onDeleteClick={handleDeleteFromCart}
-            />
-          );
-        })}
+        {!techComponents ? (
+          <Typography type="header" size="s">
+            Keine Einträge vorhanden
+          </Typography>
+        ) : (
+          techComponents.map((techComponent) => {
+            const cartItem = cartItems.find(
+              (cartItem) => cartItem.techComponentId === techComponent._id
+            );
+            if (cartItem) {
+              techComponent.amount = cartItem.amount;
+            }
+            return (
+              <TechComponentCard
+                key={techComponent._id as string}
+                id={techComponent._id as string}
+                layout="horizontal"
+                onCardClick={() => console.log('placeholder')}
+                amount={techComponent.amount}
+                description={techComponent.description}
+                image={placeholderImage}
+                title={techComponent.title}
+                editable={true}
+                clickable={false}
+                onDeleteClick={handleDeleteFromCart}
+              />
+            );
+          })
+        )}
       </div>
       <Button type="primary" size="l" onClick={() => setModalIsOpen(true)}>
         Reservieren

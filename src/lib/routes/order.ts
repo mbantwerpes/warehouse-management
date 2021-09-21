@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { authAdmin } from '../middleware/auth';
+import { authAdmin, withAuth } from '../middleware/auth';
 import { getOrders, getOrder, addOrder, updateOrder } from '../models/order';
 import type { TechComponentOrder } from '../types/types';
 
@@ -24,10 +24,12 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
+    const studentId = req.id;
+    if (!studentId) throw new Error('No studentId provided');
     const orderData: TechComponentOrder[] = req.body;
-    addOrder(orderData);
+    addOrder(orderData, studentId);
     res.json(orderData);
   } catch (err) {
     res.status(500).json({ message: err.message });

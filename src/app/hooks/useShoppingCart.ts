@@ -5,6 +5,7 @@ export default function useShoppingCart(): {
   cartItems: TechComponentOrder[];
   addCartItem: (cartItem: TechComponentOrder) => void;
   removeCartItem: (techComponentId: string) => void;
+  clearCart: () => void;
 } {
   const [cartItems, setCartItems] = useLocalStorage<TechComponentOrder[]>(
     'cartItems',
@@ -27,5 +28,9 @@ export default function useShoppingCart(): {
     );
   }
 
-  return { cartItems, addCartItem, removeCartItem };
+  function clearCart() {
+    setCartItems([]);
+  }
+
+  return { cartItems, addCartItem, removeCartItem, clearCart };
 }
