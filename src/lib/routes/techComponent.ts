@@ -16,6 +16,7 @@ const router = Router();
 router.get('/', async (req, res) => {
   try {
     const { searchValue } = req.query;
+    const { cartRequest } = req.query;
     const ids = req.query.id as string[];
     if (ids) {
       // If only one id is given, then it is not an array
@@ -31,7 +32,7 @@ router.get('/', async (req, res) => {
     else if (searchValue && typeof searchValue === 'string') {
       const techComponents = await searchTechComponents(searchValue);
       res.json(techComponents);
-    } else {
+    } else if (!cartRequest) {
       const techComponents = await getTechComponents();
       res.json(techComponents);
     }

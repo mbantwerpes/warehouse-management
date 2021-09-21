@@ -27,7 +27,7 @@ const Cart = (): JSX.Element => {
   // TODO check if cartItems contains a value, if not is has to be handled
   const ids: string[] = cartItems.map((cartItem) => cartItem.techComponentId);
 
-  const { data: techComponents } = useTechComponents(undefined, ids);
+  const { data: techComponents } = useTechComponents(undefined, ids, true);
 
   const addOrder = async (cartItems: TechComponentOrder[]) => {
     const { data } = await axios.post('/api/order', cartItems);
