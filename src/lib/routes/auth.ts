@@ -12,11 +12,11 @@ router.post('/', async (req, res) => {
     const user = await getUserByEmailAndPassword(email, password);
     const secret = process.env.JWT_SECRET;
     if (user && secret) {
-      const payload = { id: user._id, email, role: user.role };
+      const payload = { id: user._id, role: user.role };
       const token = jwt.sign(payload, secret, {
         expiresIn: '1h',
       });
-      res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+      res.cookie('token', token, { httpOnly: true }).status(200).json(payload);
     } else {
       res.json(user);
     }
