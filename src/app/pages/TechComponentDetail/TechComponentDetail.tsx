@@ -6,7 +6,6 @@ import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentDetail.module.css';
 import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import useTechComponent from '../../hooks/useTechComponent';
-import { useModal } from '../../hooks/useModal';
 import Counter from '../../components/Counter/Counter';
 import useShoppingCart from '../../hooks/useShoppingCart';
 import { TechComponentOrder } from '../../../lib/types/types';
@@ -15,8 +14,11 @@ import { useUserContext } from '../../context/UserContext';
 import axios from 'axios';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
+import Modal from '../../components/Modal/Modal';
 
 const TechComponentDetail = (): JSX.Element => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const { role } = useUserContext();
 
   const history = useHistory();
@@ -59,8 +61,6 @@ const TechComponentDetail = (): JSX.Element => {
   };
 
   // Admin functions
-  const { show, hide, RenderModal: RenderDeleteModal } = useModal();
-
   const deleteTechComponent = async () => {
     const { data } = await axios.delete(`/api/techcomponent/${id}`);
     return data;
@@ -71,12 +71,12 @@ const TechComponentDetail = (): JSX.Element => {
   const handleDeleteTechComponent = async () => {
     deleteTechComponentMutation.mutate();
 
+    setModalIsOpen(false);
+
     toast.info('Bauteil erfolgreich gelöscht', {
       theme: 'colored',
       position: toast.POSITION.BOTTOM_CENTER,
     });
-
-    hide();
 
     history.push('/');
   };
@@ -136,7 +136,7 @@ const TechComponentDetail = (): JSX.Element => {
       {/* Render buttons conditionally if user role is student or admin */}
       {role === 'admin' ? (
         <div className={styles.buttonGroup}>
-          <Button type="error" size="l" onClick={show}>
+          <Button type="error" size="l" onClick={() => setModalIsOpen(true)}>
             <MdDelete size={24} />
           </Button>
           <Button
@@ -152,14 +152,18 @@ const TechComponentDetail = (): JSX.Element => {
           Zum Warenkorb hinzufügen
         </Button>
       )}
-      <RenderDeleteModal title="Löschen">
+      <Modal
+        isOpen={modalIsOpen}
+        hideModal={() => setModalIsOpen(false)}
+        title="Bauteil löschen"
+      >
         <ConfirmActionModal
-          onClose={hide}
+          onClose={() => setModalIsOpen(false)}
           onConfirmAction={handleDeleteTechComponent}
           content="Bist du dir sicher, dass du das Bauteil löschen möchtest?"
           confirmButtonText="Löschen"
         />
-      </RenderDeleteModal>
+      </Modal>
     </div>
   );
 };
