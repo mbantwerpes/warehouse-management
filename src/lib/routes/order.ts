@@ -10,7 +10,7 @@ router.get('/', async (_req, res) => {
     const orders = await getOrders();
     res.json(orders);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
     const order = await getOrder(id);
     res.json(order);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -32,7 +32,7 @@ router.post('/', withAuth, async (req, res) => {
     addOrder(orderData, studentId);
     res.json(orderData);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -43,7 +43,7 @@ router.put('/:id', authAdmin, async (req, res) => {
     updateOrder(id, orderData);
     res.json(orderData);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
