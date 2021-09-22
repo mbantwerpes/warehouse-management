@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import Input from '../FormikInput/FormikInput';
 import Textarea from '../FormikTextarea/FormikTextarea';
 import { TechComponentForFrontend } from '../../../lib/types/types';
+import FileInput from '../FileInput/FileInput';
 
 type TechComponentFormProps = {
   isEdit?: boolean;
@@ -35,7 +36,7 @@ const TechComponentForm = ({
           location: locationValue,
           description: descriptionValue,
           amount: amountValue,
-          file: undefined,
+          file: '',
         }}
         validationSchema={Yup.object({
           title: Yup.string()
@@ -104,11 +105,8 @@ const TechComponentForm = ({
                 required={true}
               />
 
-              <input
-                id="file"
-                name="file"
-                type="file"
-                onChange={(event) => {
+              <FileInput
+                setFieldValue={(event) => {
                   if (event.currentTarget.files) {
                     props.setFieldValue('file', event.currentTarget.files[0]);
                   }
