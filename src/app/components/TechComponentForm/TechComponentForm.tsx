@@ -104,28 +104,23 @@ const TechComponentForm = ({
                 required={true}
               />
 
+              <input
+                id="file"
+                name="file"
+                type="file"
+                onChange={(event) => {
+                  if (event.currentTarget.files) {
+                    props.setFieldValue('file', event.currentTarget.files[0]);
+                  }
+                }}
+              />
+
               <Input
                 id="amount"
                 name="amount"
                 label="Anzahl"
                 type="number"
                 required={true}
-              />
-
-              {/* <Input
-              id="file"
-              name="file"
-              label="Bild"
-              type="file"
-              required={true}
-            /> */}
-              <input
-                id="file"
-                name="file"
-                type="file"
-                onChange={(event) => {
-                  props.setFieldValue('file', event.currentTarget.files[0]);
-                }}
               />
             </div>
             <Button type="primary" size="l" isSubmit={true}>
