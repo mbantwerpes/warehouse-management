@@ -38,7 +38,7 @@ export type TechComponent = {
   orders?: string[];
   path?: string;
   mimetype?: string;
-  base64Image?: string;
+  base64Image?: string | null;
   isDeleted: boolean;
   crAt: string;
   leAt: string;

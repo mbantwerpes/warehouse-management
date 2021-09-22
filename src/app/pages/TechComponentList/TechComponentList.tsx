@@ -77,7 +77,11 @@ const TechComponentList = (): JSX.Element => {
                   title={techComponent.title}
                   description={techComponent.description}
                   amount={techComponent.amount}
-                  image={placeholderImage}
+                  image={
+                    techComponent?.base64Image
+                      ? `data:image/png;base64, ${techComponent?.base64Image}`
+                      : placeholderImage
+                  }
                 />
               );
             })
