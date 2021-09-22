@@ -10,27 +10,7 @@ import {
   getTechComponentsByIdArray,
 } from '../models/techComponent';
 import type { TechComponent } from '../types/types';
-import multer from 'multer';
-import fs from 'fs';
-
-const upload = multer({
-  storage: multer.diskStorage({
-    destination(_req, _file, cb) {
-      const path = `./files`;
-      fs.mkdirSync(path, { recursive: true });
-      cb(null, './files');
-    },
-    filename(_req, file, cb) {
-      cb(null, `${new Date().getTime()}_${file.originalname}`);
-    },
-  }),
-  fileFilter(_req, file, cb) {
-    if (!file.originalname.match(/\.(jpeg|jpg|png)$/)) {
-      return cb(new Error('only upload files with jpg, jpeg, png format.'));
-    }
-    cb(null, true); // continue with upload
-  },
-});
+import uploadFile from '../middleware/imageUpload';
 
 const router = Router();
 
@@ -72,7 +52,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', authAdmin, upload.single('file'), async (req, res) => {
+router.post('/', authAdmin, uploadFile.single('file'), async (req, res) => {
   try {
     const path = req.file?.path;
     const mimetype = req.file?.mimetype;
