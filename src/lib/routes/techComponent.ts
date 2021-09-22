@@ -10,6 +10,27 @@ import {
   getTechComponentsByIdArray,
 } from '../models/techComponent';
 import type { TechComponent } from '../types/types';
+import multer from 'multer';
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(_req, _file, cb) {
+      console.log('here');
+      cb(null, './files');
+    },
+    filename(_req, file, cb) {
+      console.log('here');
+      cb(null, `${new Date().getTime()}_${file.originalname}`);
+    },
+  }),
+  fileFilter(_req, file, cb) {
+    console.log('here');
+    if (!file.originalname.match(/\.(jpeg|jpg|png)$/)) {
+      return cb(new Error('only upload files with jpg, jpeg, png format.'));
+    }
+    cb(null, true); // continue with upload
+  },
+});
 
 const router = Router();
 
@@ -51,9 +72,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', authAdmin, async (req, res) => {
+router.post('/', authAdmin, upload.single('file'), async (req, res) => {
   try {
-    const techComponentData: TechComponent = req.body;
+    console.log(req.body);
+    console.log(req.file);
+    const path = req.file?.path;
+    const mimetype = req.file?.mimetype;
+    const techComponentData: TechComponent = { ...req.body, path, mimetype };
+    // const techComponentData: TechComponent = req.body;
     addTechComponent(techComponentData);
     res.json(techComponentData);
   } catch (err) {
