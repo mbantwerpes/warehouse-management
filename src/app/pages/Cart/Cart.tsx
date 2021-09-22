@@ -96,7 +96,11 @@ const Cart = (): JSX.Element => {
                 onCardClick={() => console.log('placeholder')}
                 amount={techComponent.amount}
                 description={techComponent.description}
-                image={placeholderImage}
+                image={
+                  techComponent?.base64Image
+                    ? `data:image/png;base64, ${techComponent?.base64Image}`
+                    : placeholderImage
+                }
                 title={techComponent.title}
                 editable={true}
                 clickable={false}

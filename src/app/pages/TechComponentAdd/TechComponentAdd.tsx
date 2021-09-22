@@ -18,15 +18,21 @@ const TechComponentAdd = (): JSX.Element => {
   };
 
   const addTechComponent = async (techComponent: TechComponentForFrontend) => {
-    return await axios.post(`/api/techcomponent`, techComponent);
+    const formData = new FormData();
+
+    formData.append('title', techComponent.title);
+    formData.append('artNr', techComponent.artNr);
+    formData.append('location', techComponent.location);
+    formData.append('description', techComponent.description);
+    formData.append('amount', techComponent.amount.toString());
+    if (techComponent.file) {
+      formData.append('file', techComponent.file);
+    }
+
+    return await axios.post(`/api/techcomponent`, formData);
   };
 
   const addTechComponentMutation = useMutation(addTechComponent);
-
-  console.log(addTechComponentMutation.isIdle);
-  console.log(addTechComponentMutation.isLoading);
-  console.log(addTechComponentMutation.isError);
-  console.log(addTechComponentMutation.isSuccess);
 
   const handleSubmit = async (techComponent: TechComponentForFrontend) => {
     addTechComponentMutation.mutate(techComponent);

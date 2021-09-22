@@ -2,13 +2,29 @@ import type { TechComponent } from '../types/types';
 import { ObjectId } from 'mongodb';
 import { getTechComponentCollection } from '../database';
 import { getCurrentDate } from '../utils/time';
+import fs from 'fs';
+
+const addImageFileToTechComponent = (techComponent: TechComponent) => {
+  if (techComponent?.path) {
+    const contents = fs.readFileSync(techComponent?.path, {
+      encoding: 'base64',
+    });
+
+    techComponent.base64Image = contents;
+  } else {
+    techComponent.base64Image = null;
+  }
+  return techComponent;
+};
 
 export async function getTechComponents(): Promise<TechComponent[]> {
   const techComponentCollection = getTechComponentCollection();
   const techComponents = await techComponentCollection
     .find({ isDeleted: false })
     .toArray();
-  return techComponents;
+  return techComponents.map((techComponent) =>
+    addImageFileToTechComponent(techComponent)
+  );
 }
 
 export async function getTechComponentsByIdArray(
@@ -19,7 +35,9 @@ export async function getTechComponentsByIdArray(
   const techComponents = await techComponentCollection
     .find<TechComponent>({ _id: { $in: objectIds } })
     .toArray();
-  return techComponents;
+  return techComponents.map((techComponent) =>
+    addImageFileToTechComponent(techComponent)
+  );
 }
 
 export async function getTechComponent(id: string): Promise<TechComponent> {
@@ -32,7 +50,7 @@ export async function getTechComponent(id: string): Promise<TechComponent> {
     throw new Error(`Unable to find techComponent with the id: ${id}`);
   }
 
-  return techComponent;
+  return addImageFileToTechComponent(techComponent);
 }
 
 export async function searchTechComponents(
@@ -42,7 +60,9 @@ export async function searchTechComponents(
   const techComponents = await techComponentCollection
     .find({ title: { $regex: query, $options: 'i' }, isDeleted: false })
     .toArray();
-  return techComponents;
+  return techComponents.map((techComponent) =>
+    addImageFileToTechComponent(techComponent)
+  );
 }
 
 export const addTechComponent = async (

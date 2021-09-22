@@ -10,6 +10,7 @@ import {
   getTechComponentsByIdArray,
 } from '../models/techComponent';
 import type { TechComponent } from '../types/types';
+import uploadFile from '../middleware/imageUpload';
 
 const router = Router();
 
@@ -51,9 +52,11 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', authAdmin, async (req, res) => {
+router.post('/', authAdmin, uploadFile.single('file'), async (req, res) => {
   try {
-    const techComponentData: TechComponent = req.body;
+    const path = req.file?.path;
+    const mimetype = req.file?.mimetype;
+    const techComponentData: TechComponent = { ...req.body, path, mimetype };
     addTechComponent(techComponentData);
     res.json(techComponentData);
   } catch (err) {

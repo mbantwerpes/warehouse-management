@@ -1,0 +1,15 @@
+.fileInput {
+  display: none;
+}
+
+.inputFileButton {
+  padding: 1rem;
+  border-style: none;
+  color: var(--color-main-bright);
+  letter-spacing: 0.1rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
+  background: var(--color-action);
+}

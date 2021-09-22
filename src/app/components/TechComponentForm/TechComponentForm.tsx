@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import Input from '../FormikInput/FormikInput';
 import Textarea from '../FormikTextarea/FormikTextarea';
 import { TechComponentForFrontend } from '../../../lib/types/types';
+import FileInput from '../FileInput/FileInput';
 
 type TechComponentFormProps = {
   isEdit?: boolean;
@@ -35,6 +36,7 @@ const TechComponentForm = ({
           location: locationValue,
           description: descriptionValue,
           amount: amountValue,
+          file: '',
         }}
         validationSchema={Yup.object({
           title: Yup.string()
@@ -65,55 +67,65 @@ const TechComponentForm = ({
           }, 400);
         }}
       >
-        <Form className={styles.form}>
-          <div className={styles.fields}>
-            <Input
-              id="title"
-              name="title"
-              label="Name"
-              type="text"
-              placeholder="Name"
-              required={true}
-            />
+        {(props) => (
+          <Form className={styles.form}>
+            <div className={styles.fields}>
+              <Input
+                id="title"
+                name="title"
+                label="Name"
+                type="text"
+                placeholder="Name"
+                required={true}
+              />
 
-            <Input
-              id="artNr"
-              name="artNr"
-              label="Artikelnummer"
-              type="text"
-              placeholder="Artikelnummer"
-              required={true}
-            />
+              <Input
+                id="artNr"
+                name="artNr"
+                label="Artikelnummer"
+                type="text"
+                placeholder="Artikelnummer"
+                required={true}
+              />
 
-            <Input
-              id="location"
-              name="location"
-              label="Ortsangabe"
-              type="text"
-              placeholder="Ortsangabe"
-              required={true}
-            />
+              <Input
+                id="location"
+                name="location"
+                label="Ortsangabe"
+                type="text"
+                placeholder="Ortsangabe"
+                required={true}
+              />
 
-            <Textarea
-              id="description"
-              name="description"
-              label="Beschreibung"
-              placeholder="Beschreibung..."
-              required={true}
-            />
+              <Textarea
+                id="description"
+                name="description"
+                label="Beschreibung"
+                placeholder="Beschreibung..."
+                required={true}
+              />
 
-            <Input
-              id="amount"
-              name="amount"
-              label="Anzahl"
-              type="number"
-              required={true}
-            />
-          </div>
-          <Button type="primary" size="l" isSubmit={true}>
-            {isEdit ? 'Änderungen speichern' : 'Bauteil anlegen'}
-          </Button>
-        </Form>
+              <FileInput
+                setFieldValue={(event) => {
+                  if (event.currentTarget.files) {
+                    props.setFieldValue('file', event.currentTarget.files[0]);
+                  }
+                }}
+              />
+
+              <Input
+                id="amount"
+                name="amount"
+                label="Anzahl"
+                type="number"
+                required={true}
+              />
+            </div>
+            <Button type="primary" size="l" isSubmit={true}>
+              {isEdit ? 'Änderungen speichern' : 'Bauteil anlegen'}
+            </Button>
+          </Form>
+        )}
       </Formik>
     </div>
   );

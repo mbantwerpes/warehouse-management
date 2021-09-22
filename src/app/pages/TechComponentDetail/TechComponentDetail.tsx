@@ -4,7 +4,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentDetail.module.css';
-import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import useTechComponent from '../../hooks/useTechComponent';
 import Counter from '../../components/Counter/Counter';
 import useShoppingCart from '../../hooks/useShoppingCart';
@@ -15,6 +14,7 @@ import axios from 'axios';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import Modal from '../../components/Modal/Modal';
+import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 
 const TechComponentDetail = (): JSX.Element => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -95,7 +95,15 @@ const TechComponentDetail = (): JSX.Element => {
         {techComponent?.title}
       </Typography>
       <div className={styles.content}>
-        <img src={placeholderImage} alt="placeholder" className={styles.img} />
+        <img
+          src={
+            techComponent?.base64Image
+              ? `data:image/png;base64, ${techComponent?.base64Image}`
+              : placeholderImage
+          }
+          alt="placeholder"
+          className={styles.img}
+        />
         <Typography type="header" size="m">
           Verfügbar: {techComponent?.amount}
         </Typography>

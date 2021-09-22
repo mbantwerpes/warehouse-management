@@ -36,7 +36,9 @@ export type TechComponent = {
   amount: number;
   artNr: string;
   orders?: string[];
-  // TODO find out where and how to store the image, until then use a placeholder
+  path?: string;
+  mimetype?: string;
+  base64Image?: string | null;
   isDeleted: boolean;
   crAt: string;
   leAt: string;
@@ -49,6 +51,7 @@ export type TechComponentForFrontend = {
   amount: number;
   artNr: string;
   orders?: string[];
+  file?: string | Blob;
 };
 
 export type TechComponentOrder = {
