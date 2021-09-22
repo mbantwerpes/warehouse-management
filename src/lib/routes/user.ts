@@ -23,7 +23,7 @@ router.get('/', authAdmin, async (req, res) => {
       res.json(users);
     }
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
     const user = await getUser(id);
     res.json(user);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -43,7 +43,7 @@ router.post('/', authAdmin, async (req, res) => {
     addUser(userData);
     res.json(userData);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -54,7 +54,7 @@ router.put('/:id', authAdmin, async (req, res) => {
     updateUser(id, userData);
     res.json(userData);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -64,7 +64,7 @@ router.delete('/:id', authAdmin, async (req, res) => {
     deleteUser(id);
     res.json(id);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
