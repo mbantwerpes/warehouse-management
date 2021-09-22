@@ -14,6 +14,7 @@ import axios from 'axios';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import Modal from '../../components/Modal/Modal';
+import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 
 const TechComponentDetail = (): JSX.Element => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -95,7 +96,11 @@ const TechComponentDetail = (): JSX.Element => {
       </Typography>
       <div className={styles.content}>
         <img
-          src={`data:image/png;base64, ${techComponent?.base64Image}`}
+          src={
+            techComponent?.base64Image
+              ? `data:image/png;base64, ${techComponent?.base64Image}`
+              : placeholderImage
+          }
           alt="placeholder"
           className={styles.img}
         />
