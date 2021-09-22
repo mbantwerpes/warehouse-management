@@ -12,6 +12,9 @@ const uploadFile = multer({
       cb(null, `${new Date().getTime()}_${file.originalname}`);
     },
   }),
+  limits: {
+    fileSize: 1000000, // max file size 1MB = 1000000 bytes
+  },
   fileFilter(_req, file, cb) {
     if (!file.originalname.match(/\.(jpeg|jpg|png)$/)) {
       return cb(new Error('only upload files with jpg, jpeg, png format.'));
