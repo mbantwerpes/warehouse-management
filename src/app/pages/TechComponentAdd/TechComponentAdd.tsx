@@ -25,7 +25,9 @@ const TechComponentAdd = (): JSX.Element => {
     formData.append('location', techComponent.location);
     formData.append('description', techComponent.description);
     formData.append('amount', techComponent.amount.toString());
-    formData.append('file', techComponent.file);
+    if (techComponent.file) {
+      formData.append('file', techComponent.file);
+    }
 
     return await axios.post(`/api/techcomponent`, formData);
   };

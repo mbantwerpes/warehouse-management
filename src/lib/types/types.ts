@@ -38,7 +38,7 @@ export type TechComponent = {
   orders?: string[];
   path?: string;
   mimetype?: string;
-  base64Image?: any;
+  base64Image?: string;
   isDeleted: boolean;
   crAt: string;
   leAt: string;
@@ -51,7 +51,7 @@ export type TechComponentForFrontend = {
   amount: number;
   artNr: string;
   orders?: string[];
-  file?: any;
+  file?: string | Blob;
 };
 
 export type TechComponentOrder = {
