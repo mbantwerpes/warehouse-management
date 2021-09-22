@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './FileInput.module.css';
 
 export type FileInputProps = {
@@ -6,17 +6,22 @@ export type FileInputProps = {
 };
 
 const FileInput = ({ setFieldValue }: FileInputProps): JSX.Element => {
+  const [inputChanged, setInputChanged] = useState(false);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldValue(event);
+    setInputChanged(true);
+  };
   return (
     <div>
       <label htmlFor="file" className={styles.inputFileButton}>
-        Bild hochladen
+        {inputChanged ? 'Bild hochgeladen' : 'Bild hochladen'}
       </label>
       <input
         className={styles.fileInput}
         id="file"
         name="file"
         type="file"
-        onChange={setFieldValue}
+        onChange={handleChange}
       />
     </div>
   );
