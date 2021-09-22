@@ -11,11 +11,14 @@ import {
 } from '../models/techComponent';
 import type { TechComponent } from '../types/types';
 import multer from 'multer';
+import fs from 'fs';
 
 const upload = multer({
   storage: multer.diskStorage({
     destination(_req, _file, cb) {
       console.log('here');
+      const path = `./files`;
+      fs.mkdirSync(path, { recursive: true });
       cb(null, './files');
     },
     filename(_req, file, cb) {

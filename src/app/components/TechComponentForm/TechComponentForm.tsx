@@ -124,7 +124,6 @@ const TechComponentForm = ({
                 name="file"
                 type="file"
                 onChange={(event) => {
-                  // @ts-ignore
                   props.setFieldValue('file', event.currentTarget.files[0]);
                 }}
               />
