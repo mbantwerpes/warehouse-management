@@ -34,11 +34,6 @@ const TechComponentAdd = (): JSX.Element => {
 
   const addTechComponentMutation = useMutation(addTechComponent);
 
-  console.log(addTechComponentMutation.isIdle);
-  console.log(addTechComponentMutation.isLoading);
-  console.log(addTechComponentMutation.isError);
-  console.log(addTechComponentMutation.isSuccess);
-
   const handleSubmit = async (techComponent: TechComponentForFrontend) => {
     addTechComponentMutation.mutate(techComponent);
 

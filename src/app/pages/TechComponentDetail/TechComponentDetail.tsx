@@ -26,7 +26,6 @@ const TechComponentDetail = (): JSX.Element => {
   };
   const { id }: { id: string } = useParams();
   const { data: techComponent } = useTechComponent(id);
-  console.log(techComponent);
 
   // Student functions
   const [cartAmount, setCartAmount] = useState<number>(1);

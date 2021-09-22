@@ -16,18 +16,15 @@ import fs from 'fs';
 const upload = multer({
   storage: multer.diskStorage({
     destination(_req, _file, cb) {
-      console.log('here');
       const path = `./files`;
       fs.mkdirSync(path, { recursive: true });
       cb(null, './files');
     },
     filename(_req, file, cb) {
-      console.log('here');
       cb(null, `${new Date().getTime()}_${file.originalname}`);
     },
   }),
   fileFilter(_req, file, cb) {
-    console.log('here');
     if (!file.originalname.match(/\.(jpeg|jpg|png)$/)) {
       return cb(new Error('only upload files with jpg, jpeg, png format.'));
     }
@@ -77,8 +74,6 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', authAdmin, upload.single('file'), async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.file);
     const path = req.file?.path;
     const mimetype = req.file?.mimetype;
     const techComponentData: TechComponent = { ...req.body, path, mimetype };
