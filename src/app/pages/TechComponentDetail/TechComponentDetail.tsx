@@ -4,7 +4,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Typography from '../../components/Typography/Typography';
 import styles from './TechComponentDetail.module.css';
-import placeholderImage from '../../../assets/images/placeholder_image.jpeg';
 import useTechComponent from '../../hooks/useTechComponent';
 import Counter from '../../components/Counter/Counter';
 import useShoppingCart from '../../hooks/useShoppingCart';
@@ -27,6 +26,7 @@ const TechComponentDetail = (): JSX.Element => {
   };
   const { id }: { id: string } = useParams();
   const { data: techComponent } = useTechComponent(id);
+  console.log(techComponent);
 
   // Student functions
   const [cartAmount, setCartAmount] = useState<number>(1);
@@ -95,7 +95,11 @@ const TechComponentDetail = (): JSX.Element => {
         {techComponent?.title}
       </Typography>
       <div className={styles.content}>
-        <img src={placeholderImage} alt="placeholder" className={styles.img} />
+        <img
+          src={`data:image/png;base64, ${techComponent?.base64Image}`}
+          alt="placeholder"
+          className={styles.img}
+        />
         <Typography type="header" size="m">
           Verfügbar: {techComponent?.amount}
         </Typography>

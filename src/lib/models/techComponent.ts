@@ -2,6 +2,7 @@ import type { TechComponent } from '../types/types';
 import { ObjectId } from 'mongodb';
 import { getTechComponentCollection } from '../database';
 import { getCurrentDate } from '../utils/time';
+import fs from 'fs';
 
 export async function getTechComponents(): Promise<TechComponent[]> {
   const techComponentCollection = getTechComponentCollection();
@@ -28,9 +29,15 @@ export async function getTechComponent(id: string): Promise<TechComponent> {
     _id: new ObjectId(id),
   });
 
-  if (!techComponent) {
+  if (!techComponent || !techComponent?.path) {
     throw new Error(`Unable to find techComponent with the id: ${id}`);
   }
+
+  const contents = fs.readFileSync(techComponent?.path, {
+    encoding: 'base64',
+  });
+
+  techComponent.base64Image = contents;
 
   return techComponent;
 }
