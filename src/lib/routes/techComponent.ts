@@ -61,7 +61,7 @@ router.get('/', async (req, res) => {
       res.json(techComponents);
     }
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -71,7 +71,7 @@ router.get('/:id', async (req, res) => {
     const techComponent = await getTechComponent(id);
     res.json(techComponent);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -86,7 +86,7 @@ router.post('/', authAdmin, upload.single('file'), async (req, res) => {
     addTechComponent(techComponentData);
     res.json(techComponentData);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -97,7 +97,7 @@ router.put('/:id', authAdmin, async (req, res) => {
     updateTechComponent(id, techComponentData);
     res.json(techComponentData);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
@@ -107,7 +107,7 @@ router.delete('/:id', authAdmin, async (req, res) => {
     deleteTechComponent(id);
     res.json(id);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err instanceof Error) res.status(500).json({ message: err.message });
   }
 });
 
