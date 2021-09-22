@@ -16,23 +16,6 @@
   padding: 0;
 }
 
-.labelGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.formContent {
-  display: grid;
-  gap: 1rem;
-}
-
-.textarea {
-  height: 6rem;
+.headline {
+  margin-top: 1rem;
 }

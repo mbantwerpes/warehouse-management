@@ -55,7 +55,7 @@ const TechComponentAdd = (): JSX.Element => {
       >
         <MdKeyboardArrowLeft size={32} />
       </Button>
-      <Typography type="header" size="xl">
+      <Typography type="header" size="xl" className={styles.headline}>
         Bauteil anlegen.
       </Typography>
       <TechComponentForm handleSubmit={handleSubmit} />
