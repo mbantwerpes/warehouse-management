@@ -97,8 +97,9 @@ const TechComponentDetail = (): JSX.Element => {
       <div className={styles.content}>
         <img
           src={
-            techComponent?.base64Image &&
-            `data:image/png;base64, ${techComponent?.base64Image}`
+            techComponent?.base64Image
+              ? `data:image/png;base64, ${techComponent?.base64Image}`
+              : placeholderImage
           }
           alt="placeholder"
           className={styles.img}
