@@ -57,7 +57,6 @@ router.post('/', authAdmin, uploadFile.single('file'), async (req, res) => {
     const path = req.file?.path;
     const mimetype = req.file?.mimetype;
     const techComponentData: TechComponent = { ...req.body, path, mimetype };
-    // const techComponentData: TechComponent = req.body;
     addTechComponent(techComponentData);
     res.json(techComponentData);
   } catch (err) {
