@@ -6,7 +6,7 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   height: 100vh;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto auto 1fr;
 }
 
 .backButton {
@@ -14,6 +14,10 @@
   width: 3rem;
   height: 3rem;
   padding: 0;
+}
+
+.headline {
+  margin-top: 1rem;
 }
 
 .labelGroup {

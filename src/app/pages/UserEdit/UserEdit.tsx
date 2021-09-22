@@ -71,7 +71,7 @@ const UserEdit = (): JSX.Element => {
       >
         <MdKeyboardArrowLeft size={32} />
       </Button>
-      <Typography type="header" size="xl">
+      <Typography type="header" size="xl" className={styles.headline}>
         Nutzer bearbeiten.
       </Typography>
       {!isLoading && (
