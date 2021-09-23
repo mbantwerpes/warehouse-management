@@ -56,7 +56,7 @@ Content-Type: application/json
     "role": "admin",
     "name": "Max Mustermann",
     "matrNumber": "123456789",
-    "email": "max@mustermann.com",
+    "email": "admin@admin.de",
     "password": "123",
     "telephone": "123456789",
     "grpNr": 12,
