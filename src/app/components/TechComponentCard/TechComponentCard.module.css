@@ -7,7 +7,7 @@
   padding: 1rem;
   width: 100%;
   cursor: pointer;
-  height: fit-content;
+  height: 15rem;
 }
 
 .img {
@@ -16,6 +16,7 @@
 }
 
 .contentContainer {
+  width: 100%;
   display: grid;
   gap: 1rem;
   align-content: space-between;

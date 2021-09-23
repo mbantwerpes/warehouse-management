@@ -6,7 +6,7 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   height: 100vh;
-  grid-template-rows: 10% 6% 84%;
+  grid-template-rows: auto auto 1fr;
 }
 
 .backButton {
@@ -16,19 +16,12 @@
   padding: 0;
 }
 
+.headline {
+  margin-top: 1rem;
+}
+
 .labelGroup {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.formContent {
-  display: grid;
-  gap: 1rem;
 }

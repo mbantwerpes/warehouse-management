@@ -6,7 +6,7 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   height: 100vh;
-  grid-template-rows: 1fr 1fr 10fr 1fr;
+  grid-template-rows: auto auto 1fr auto;
 }
 
 .backButton {

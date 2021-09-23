@@ -98,7 +98,7 @@ const OrderDetail = (): JSX.Element => {
           <Typography type="header" size="m">
             Name:
           </Typography>
-          <Typography type="text" size="l">
+          <Typography type="text" size="m">
             {order?._id}
           </Typography>
         </div>
@@ -106,7 +106,7 @@ const OrderDetail = (): JSX.Element => {
           <Typography type="header" size="m">
             Erstellt:
           </Typography>
-          <Typography type="text" size="l">
+          <Typography type="text" size="m">
             {order?.crAt}
           </Typography>
         </div>
@@ -114,7 +114,7 @@ const OrderDetail = (): JSX.Element => {
           <Typography type="header" size="m">
             Status:
           </Typography>
-          <Typography type="text" size="l">
+          <Typography type="text" size="m">
             {order?.status}
           </Typography>
         </div>
@@ -122,7 +122,7 @@ const OrderDetail = (): JSX.Element => {
           <Typography type="header" size="m">
             Rückgabefrist:
           </Typography>
-          <Typography type="text" size="l">
+          <Typography type="text" size="m">
             {order?.returnPeriod ? order.returnPeriod : ''}
           </Typography>
         </div>
