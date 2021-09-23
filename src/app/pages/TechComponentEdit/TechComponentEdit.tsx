@@ -58,17 +58,19 @@ const TechComponentEdit = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Button
-        type="secondary"
-        size="none"
-        onClick={redirectToTechComponentDetail}
-        className={styles.backButton}
-      >
-        <MdKeyboardArrowLeft size={32} />
-      </Button>
-      <Typography type="header" size="xl" className={styles.headline}>
-        Bauteil bearbeiten.
-      </Typography>
+      <div className={styles.header}>
+        <Button
+          type="secondary"
+          size="none"
+          onClick={redirectToTechComponentDetail}
+          className={styles.backButton}
+        >
+          <MdKeyboardArrowLeft size={32} />
+        </Button>
+        <Typography type="header" size="xl">
+          Bauteil bearbeiten.
+        </Typography>
+      </div>
       {!isLoading && (
         <TechComponentForm
           isEdit={true}

@@ -1,3 +1,7 @@
+.container {
+  overflow-y: scroll;
+}
+
 .form {
   display: grid;
   gap: 1rem;

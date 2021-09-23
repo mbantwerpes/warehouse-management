@@ -48,7 +48,7 @@ const TechComponentCard = ({
           </Typography>
           <div className={styles.description}>
             <Typography type="text" size="s">
-              {description}
+              {description ? description : 'Keine Beschreibung vorhanden'}
             </Typography>
           </div>
         </div>

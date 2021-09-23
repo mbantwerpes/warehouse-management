@@ -37,17 +37,19 @@ const UserAdd = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Button
-        type="secondary"
-        size="none"
-        onClick={handleBackButtonClick}
-        className={styles.backButton}
-      >
-        <MdKeyboardArrowLeft size={32} />
-      </Button>
-      <Typography type="header" size="xl">
-        Nutzer anlegen.
-      </Typography>
+      <div className={styles.header}>
+        <Button
+          type="secondary"
+          size="none"
+          onClick={handleBackButtonClick}
+          className={styles.backButton}
+        >
+          <MdKeyboardArrowLeft size={32} />
+        </Button>
+        <Typography type="header" size="xl">
+          Nutzer anlegen.
+        </Typography>
+      </div>
       <UserForm handleSubmit={handleSubmit} />
     </div>
   );
