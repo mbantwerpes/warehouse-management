@@ -120,7 +120,9 @@ const TechComponentDetail = (): JSX.Element => {
             Beschreibung
           </Typography>
           <Typography type="text" size="m">
-            {techComponent?.description}
+            {techComponent?.description
+              ? techComponent.description
+              : 'Keine Beschreibung vorhanden'}
           </Typography>
         </div>
         <div>
