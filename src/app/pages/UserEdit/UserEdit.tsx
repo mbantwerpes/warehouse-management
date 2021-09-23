@@ -63,17 +63,19 @@ const UserEdit = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Button
-        type="secondary"
-        size="none"
-        onClick={handleBackButtonClick}
-        className={styles.backButton}
-      >
-        <MdKeyboardArrowLeft size={32} />
-      </Button>
-      <Typography type="header" size="xl" className={styles.headline}>
-        Nutzer bearbeiten.
-      </Typography>
+      <div>
+        <Button
+          type="secondary"
+          size="none"
+          onClick={handleBackButtonClick}
+          className={styles.backButton}
+        >
+          <MdKeyboardArrowLeft size={32} />
+        </Button>
+        <Typography type="header" size="xl" className={styles.headline}>
+          Nutzer bearbeiten.
+        </Typography>
+      </div>
       {!isLoading && (
         <UserForm
           handleSubmit={handleSubmit}

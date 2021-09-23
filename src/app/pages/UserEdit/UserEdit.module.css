@@ -6,7 +6,7 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   height: 100vh;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
 }
 
 .backButton {
@@ -18,10 +18,4 @@
 
 .headline {
   margin-top: 1rem;
-}
-
-.labelGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }

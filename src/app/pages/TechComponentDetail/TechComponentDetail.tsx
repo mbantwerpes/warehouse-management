@@ -83,17 +83,19 @@ const TechComponentDetail = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Button
-        type="secondary"
-        size="m"
-        onClick={handleBackButtonClick}
-        className={styles.backButton}
-      >
-        <MdKeyboardArrowLeft size={32} />
-      </Button>
-      <Typography type="header" size="xl">
-        {techComponent?.title}
-      </Typography>
+      <div>
+        <Button
+          type="secondary"
+          size="m"
+          onClick={handleBackButtonClick}
+          className={styles.backButton}
+        >
+          <MdKeyboardArrowLeft size={32} />
+        </Button>
+        <Typography type="header" size="xl">
+          {techComponent?.title}
+        </Typography>
+      </div>
       <div className={styles.content}>
         <img
           src={

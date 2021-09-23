@@ -45,19 +45,23 @@ const UserDetail = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Button
-        type="secondary"
-        size="m"
-        onClick={handleBackButtonClick}
-        className={styles.backButton}
-      >
-        <MdKeyboardArrowLeft size={32} />
-      </Button>
-      <Typography type="header" size="xl">
-        {user?.name}
-      </Typography>
+      <div>
+        <Button
+          type="secondary"
+          size="m"
+          onClick={handleBackButtonClick}
+          className={styles.backButton}
+        >
+          <MdKeyboardArrowLeft size={32} />
+        </Button>
+        <Typography type="header" size="xl">
+          {user?.name}
+        </Typography>
+      </div>
 
-      <UserProfile user={user} />
+      <div className={styles.content}>
+        <UserProfile user={user} />
+      </div>
 
       <div className={styles.buttonGroup}>
         <Button type="error" size="l" onClick={() => setModalIsOpen(true)}>
