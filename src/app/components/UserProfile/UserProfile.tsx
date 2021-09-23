@@ -50,22 +50,26 @@ const UserProfile = ({ user }: UserProfileProps): JSX.Element => {
           {user?.telephone}
         </Typography>
       </div>
-      <div>
-        <Typography type="header" size="m">
-          Gruppenname
-        </Typography>
-        <Typography type="text" size="m">
-          {user?.grpName}
-        </Typography>
-      </div>
-      <div>
-        <Typography type="header" size="m">
-          Gruppennummer
-        </Typography>
-        <Typography type="text" size="m">
-          {user?.grpNr}
-        </Typography>
-      </div>
+      {user?.role === 'student' && (
+        <div>
+          <Typography type="header" size="m">
+            Gruppenname
+          </Typography>
+          <Typography type="text" size="m">
+            {user?.grpName}
+          </Typography>
+        </div>
+      )}
+      {user?.role === 'student' && (
+        <div>
+          <Typography type="header" size="m">
+            Gruppennummer
+          </Typography>
+          <Typography type="text" size="m">
+            {user?.grpNr}
+          </Typography>
+        </div>
+      )}
     </div>
   );
 };
