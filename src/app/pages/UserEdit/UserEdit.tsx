@@ -63,7 +63,7 @@ const UserEdit = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.header}>
         <Button
           type="secondary"
           size="none"
@@ -72,7 +72,7 @@ const UserEdit = (): JSX.Element => {
         >
           <MdKeyboardArrowLeft size={32} />
         </Button>
-        <Typography type="header" size="xl" className={styles.headline}>
+        <Typography type="header" size="xl">
           Nutzer bearbeiten.
         </Typography>
       </div>

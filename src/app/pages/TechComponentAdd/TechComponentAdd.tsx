@@ -47,17 +47,19 @@ const TechComponentAdd = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Button
-        type="secondary"
-        size="none"
-        onClick={redirectToTechComponentList}
-        className={styles.backButton}
-      >
-        <MdKeyboardArrowLeft size={32} />
-      </Button>
-      <Typography type="header" size="xl" className={styles.headline}>
-        Bauteil anlegen.
-      </Typography>
+      <div className={styles.header}>
+        <Button
+          type="secondary"
+          size="none"
+          onClick={redirectToTechComponentList}
+          className={styles.backButton}
+        >
+          <MdKeyboardArrowLeft size={32} />
+        </Button>
+        <Typography type="header" size="xl">
+          Bauteil anlegen.
+        </Typography>
+      </div>
       <TechComponentForm handleSubmit={handleSubmit} />
     </div>
   );
