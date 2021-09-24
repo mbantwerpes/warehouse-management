@@ -77,7 +77,6 @@ const TechComponentList = (): JSX.Element => {
                   key={techComponent._id as string}
                   id={techComponent._id as string}
                   onCardClick={handleCardClick}
-                  layout="vertical"
                   title={techComponent.title}
                   description={techComponent.description}
                   amount={techComponent.amount}
