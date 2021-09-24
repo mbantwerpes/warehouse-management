@@ -5,7 +5,6 @@ import Typography from '../Typography/Typography';
 export type TechComponentCardProps = {
   id: string;
   onCardClick?: (id: string) => void;
-  layout: 'horizontal' | 'vertical';
   image: string;
   title: string;
   description: string;
@@ -17,7 +16,6 @@ export type TechComponentCardProps = {
 
 const TechComponentCard = ({
   id,
-  layout,
   image,
   title,
   description,
@@ -35,9 +33,7 @@ const TechComponentCard = ({
   return (
     <div
       {...(clickable && { onClick: () => onCardClick(id) })}
-      className={`${styles.container} ${
-        layout === 'horizontal' ? styles.horizontal : styles.vertical
-      }`}
+      className={`${styles.container} ${styles.horizontal}`}
     >
       {/* TODO think about creating img component */}
       <img src={image} alt="placeholder image" className={styles.img} />
@@ -52,7 +48,7 @@ const TechComponentCard = ({
             </Typography>
           </div>
         </div>
-        {editable && layout === 'horizontal' ? (
+        {editable ? (
           <div className={styles.editableContent}>
             {/* TODO replace with amount and delete component */}
             <Typography type="text" size="s">

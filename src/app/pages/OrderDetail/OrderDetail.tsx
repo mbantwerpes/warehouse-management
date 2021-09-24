@@ -148,7 +148,6 @@ const OrderDetail = (): JSX.Element => {
             <TechComponentCard
               key={techComponent._id as string}
               id={techComponent._id as string}
-              layout="horizontal"
               amount={techComponent.amount}
               description={techComponent.description}
               image={
