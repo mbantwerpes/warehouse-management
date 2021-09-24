@@ -8,10 +8,10 @@ const Dashboard = (): JSX.Element => {
     <div className={styles.layout}>
       <div className={styles.container}>
         <Typography type="header" size="xl">
-          Profil
+          Dashboard
         </Typography>
       </div>
-      <Navbar active="user" />
+      <Navbar active="home" />
     </div>
   );
 };
