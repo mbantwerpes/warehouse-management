@@ -8,6 +8,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import { useHistory } from 'react-router-dom';
 import useUsers from '../../hooks/useUsers';
 import UserCard from '../../components/UserCard/UserCard';
+import { PulseLoader } from 'react-spinners';
 
 const UserList = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -22,7 +23,7 @@ const UserList = (): JSX.Element => {
     history.push(`/user/${id}`);
   };
 
-  const { data: users } = useUsers(searchValue);
+  const { status, data: users } = useUsers(searchValue);
 
   return (
     <div className={styles.layout}>
@@ -45,18 +46,26 @@ const UserList = (): JSX.Element => {
           containerStyling={styles.inputContainer}
         />
         <section className={styles.cardList}>
-          {users?.map((user) => {
-            return (
-              <UserCard
-                key={user._id as string}
-                id={user._id as string}
-                name={user.name}
-                email={user.email}
-                matrNr={user.matrNumber}
-                onClick={handleCardClick}
-              />
-            );
-          })}
+          {status === 'loading' ? (
+            <PulseLoader loading={true} size={20} color={'#fff'} />
+          ) : status === 'error' ? (
+            <Typography type="header" size="s">
+              Beim laden der Nutzer ist etwas schief gelaufen
+            </Typography>
+          ) : (
+            users?.map((user) => {
+              return (
+                <UserCard
+                  key={user._id as string}
+                  id={user._id as string}
+                  name={user.name}
+                  email={user.email}
+                  matrNr={user.matrNumber}
+                  onClick={handleCardClick}
+                />
+              );
+            })
+          )}
         </section>
       </div>
       <Navbar active="user" />
