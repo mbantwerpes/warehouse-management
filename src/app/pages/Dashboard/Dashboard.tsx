@@ -1,12 +1,26 @@
+import axios from 'axios';
 import React from 'react';
+import { useMutation } from 'react-query';
+import { useHistory } from 'react-router';
 import Button from '../../components/Button/Button';
 import Navbar from '../../components/Navbar/Navbar';
 import Typography from '../../components/Typography/Typography';
 import styles from './Dashboard.module.css';
 
 const Dashboard = (): JSX.Element => {
+  const history = useHistory();
+
+  const logout = async () => {
+    const { data } = await axios.get('/api/auth/logout');
+    return data;
+  };
+
+  const logoutMutation = useMutation(logout);
+
   const handleLogout = () => {
-    console.log('joho');
+    logoutMutation.mutate();
+
+    history.push('/login');
   };
 
   return (
