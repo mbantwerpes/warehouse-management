@@ -12,12 +12,6 @@ export default {
       default: 'dark',
     },
   },
-  argTypes: {
-    layout: {
-      options: ['horizontal', 'vertical'],
-      control: { type: 'select' },
-    },
-  },
 };
 
 const Template: Story<TechComponentCardProps> = (args) => (
@@ -26,7 +20,6 @@ const Template: Story<TechComponentCardProps> = (args) => (
 
 export const Horizontal = Template.bind({});
 Horizontal.args = {
-  layout: 'horizontal',
   image: placeholderImage,
   title: 'Microcontroller A-30',
   description:
@@ -36,7 +29,6 @@ Horizontal.args = {
 
 export const HorizontalEditable = Template.bind({});
 HorizontalEditable.args = {
-  layout: 'horizontal',
   image: placeholderImage,
   title: 'Microcontroller A-30',
   description:
@@ -47,7 +39,6 @@ HorizontalEditable.args = {
 
 export const Vertical = Template.bind({});
 Vertical.args = {
-  layout: 'vertical',
   image: placeholderImage,
   title: 'Microcontroller A-30',
   description:
