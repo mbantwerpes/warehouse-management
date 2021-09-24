@@ -27,7 +27,7 @@
   margin-top: 1rem;
   display: grid;
   gap: 1rem;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .cardList::-webkit-scrollbar {

@@ -19,10 +19,9 @@
 
 .content {
   margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1rem;
-  overflow: scroll;
+  overflow-y: scroll;
   margin-bottom: 1rem;
 }
 

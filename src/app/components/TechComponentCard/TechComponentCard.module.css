@@ -1,34 +1,29 @@
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(6rem, 10%) 1fr;
   gap: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
   background-color: var(--color-main-medium);
   border: 0.5px solid var(--color-text);
-  border-radius: 10px;
-  padding: 1rem;
-  width: 100%;
-  cursor: pointer;
-  height: 15rem;
-  flex-direction: row;
-}
-
-.img {
-  width: 100%;
-  height: 50%;
-  object-fit: cover;
-  object-position: center;
+  height: fit-content;
+  min-height: 8rem;
 }
 
 .contentContainer {
-  width: 100%;
   display: grid;
-  gap: 1rem;
   align-content: space-between;
 }
 
 .titleAndDescription {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 0.5rem;
+}
+
+.img {
+  align-self: center;
+  object-fit: cover;
+  object-position: center;
 }
 
 .description {
