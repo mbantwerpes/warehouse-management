@@ -66,6 +66,10 @@ const TechComponentList = (): JSX.Element => {
         <section className={styles.cardList}>
           {status === 'loading' ? (
             <PulseLoader loading={true} size={20} color={'#fff'} />
+          ) : status === 'error' ? (
+            <Typography type="header" size="s">
+              Beim laden der Bauteile ist etwas schief gelaufen
+            </Typography>
           ) : (
             techComponents?.map((techComponent) => {
               return (
