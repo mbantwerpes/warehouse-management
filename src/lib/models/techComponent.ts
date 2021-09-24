@@ -6,11 +6,14 @@ import fs from 'fs';
 
 const addImageFileToTechComponent = (techComponent: TechComponent) => {
   if (techComponent?.path) {
-    const contents = fs.readFileSync(techComponent?.path, {
-      encoding: 'base64',
-    });
-
-    techComponent.base64Image = contents;
+    try {
+      const contents = fs.readFileSync(techComponent?.path, {
+        encoding: 'base64',
+      });
+      techComponent.base64Image = contents;
+    } catch (error) {
+      techComponent.base64Image = null;
+    }
   } else {
     techComponent.base64Image = null;
   }
