@@ -19,6 +19,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import StudentProfile from './pages/StudentProfile/StudentProfile';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient();
@@ -70,7 +71,11 @@ const App = (): JSX.Element => {
               path="/techcomponent/:id"
               ComponentToProtect={TechComponentDetail}
             />
-            <ProtectedRoute path="/" ComponentToProtect={TechComponentList} />
+            <ProtectedRoute
+              path="/techcomponent"
+              ComponentToProtect={TechComponentList}
+            />
+            <ProtectedRoute path="/" ComponentToProtect={Dashboard} />
           </Switch>
           <ReactQueryDevtools initialIsOpen={false} />
           <ToastContainer />

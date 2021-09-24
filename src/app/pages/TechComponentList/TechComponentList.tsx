@@ -92,7 +92,7 @@ const TechComponentList = (): JSX.Element => {
           )}
         </section>
       </div>
-      <Navbar active="home" />
+      <Navbar active="techcomponent" />
     </div>
   );
 };
