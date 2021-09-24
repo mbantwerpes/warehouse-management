@@ -33,7 +33,7 @@ const TechComponentCard = ({
   return (
     <div
       {...(clickable && { onClick: () => onCardClick(id) })}
-      className={`${styles.container} ${styles.horizontal}`}
+      className={styles.container}
     >
       {/* TODO think about creating img component */}
       <img src={image} alt="placeholder image" className={styles.img} />

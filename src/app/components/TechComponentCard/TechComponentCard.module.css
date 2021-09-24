@@ -8,6 +8,7 @@
   width: 100%;
   cursor: pointer;
   height: 15rem;
+  flex-direction: row;
 }
 
 .img {
@@ -22,16 +23,6 @@
   display: grid;
   gap: 1rem;
   align-content: space-between;
-}
-
-.horizontal {
-  flex-direction: row;
-}
-
-.vertical {
-  flex-direction: column;
-  max-width: 10rem;
-  place-items: center;
 }
 
 .titleAndDescription {
