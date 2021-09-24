@@ -52,6 +52,10 @@ const UserList = (): JSX.Element => {
             <Typography type="header" size="s">
               Beim laden der Nutzer ist etwas schief gelaufen
             </Typography>
+          ) : users?.length === 0 ? (
+            <Typography type="header" size="s">
+              Keine Nutzer vorhanden
+            </Typography>
           ) : (
             users?.map((user) => {
               return (
