@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useMutation } from 'react-query';
 import { useHistory } from 'react-router';
+import { toast } from 'react-toastify';
 import Button from '../../components/Button/Button';
 import Navbar from '../../components/Navbar/Navbar';
 import Typography from '../../components/Typography/Typography';
@@ -19,6 +20,11 @@ const Dashboard = (): JSX.Element => {
 
   const handleLogout = () => {
     logoutMutation.mutate();
+
+    toast.info('Erfolgreich ausgeloggt', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     history.push('/login');
   };
