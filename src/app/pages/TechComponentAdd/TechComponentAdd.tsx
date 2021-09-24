@@ -14,7 +14,7 @@ const TechComponentAdd = (): JSX.Element => {
   const history = useHistory();
 
   const redirectToTechComponentList = () => {
-    history.push('/');
+    history.push('/techcomponent');
   };
 
   const addTechComponent = async (techComponent: TechComponentForFrontend) => {

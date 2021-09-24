@@ -23,7 +23,7 @@ const TechComponentDetail = (): JSX.Element => {
 
   const history = useHistory();
   const handleBackButtonClick = () => {
-    history.push('/');
+    history.push('/techcomponent');
   };
   const { id }: { id: string } = useParams();
   const { data: techComponent } = useTechComponent(id);
@@ -78,7 +78,7 @@ const TechComponentDetail = (): JSX.Element => {
       position: toast.POSITION.BOTTOM_CENTER,
     });
 
-    history.push('/');
+    history.push('/techcomponent');
   };
 
   return (

@@ -20,7 +20,7 @@ const Cart = (): JSX.Element => {
 
   const history = useHistory();
   const handleBackButtonClick = () => {
-    history.push('/');
+    history.push('/techcomponent');
   };
 
   const { cartItems, removeCartItem, clearCart } = useShoppingCart();

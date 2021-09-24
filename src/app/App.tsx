@@ -58,10 +58,6 @@ const App = (): JSX.Element => {
             <ProtectedRoute ComponentToProtect={OrderList} path="/order" />
             <ProtectedRoute ComponentToProtect={Cart} path="/cart" />
             <ProtectedRoute
-              path="/techcomponent"
-              ComponentToProtect={TechComponentList}
-            />
-            <ProtectedRoute
               path="/techcomponent/add"
               ComponentToProtect={TechComponentAdd}
               checkAdmin={true}
@@ -74,6 +70,10 @@ const App = (): JSX.Element => {
             <ProtectedRoute
               path="/techcomponent/:id"
               ComponentToProtect={TechComponentDetail}
+            />
+            <ProtectedRoute
+              path="/techcomponent"
+              ComponentToProtect={TechComponentList}
             />
             <ProtectedRoute path="/" ComponentToProtect={Dashboard} />
           </Switch>
