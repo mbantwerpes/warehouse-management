@@ -1,6 +1,6 @@
 # Lagerverwaltung
 
-WebApp um das Lager in einem Labor in der Hochschule zu verwalten.
+WebApp to manage the loan desk of an electrical engineering laboratory in an university.
 
 ## Table of contents
 
@@ -9,6 +9,8 @@ WebApp um das Lager in einem Labor in der Hochschule zu verwalten.
 - [Technologies](#technologies)
 
 ## General information
+
+With this app you can manage the loan desk of an electrical engineering laboratory in an university. Professors (admins) can add tech components, like microcontrollers, resistances and so on, to the system. They can also create new users, which then can loan the tech components through a shopping cart system.
 
 ## Setup
 
