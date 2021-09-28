@@ -7,6 +7,7 @@ import styles from './Login.module.css';
 import Typography from '../../components/Typography/Typography';
 import Logo from '../../components/Logo/Logo';
 import { useUserContext } from '../../context/UserContext';
+import { toast } from 'react-toastify';
 
 type LoginValues = {
   email: string;
@@ -27,6 +28,11 @@ const Login = (): JSX.Element => {
 
   const handleSubmit = async (values: LoginValues) => {
     const data = await loginMutation.mutateAsync(values);
+
+    toast.info('Erfolgreich eingeloggt', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     setData(data);
 
