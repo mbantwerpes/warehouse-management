@@ -5,7 +5,7 @@ import type { StudentKpi, AdminKpi } from '../../lib/types/types';
 const getKpi = async (userId: string, type: string) => {
   let data = undefined;
   if (type === 'admin') {
-    ({ data } = await axios.get(`/api/kpi/admin/${userId}`));
+    ({ data } = await axios.get(`/api/kpi/admin`));
   } else if (type === 'student') {
     ({ data } = await axios.get(`/api/kpi/student/${userId}`));
   }

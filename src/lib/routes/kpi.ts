@@ -13,10 +13,9 @@ router.get('/student/:id', async (req, res) => {
   }
 });
 
-router.get('/admin/:id', async (req, res) => {
+router.get('/admin', async (_req, res) => {
   try {
-    const id = req.params.id;
-    const orders = await getAdminKpi(id);
+    const orders = await getAdminKpi();
     res.json(orders);
   } catch (err) {
     if (err instanceof Error) res.status(500).json({ message: err.message });

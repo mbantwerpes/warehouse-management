@@ -81,4 +81,5 @@ export type AdminKpi = {
   reservedAmount: number;
   bookedAmount: number;
   returnedAmount: number;
+  techComponentsAmount: number;
 };
