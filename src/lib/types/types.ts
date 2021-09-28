@@ -70,3 +70,15 @@ export type Order = {
   crAt: string;
   leAt: string;
 };
+
+export type StudentKpi = {
+  reservedAmount: number;
+  bookedAmount: number;
+  returnedAmount: number;
+};
+
+export type AdminKpi = {
+  reservedAmount: number;
+  bookedAmount: number;
+  returnedAmount: number;
+};

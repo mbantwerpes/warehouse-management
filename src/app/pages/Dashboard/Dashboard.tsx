@@ -6,9 +6,16 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Button/Button';
 import Navbar from '../../components/Navbar/Navbar';
 import Typography from '../../components/Typography/Typography';
+import { useUserContext } from '../../context/UserContext';
+import useKpi from '../../hooks/useKpi';
 import styles from './Dashboard.module.css';
 
 const Dashboard = (): JSX.Element => {
+  const user = useUserContext();
+
+  const { data: kpiData } = useKpi(user.id, user.role);
+  console.log(kpiData);
+
   const history = useHistory();
 
   const logout = async () => {
