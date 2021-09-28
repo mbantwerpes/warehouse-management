@@ -9,7 +9,6 @@
   display: grid;
   grid-template-columns: 90%;
   justify-content: center;
-  grid-template-rows: auto 1fr;
 }
 
 .header {
