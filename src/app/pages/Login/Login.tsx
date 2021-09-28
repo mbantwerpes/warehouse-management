@@ -7,6 +7,7 @@ import styles from './Login.module.css';
 import Typography from '../../components/Typography/Typography';
 import Logo from '../../components/Logo/Logo';
 import { useUserContext } from '../../context/UserContext';
+import { toast } from 'react-toastify';
 
 type LoginValues = {
   email: string;
@@ -19,14 +20,30 @@ const Login = (): JSX.Element => {
   const history = useHistory();
 
   const login = async (values: LoginValues) => {
-    const { data } = await axios.post('/api/auth', values);
-    return data;
+    try {
+      const { data } = await axios.post('/api/auth', values);
+      return data;
+    } catch (error) {
+      return 'error';
+    }
   };
 
   const loginMutation = useMutation(login);
 
   const handleSubmit = async (values: LoginValues) => {
     const data = await loginMutation.mutateAsync(values);
+    if (data === 'error') {
+      toast.error('Email oder Passwort falsch', {
+        theme: 'colored',
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+      return;
+    }
+
+    toast.info('Erfolgreich eingeloggt', {
+      theme: 'colored',
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
 
     setData(data);
 
@@ -41,7 +58,7 @@ const Login = (): JSX.Element => {
           Lagerverwaltung
         </Typography>
       </div>
-      <div>
+      <div className={styles.loginForm}>
         <LoginForm handleSubmit={handleSubmit} />
       </div>
     </div>

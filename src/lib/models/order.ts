@@ -20,6 +20,17 @@ export async function getOrder(id: string): Promise<Order> {
   return order;
 }
 
+export async function getOrdersFromStudent(id: string): Promise<Order[]> {
+  const orderCollection = getOrderCollection();
+  const orders = await orderCollection.find({ studentId: id }).toArray();
+
+  if (!orders) {
+    throw new Error(`Unable to find orders with the studentId: ${id}`);
+  }
+
+  return orders;
+}
+
 export const addOrder = async (
   techComponentOrder: TechComponentOrder[],
   studentId: string

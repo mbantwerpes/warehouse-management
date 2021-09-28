@@ -7,6 +7,7 @@ import user from './lib/routes/user';
 import techcomponent from './lib/routes/techComponent';
 import order from './lib/routes/order';
 import auth from './lib/routes/auth';
+import kpi from './lib/routes/kpi';
 import { connectDatabase } from './lib/database';
 
 const app = express();
@@ -23,6 +24,7 @@ app.set('trust proxy', 1);
 app.use('/api/techcomponent', techcomponent);
 app.use('/api/user', user);
 app.use('/api/order', order);
+app.use('/api/kpi', kpi);
 app.use('/api/auth', auth);
 
 app.use('/storybook', express.static('dist/storybook'));

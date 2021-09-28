@@ -18,3 +18,14 @@
   gap: 0.5rem;
   justify-self: center;
 }
+
+.loginForm {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1rem;
+}
+
+.loginErrorText {
+  color: var(--color-highlight);
+  justify-self: center;
+}

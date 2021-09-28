@@ -6,9 +6,15 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Button/Button';
 import Navbar from '../../components/Navbar/Navbar';
 import Typography from '../../components/Typography/Typography';
+import { useUserContext } from '../../context/UserContext';
+import useKpi from '../../hooks/useKpi';
 import styles from './Dashboard.module.css';
 
 const Dashboard = (): JSX.Element => {
+  const user = useUserContext();
+
+  const { data: kpiData } = useKpi(user.id, user.role);
+
   const history = useHistory();
 
   const logout = async () => {
@@ -32,12 +38,51 @@ const Dashboard = (): JSX.Element => {
   return (
     <div className={styles.layout}>
       <div className={styles.container}>
-        <Typography type="header" size="xl">
-          Dashboard
+        <div className={styles.header}>
+          <Typography type="header" size="xl">
+            Dashboard
+          </Typography>
+          <Button type="primary" size="l" onClick={handleLogout}>
+            Logout
+          </Button>
+        </div>
+        <Typography type="header" size="l">
+          Willkommen
         </Typography>
-        <Button type="primary" size="l" onClick={handleLogout}>
-          Logout
-        </Button>
+        {user.role === 'admin' && (
+          <div>
+            <Typography type="header" size="m">
+              Anzahl Bauteile:
+            </Typography>
+            <Typography type="text" size="m">
+              {kpiData?.techComponentsAmount}
+            </Typography>
+          </div>
+        )}
+        <div>
+          <Typography type="header" size="m">
+            Reservierte Ausleihaufträge:
+          </Typography>
+          <Typography type="text" size="m">
+            {kpiData?.reservedAmount}
+          </Typography>
+        </div>
+        <div>
+          <Typography type="header" size="m">
+            Bestätigte Ausleihaufträge:
+          </Typography>
+          <Typography type="text" size="m">
+            {kpiData?.bookedAmount}
+          </Typography>
+        </div>
+        <div>
+          <Typography type="header" size="m">
+            Zurückgegebene Ausleihaufträge:
+          </Typography>
+          <Typography type="text" size="m">
+            {kpiData?.returnedAmount}
+          </Typography>
+        </div>
       </div>
       <Navbar active="home" />
     </div>

@@ -1,15 +1,27 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
+import { Order } from '../../../lib/types/types';
 import Navbar from '../../components/Navbar/Navbar';
 import OrderCard from '../../components/OrderCard/OrderCard';
 import Typography from '../../components/Typography/Typography';
+import { useUserContext } from '../../context/UserContext';
 import useOrders from '../../hooks/useOrders';
+import useStudentOrders from '../../hooks/useStudentOrders';
 import styles from './OrderList.module.css';
 
 const OrderList = (): JSX.Element => {
+  const user = useUserContext();
+
   const history = useHistory();
-  const { status, data: orders } = useOrders();
+
+  let status = undefined;
+  let orders: Order[] | undefined = undefined;
+  if (user.role === 'student') {
+    ({ status, data: orders } = useStudentOrders(user.id));
+  } else {
+    ({ status, data: orders } = useOrders());
+  }
 
   const handleOrderClick = (id: string) => {
     history.push(`/order/${id}`);
