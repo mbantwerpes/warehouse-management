@@ -8,6 +8,11 @@
   margin-top: 2rem;
   display: grid;
   grid-template-columns: 90%;
-  grid-template-rows: 10% 90%;
   justify-content: center;
+  grid-template-rows: auto 1fr;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
 }

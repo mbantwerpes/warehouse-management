@@ -32,12 +32,17 @@ const Dashboard = (): JSX.Element => {
   return (
     <div className={styles.layout}>
       <div className={styles.container}>
-        <Typography type="header" size="xl">
-          Dashboard
+        <div className={styles.header}>
+          <Typography type="header" size="xl">
+            Dashboard
+          </Typography>
+          <Button type="primary" size="l" onClick={handleLogout}>
+            Logout
+          </Button>
+        </div>
+        <Typography type="header" size="l">
+          Willkommen
         </Typography>
-        <Button type="primary" size="l" onClick={handleLogout}>
-          Logout
-        </Button>
       </div>
       <Navbar active="home" />
     </div>
