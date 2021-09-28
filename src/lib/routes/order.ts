@@ -1,6 +1,12 @@
 import { Router } from 'express';
 import { authAdmin, withAuth } from '../middleware/auth';
-import { getOrders, getOrder, addOrder, updateOrder } from '../models/order';
+import {
+  getOrders,
+  getOrder,
+  addOrder,
+  updateOrder,
+  getOrdersFromStudent,
+} from '../models/order';
 import type { TechComponentOrder } from '../types/types';
 
 const router = Router();
@@ -18,6 +24,16 @@ router.get('/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const order = await getOrder(id);
+    res.json(order);
+  } catch (err) {
+    if (err instanceof Error) res.status(500).json({ message: err.message });
+  }
+});
+
+router.get('/student/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const order = await getOrdersFromStudent(id);
     res.json(order);
   } catch (err) {
     if (err instanceof Error) res.status(500).json({ message: err.message });
