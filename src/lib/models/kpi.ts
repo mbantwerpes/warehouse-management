@@ -1,7 +1,7 @@
-import type { AdminKpi, StudentKpi } from '../types/types';
+import type { Kpi } from '../types/types';
 import { getOrderCollection, getTechComponentCollection } from '../database';
 
-export async function getStudentKpi(studentId: string): Promise<StudentKpi> {
+export async function getStudentKpi(studentId: string): Promise<Kpi> {
   const orderCollection = getOrderCollection();
   const reservedOrders = await orderCollection
     .find({ studentId: studentId, status: 'reserved' })
@@ -13,7 +13,7 @@ export async function getStudentKpi(studentId: string): Promise<StudentKpi> {
     .find({ studentId: studentId, status: 'returned' })
     .toArray();
 
-  const studentKpi: StudentKpi = {
+  const studentKpi: Kpi = {
     reservedAmount: reservedOrders.length,
     bookedAmount: bookedOrders.length,
     returnedAmount: returnedOrders.length,
@@ -22,7 +22,7 @@ export async function getStudentKpi(studentId: string): Promise<StudentKpi> {
   return studentKpi;
 }
 
-export async function getAdminKpi(): Promise<AdminKpi> {
+export async function getAdminKpi(): Promise<Kpi> {
   const orderCollection = getOrderCollection();
   const reservedOrders = await orderCollection
     .find({ status: 'reserved' })
@@ -37,7 +37,7 @@ export async function getAdminKpi(): Promise<AdminKpi> {
   const techComponentCollection = getTechComponentCollection();
   const techComponents = await techComponentCollection.find().toArray();
 
-  const adminKpi: AdminKpi = {
+  const adminKpi: Kpi = {
     reservedAmount: reservedOrders.length,
     bookedAmount: bookedOrders.length,
     returnedAmount: returnedOrders.length,

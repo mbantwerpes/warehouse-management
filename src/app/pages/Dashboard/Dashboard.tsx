@@ -14,7 +14,6 @@ const Dashboard = (): JSX.Element => {
   const user = useUserContext();
 
   const { data: kpiData } = useKpi(user.id, user.role);
-  console.log(kpiData);
 
   const history = useHistory();
 
@@ -50,6 +49,40 @@ const Dashboard = (): JSX.Element => {
         <Typography type="header" size="l">
           Willkommen
         </Typography>
+        {user.role === 'admin' && (
+          <div>
+            <Typography type="header" size="m">
+              Anzahl Bauteile:
+            </Typography>
+            <Typography type="text" size="m">
+              {kpiData?.techComponentsAmount}
+            </Typography>
+          </div>
+        )}
+        <div>
+          <Typography type="header" size="m">
+            Reservierte Ausleihaufträge:
+          </Typography>
+          <Typography type="text" size="m">
+            {kpiData?.reservedAmount}
+          </Typography>
+        </div>
+        <div>
+          <Typography type="header" size="m">
+            Bestätigte Ausleihaufträge:
+          </Typography>
+          <Typography type="text" size="m">
+            {kpiData?.bookedAmount}
+          </Typography>
+        </div>
+        <div>
+          <Typography type="header" size="m">
+            Zurückgegebene Ausleihaufträge:
+          </Typography>
+          <Typography type="text" size="m">
+            {kpiData?.returnedAmount}
+          </Typography>
+        </div>
       </div>
       <Navbar active="home" />
     </div>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useQuery, UseQueryResult } from 'react-query';
-import type { StudentKpi, AdminKpi } from '../../lib/types/types';
+import type { Kpi } from '../../lib/types/types';
 
 const getKpi = async (userId: string, type: string) => {
   let data = undefined;
@@ -12,13 +12,8 @@ const getKpi = async (userId: string, type: string) => {
   return data;
 };
 
-const useKpi = (
-  userId: string,
-  type: string
-): UseQueryResult<StudentKpi | AdminKpi, Error> => {
-  return useQuery<StudentKpi | AdminKpi, Error>(['kpi', userId], () =>
-    getKpi(userId, type)
-  );
+const useKpi = (userId: string, type: string): UseQueryResult<Kpi, Error> => {
+  return useQuery<Kpi, Error>(['kpi', userId], () => getKpi(userId, type));
 };
 
 export default useKpi;

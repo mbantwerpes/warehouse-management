@@ -71,15 +71,9 @@ export type Order = {
   leAt: string;
 };
 
-export type StudentKpi = {
+export type Kpi = {
   reservedAmount: number;
   bookedAmount: number;
   returnedAmount: number;
-};
-
-export type AdminKpi = {
-  reservedAmount: number;
-  bookedAmount: number;
-  returnedAmount: number;
-  techComponentsAmount: number;
+  techComponentsAmount?: number;
 };
