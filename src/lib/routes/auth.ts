@@ -9,7 +9,7 @@ const router = Router();
 router.post('/', async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await getUserByEmailAndPassword(email, password);
+    const user = await getUserByEmailAndPassword(email.toLowerCase(), password);
     const secret = process.env.JWT_SECRET;
     if (user && secret) {
       const payload = { id: user._id, role: user.role };

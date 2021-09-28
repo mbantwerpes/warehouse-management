@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm';
@@ -17,17 +17,25 @@ type LoginValues = {
 const Login = (): JSX.Element => {
   const { setData } = useUserContext();
 
+  const [loginError, setLoginError] = useState(false);
+
   const history = useHistory();
 
   const login = async (values: LoginValues) => {
-    const { data } = await axios.post('/api/auth', values);
-    return data;
+    try {
+      const { data } = await axios.post('/api/auth', values);
+      return data;
+    } catch (error) {
+      setLoginError(true);
+      return 'error';
+    }
   };
 
   const loginMutation = useMutation(login);
 
   const handleSubmit = async (values: LoginValues) => {
     const data = await loginMutation.mutateAsync(values);
+    if (data === 'error') return;
 
     toast.info('Erfolgreich eingeloggt', {
       theme: 'colored',
@@ -47,8 +55,13 @@ const Login = (): JSX.Element => {
           Lagerverwaltung
         </Typography>
       </div>
-      <div>
+      <div className={styles.loginForm}>
         <LoginForm handleSubmit={handleSubmit} />
+        {loginError && (
+          <Typography type="text" size="m" className={styles.loginErrorText}>
+            Email oder Passwort falsch
+          </Typography>
+        )}
       </div>
     </div>
   );
