@@ -9,7 +9,12 @@ import Typography from '../../components/Typography/Typography';
 import { useUserContext } from '../../context/UserContext';
 import useKpi from '../../hooks/useKpi';
 import styles from './Dashboard.module.css';
-import { MdShoppingCart, MdUndo, MdDoneAll, MdSdCard } from 'react-icons/md';
+import {
+  MdShoppingCart,
+  MdUndo,
+  MdDoneAll,
+  MdCreateNewFolder,
+} from 'react-icons/md';
 import DashboardCard from '../../components/DashboardCard/DashboardCard';
 
 const Dashboard = (): JSX.Element => {
@@ -59,7 +64,7 @@ const Dashboard = (): JSX.Element => {
             <DashboardCard
               amount={kpiData?.techComponentsAmount}
               title="Anzahl"
-              icon={<MdSdCard size={24} />}
+              icon={<MdCreateNewFolder size={24} />}
             />
           </div>
         )}

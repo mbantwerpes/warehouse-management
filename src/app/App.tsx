@@ -17,7 +17,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { ReactQueryDevtools } from 'react-query/devtools';
+// import { ReactQueryDevtools } from 'react-query/devtools';
 import StudentProfile from './pages/StudentProfile/StudentProfile';
 import Dashboard from './pages/Dashboard/Dashboard';
 import styles from './App.module.css';
@@ -83,7 +83,7 @@ const App = (): JSX.Element => {
                 />
                 <ProtectedRoute path="/" ComponentToProtect={Dashboard} />
               </Switch>
-              <ReactQueryDevtools initialIsOpen={false} />
+              {/* <ReactQueryDevtools initialIsOpen={false} /> */}
               <ToastContainer />
             </BrowserRouter>
           </QueryClientProvider>
