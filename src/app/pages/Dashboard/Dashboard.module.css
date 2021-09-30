@@ -9,9 +9,19 @@
   display: grid;
   grid-template-columns: 90%;
   justify-content: center;
+  gap: 1rem;
+  align-items: start;
+  grid-template-rows: auto auto auto 1fr;
+  overflow-y: scroll;
 }
 
 .header {
   display: grid;
   grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.kpiList {
+  display: grid;
+  gap: 1rem;
 }
