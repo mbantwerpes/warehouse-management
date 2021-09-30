@@ -5,7 +5,7 @@ import {
   MdHome,
   MdFormatListBulleted,
   MdPerson,
-  MdSdCard,
+  MdCreateNewFolder,
 } from 'react-icons/md';
 import { useUserContext } from '../../context/UserContext';
 
@@ -26,7 +26,7 @@ const Navbar = ({ active }: NavbarProps): JSX.Element => {
         <MdHome size={30} {...(active === 'home' ? activeLink : '')} />
       </Link>
       <Link to="/techcomponent">
-        <MdSdCard
+        <MdCreateNewFolder
           size={30}
           {...(active === 'techcomponent' ? activeLink : '')}
         />
