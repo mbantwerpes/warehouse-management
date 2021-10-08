@@ -32,5 +32,4 @@ export const AppProvider = (props: ContextProps): JSX.Element => {
       {props.children}
     </UserContext.Provider>
   );
-  // }
 };
