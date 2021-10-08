@@ -84,7 +84,7 @@ const App = (): JSX.Element => {
                 <ProtectedRoute path="/" ComponentToProtect={Dashboard} />
               </Switch>
               {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-              <ToastContainer />
+              <ToastContainer autoClose={2000} />
             </BrowserRouter>
           </QueryClientProvider>
         </AppProvider>
