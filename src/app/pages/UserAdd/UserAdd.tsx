@@ -7,10 +7,12 @@ import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { UserForFrontend } from '../../../lib/types/types';
 import UserForm from '../../components/UserForm/UserForm';
 import axios from 'axios';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
 const UserAdd = (): JSX.Element => {
+  const queryClient = useQueryClient();
+
   const history = useHistory();
 
   const handleBackButtonClick = () => {
@@ -22,10 +24,12 @@ const UserAdd = (): JSX.Element => {
     return data;
   };
 
-  const addUserMutation = useMutation(addUser);
+  const addUserMutation = useMutation(addUser, {
+    onSuccess: () => queryClient.invalidateQueries('users'),
+  });
 
   const handleSubmit = async (user: UserForFrontend) => {
-    addUserMutation.mutate(user);
+    await addUserMutation.mutateAsync(user);
 
     toast.info('Nutzer erfolgreich angelegt', {
       theme: 'colored',
